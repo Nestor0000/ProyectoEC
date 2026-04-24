@@ -3,7 +3,7 @@
 /*-------------------------------------
 fondos.h
 -------------------------------------*/
-
+extern void visualizarfondofase1();
 extern void visualizarPuerta();
 extern void visualizarPuertaAbierta();
 
