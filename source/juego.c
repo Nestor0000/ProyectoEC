@@ -26,7 +26,7 @@ void juego()
 	int i=9;
 	int tecla=0;
 
-	ESTADO=ESPERA;
+	//ESTADO=ESPERA;
 	
 	// Escribe en la fila 22 columna 5 de la pantalla	
 	iprintf("\x1b[22;5HPrueba de escritura");
@@ -43,33 +43,40 @@ void juego()
 	// Habilitar las interrupciones del temporizador.
 	// Habilitar interrupciones.
 	//******************************************************************************//
-
+	irqInit();
+	irqEnable(IRQ_VBLANK);
+	ConfigurarTeclado(0xC001);
+	ConfigurarTemporizador(0xC000,0X00C0);
+	//EstablecerVectorInt();
+	HabilitarIntTeclado();
+	HabilitarIntTempo();
+	irqEnable(IRQ_KEYS|IRQ_TIMER0);
+	PonerEnMarchaTempo();
 	
-        int teclas;
 
-	while(1)
-	{ 
-          scanKeys();
-          if(ESTADO == ESPERA) {
-              teclas = TeclaPulsada();
-             	 if(teclas != -1) {
-		     iprintf("Tecla: %d\n", teclas);	
-		     
-                 if(teclas == START) {
-	             ESTADO = CERRADA;
-                     visualizarPuerta();
-                     }
-                   }
-             	 }
-           else {
-}	
+	visualizarFondo1();
+	/*while(1)
+	{	
 		
       /*******************************EN LA 1.ACTIVIDAD *****************************************/
 		/* Si el estado es ESPERA: codificar aquí la encuesta del teclado, sacar por pantalla la tecla que se ha pulsado, y si se pulsa la tecla START cambiar de estado */
 
+		/*if(ESTADO==ESPERA){
+			if(TeclaDetectada()==1){
+				tecla=TeclaPulsada();
+				if(tecla==START){
+					ESTADO=CERRADA;
+					visualizarFondo1();
+	
+				}
+				iprintf("Tecla pulsada: %d", tecla);	
+				while(TeclaDetectada()==1);		
+			}
+					
+		}
 
+	}*/
 
-	}
 	// Inhibir las interrupciones al final
 }
 

@@ -13,7 +13,7 @@ rutinasAtencion.c
 
 int ESTADO; // Para controlar el estado del autómata en que esté
 int seg3;   // Para ver si pasan tres segundos
-
+/*
 void RutAtencionTeclado ()
 {
 if (ESTADO == CERRADA)
@@ -21,7 +21,7 @@ if (ESTADO == CERRADA)
 	if (TeclaPulsada()==A)
 	{
 		ESTADO=ABIERTA;
-		visualizarPuertaAbierta();
+		//visualizarPuertaAbierta();
 		seg3=0;
 		MostrarRombo(1, 5, 5);
 		MostrarRomboGrande(2, 100, 100);
@@ -48,7 +48,7 @@ if (ESTADO!=ESPERA)
 			seg3++;
 			if (seg3==3)
 			{
-				visualizarPuerta();
+				//visualizarPuerta();
 				seg3=0;
 				ESTADO=CERRADA;
 				BorrarRombo(1, 5, 5);
@@ -64,8 +64,9 @@ if (ESTADO!=ESPERA)
 void EstablecerVectorInt()
 {
 // A COMPLETAR POR USTEDES
-	
+	irqSet(IRQ_KEYS,RutAtencionTeclado);
+	irqSet(IRQ_TIMER0,RutAtencionTempo);
 }
-
+*/
 /***********************2025-2026*******************************/
 

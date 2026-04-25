@@ -1,4 +1,4 @@
-sprites.o: /home/user/SharedFiles/proyecto/source/sprites.c \
+sprites.o: /home/user/SharedFiles/ProyectoEC/source/sprites.c \
   /opt/devkitPro/libnds/include/nds.h \
   /opt/devkitPro/libnds/include/nds/libversion.h \
   /opt/devkitPro/libnds/include/nds/ndstypes.h \
@@ -47,8 +47,8 @@ sprites.o: /home/user/SharedFiles/proyecto/source/sprites.c \
   /opt/devkitPro/libnds/include/nds/arm9/sprite.h \
   /opt/devkitPro/libnds/include/nds/system.h \
   /opt/devkitPro/libnds/include/nds/arm9/decompress.h \
-  /home/user/SharedFiles/proyecto/include/sprites.h \
-  /home/user/SharedFiles/proyecto/include/definiciones.h
+  /home/user/SharedFiles/ProyectoEC/include/sprites.h \
+  /home/user/SharedFiles/ProyectoEC/include/definiciones.h
 
 /opt/devkitPro/libnds/include/nds.h:
 
@@ -146,6 +146,6 @@ sprites.o: /home/user/SharedFiles/proyecto/source/sprites.c \
 
 /opt/devkitPro/libnds/include/nds/arm9/decompress.h:
 
-/home/user/SharedFiles/proyecto/include/sprites.h:
+/home/user/SharedFiles/ProyectoEC/include/sprites.h:
 
-/home/user/SharedFiles/proyecto/include/definiciones.h:
+/home/user/SharedFiles/ProyectoEC/include/definiciones.h:
