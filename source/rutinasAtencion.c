@@ -64,7 +64,8 @@ if (ESTADO!=ESPERA)
 void EstablecerVectorInt()
 {
 // A COMPLETAR POR USTEDES
-	
+	irqSet(IRQ_KEYS,RutAtencionTeclado);
+	irqSet(IRQ_TIMER0,RutAtencionTempo);
 }
 
 /***********************2025-2026*******************************/

@@ -1,25 +1,25 @@
 
-//{{BLOCK(PuertaAbierta)
+//{{BLOCK(fondo2)
 
 //======================================================================
 //
-//	PuertaAbierta, 256x192@16, 
+//	fondo2, 256x192@16, 
 //	Alphabit on.
 //	+ bitmap not compressed
 //	Total size: 98304 = 98304
 //
-//	Time-stamp: 2026-03-18, 12:20:54
+//	Time-stamp: 2026-04-25, 13:41:53
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.3
 //	( http://www.coranac.com/projects/#grit )
 //
 //======================================================================
 
-#ifndef GRIT_PUERTAABIERTA_H
-#define GRIT_PUERTAABIERTA_H
+#ifndef GRIT_FONDO2_H
+#define GRIT_FONDO2_H
 
-#define PuertaAbiertaBitmapLen 98304
-extern const unsigned int PuertaAbiertaBitmap[24576];
+#define fondo2BitmapLen 98304
+extern const unsigned int fondo2Bitmap[24576];
 
-#endif // GRIT_PUERTAABIERTA_H
+#endif // GRIT_FONDO2_H
 
-//}}BLOCK(PuertaAbierta)
+//}}BLOCK(fondo2)

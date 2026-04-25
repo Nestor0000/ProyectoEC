@@ -1,25 +1,25 @@
 
-//{{BLOCK(Puerta)
+//{{BLOCK(orbe)
 
 //======================================================================
 //
-//	Puerta, 256x192@16, 
+//	orbe, 32x32@16, 
 //	Alphabit on.
 //	+ bitmap not compressed
-//	Total size: 98304 = 98304
+//	Total size: 2048 = 2048
 //
-//	Time-stamp: 2026-03-18, 12:20:54
+//	Time-stamp: 2026-04-25, 13:42:01
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.3
 //	( http://www.coranac.com/projects/#grit )
 //
 //======================================================================
 
-#ifndef GRIT_PUERTA_H
-#define GRIT_PUERTA_H
+#ifndef GRIT_ORBE_H
+#define GRIT_ORBE_H
 
-#define PuertaBitmapLen 98304
-extern const unsigned int PuertaBitmap[24576];
+#define orbeBitmapLen 2048
+extern const unsigned int orbeBitmap[512];
 
-#endif // GRIT_PUERTA_H
+#endif // GRIT_ORBE_H
 
-//}}BLOCK(Puerta)
+//}}BLOCK(orbe)
