@@ -44,11 +44,14 @@ touchPosition PANT_DAT;
 #define L			9
 
 // Nombres asignados a los estados
-#define ESPERA                  0
-#define CERRADA                 1
-#define ABIERTA                 2
+
 
 extern int ESTADO;
 
+
+//Estados del juego
+#define MENU 0
+#define GAME 1
+#define GAME_OVER 2
 /***********************2025-2026*******************************/
 
