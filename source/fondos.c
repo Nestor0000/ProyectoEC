@@ -17,6 +17,34 @@ static const int DMA_CHANNEL = 3;
 
 /* Para cada fondo que se quiera visualizar hay que escribir un procedimiento como el siguiente */
 
+void visualizarfondofase1(){
+    dmaCopyHalfWords(DMA_CHANNEL,
+                    fondo1Bitmap,
+                    (uint16*) BG_BMP_RAM(1),
+                    fondo1BitmapLen);
+}
+
+void visualizarfondofase2(){
+    dmaCopyHalfWords(DMA_CHANNEL,
+                    fondo2Bitmap,
+                    (uint16*) BG_BMP_RAM(2),
+                    fondo1BitmapLen);
+}
+
+void visualizarfondofase3(){
+    dmaCopyHalfWords(DMA_CHANNEL,
+                    fondo3Bitmap,
+                    (uint16*) BG_BMP_RAM(3),
+                    fondo1BitmapLen);
+}
+
+void visualizarfondofase4(){
+    dmaCopyHalfWords(DMA_CHANNEL,
+                    fondo4Bitmap,
+                    (uint16*) BG_BMP_RAM(4),
+                    fondo1BitmapLen);
+}
+
 void visualizarPuerta() {
 	
 	dmaCopyHalfWords(DMA_CHANNEL,
