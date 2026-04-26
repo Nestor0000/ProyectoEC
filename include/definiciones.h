@@ -53,5 +53,13 @@ extern int ESTADO;
 #define MENU 0
 #define GAME 1
 #define GAME_OVER 2
+
+
+//Definiciones de los sprites
+#define NAVE_ARRIBA 0
+#define NAVE_DERECHA 1
+#define NAVE_ABAJO 2
+#define NAVE_IZQUIERDA 3
+
 /***********************2025-2026*******************************/
 

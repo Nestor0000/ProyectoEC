@@ -12,7 +12,7 @@ y en otro ejemplo de Jaeden Ameronen
 #include <unistd.h>		// Librería para asegurar la compatibilidad entre sistemas operativos
 
 // Librerías desarrolladas por nosotros para el proyecto
-	
+#include "juego.h"
 #include "definiciones.h"
 #include "perifericos.h"
 #include "rutinasAtencion.h"
@@ -21,7 +21,7 @@ y en otro ejemplo de Jaeden Ameronen
 int tiempo;
 
 void juego()
-{	
+{
 	// Definiciones de variables
 	int i=9;
 	int tecla=0;
@@ -55,14 +55,18 @@ void juego()
 	
 
 	visualizarFondo1();
-	/*while(1)
+	Nave jugador;
+	jugador.x = 128;
+	jugador.y = 96;
+	MostrarNave(NAVE_ARRIBA, jugador.x, jugador.y);
+	while(1)
 	{	
 		
       /*******************************EN LA 1.ACTIVIDAD *****************************************/
-		/* Si el estado es ESPERA: codificar aquí la encuesta del teclado, sacar por pantalla la tecla que se ha pulsado, y si se pulsa la tecla START cambiar de estado */
+		 //Si el estado es ESPERA: codificar aquí la encuesta del teclado, sacar por pantalla la tecla que se ha pulsado, y si se pulsa la tecla START cambiar de estado */
 
-		/*if(ESTADO==ESPERA){
-			if(TeclaDetectada()==1){
+		/*if(ESTADO==GAME){
+			if(TeclaDetectada()==DERECHA){
 				tecla=TeclaPulsada();
 				if(tecla==START){
 					ESTADO=CERRADA;
@@ -73,9 +77,9 @@ void juego()
 				while(TeclaDetectada()==1);		
 			}
 					
-		}
+		}*/
 
-	}*/
+	}
 
 	// Inhibir las interrupciones al final
 }

@@ -14,14 +14,17 @@ Código desarrollado basado en el ejemplo "Simple sprite demo" de dovoto y en ot
 
 u16* gfxrombo;
 u16* gfxromboGrande;
+//u16* gfxnave;
 
 
 /* Reservar memoria para cada sprite que se quiera mostrar en pantalla */
 void memoriaReserva()
 {
 	/* Por cada sprite que se quiera incluir en la pantalla principal hay que hacer algo equivalente a lo que sigue */
-	gfxrombo= oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
-	gfxromboGrande=oamAllocateGfx(&oamMain, SpriteSize_32x32, SpriteColorFormat_256Color);
+	//gfxrombo= oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	//gfxromboGrande=oamAllocateGfx(&oamMain, SpriteSize_32x32, SpriteColorFormat_256Color);
+	//gfxnave=oamAllocateGfx(&oamMain, SpriteSize_32x32, SpriteColorFormat_256Color);
+
 }
 
 /* A cada uno de los 256 valores que puede tomar un píxel en la PALETA PRINCIPAL
@@ -217,6 +220,19 @@ oamSet(&oamMain, // main graphics engine context
 oamUpdate(&oamMain); 
 
 }
+
+void MostrarNave(int indice, int x, int y){
+	oamSet(&oamMain,
+			indice,
+			x, y,
+			0,
+			0,
+			SpriteSize_32x32,
+			SpriteColorFormat_256Color,
+			oamGetGfxPtr(&oamMain,0),
+			-1,false,false,false,false,false);
+}
+void BorrarNave(int indice, int x, int y){}
 
 /***********************2025-2026*******************************/
 
