@@ -17,6 +17,7 @@ y en otro ejemplo de Jaeden Ameronen
 #include "perifericos.h"
 #include "rutinasAtencion.h"
 #include "fondos.h"
+#include "sprites.h"
 
 int tiempo;
 
