@@ -42,7 +42,7 @@ void EstablecerPaletaPrincipal() {
 aparecerán en el cuadrante superior izquierdo de la imagen del sprite, los siguientes 64 en el cuadrante superior derecho, los siguientes en el cuadrante inferior izquierdo y los
 últimos en el cuadrante inferior derecho */
 
-u8 NAVE_ARRIBA[1024] = {
+u8 nave_arriba[1024] = {
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -169,20 +169,15 @@ u8 romboGrande[1024] =
 void GuardarSpritesMemoria(){ 
 	
 int i;
-	//sprite de 16*16
-	for(i = 0; i < 16 * 16 / 2; i++) 
-	{	
-		gfxrombo[i] = rombo[i*2] | (rombo[(i*2)+1]<<8);				
-	}
 	//sprite de 32x32
-	for(i = 0; i < 32 * 32 / 2; i++) 
+/*	for(i = 0; i < 32 * 32 / 2; i++)
 	{	
 		gfxromboGrande[i] = romboGrande[i*2] | (romboGrande[(i*2)+1]<<8);				
 	}
-
+*/
 	for(i = 0; i < 32 * 32 / 2; i++) 
 {	
-    gfxnave[i] = NAVE_ARRIBA[i*2] | (NAVE_ARRIBA[(i*2)+1] << 8);				
+    gfxnave[i] = nave_arriba[i*2] | (nave_arriba[(i*2)+1] << 8);
 }
 }
 
