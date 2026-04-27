@@ -1,4 +1,4 @@
-juego.o: /home/user/SharedFiles/Proyecto/source/juego.c \
+juego.o: /home/user/SharedFiles/ProyectoEC/source/juego.c \
   /opt/devkitPro/libnds/include/nds.h \
   /opt/devkitPro/libnds/include/nds/libversion.h \
   /opt/devkitPro/libnds/include/nds/ndstypes.h \
@@ -47,12 +47,12 @@ juego.o: /home/user/SharedFiles/Proyecto/source/juego.c \
   /opt/devkitPro/libnds/include/nds/arm9/sprite.h \
   /opt/devkitPro/libnds/include/nds/system.h \
   /opt/devkitPro/libnds/include/nds/arm9/decompress.h \
-  /home/user/SharedFiles/Proyecto/include/sprites.h \
-  /home/user/SharedFiles/Proyecto/include/juego.h \
-  /home/user/SharedFiles/Proyecto/include/definiciones.h \
-  /home/user/SharedFiles/Proyecto/include/perifericos.h \
-  /home/user/SharedFiles/Proyecto/include/rutinasAtencion.h \
-  /home/user/SharedFiles/Proyecto/include/fondos.h
+  /home/user/SharedFiles/ProyectoEC/include/sprites.h \
+  /home/user/SharedFiles/ProyectoEC/include/juego.h \
+  /home/user/SharedFiles/ProyectoEC/include/definiciones.h \
+  /home/user/SharedFiles/ProyectoEC/include/perifericos.h \
+  /home/user/SharedFiles/ProyectoEC/include/rutinasAtencion.h \
+  /home/user/SharedFiles/ProyectoEC/include/fondos.h
 
 /opt/devkitPro/libnds/include/nds.h:
 
@@ -150,14 +150,14 @@ juego.o: /home/user/SharedFiles/Proyecto/source/juego.c \
 
 /opt/devkitPro/libnds/include/nds/arm9/decompress.h:
 
-/home/user/SharedFiles/Proyecto/include/sprites.h:
+/home/user/SharedFiles/ProyectoEC/include/sprites.h:
 
-/home/user/SharedFiles/Proyecto/include/juego.h:
+/home/user/SharedFiles/ProyectoEC/include/juego.h:
 
-/home/user/SharedFiles/Proyecto/include/definiciones.h:
+/home/user/SharedFiles/ProyectoEC/include/definiciones.h:
 
-/home/user/SharedFiles/Proyecto/include/perifericos.h:
+/home/user/SharedFiles/ProyectoEC/include/perifericos.h:
 
-/home/user/SharedFiles/Proyecto/include/rutinasAtencion.h:
+/home/user/SharedFiles/ProyectoEC/include/rutinasAtencion.h:
 
-/home/user/SharedFiles/Proyecto/include/fondos.h:
+/home/user/SharedFiles/ProyectoEC/include/fondos.h:

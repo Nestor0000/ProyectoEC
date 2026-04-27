@@ -1,4 +1,4 @@
-main.o: /home/user/SharedFiles/Proyecto/source/main.c \
+main.o: /home/user/SharedFiles/ProyectoEC/source/main.c \
   /opt/devkitPro/libnds/include/nds.h \
   /opt/devkitPro/libnds/include/nds/libversion.h \
   /opt/devkitPro/libnds/include/nds/ndstypes.h \
@@ -47,10 +47,10 @@ main.o: /home/user/SharedFiles/Proyecto/source/main.c \
   /opt/devkitPro/libnds/include/nds/arm9/sprite.h \
   /opt/devkitPro/libnds/include/nds/system.h \
   /opt/devkitPro/libnds/include/nds/arm9/decompress.h \
-  /home/user/SharedFiles/Proyecto/include/graficos.h \
-  /home/user/SharedFiles/Proyecto/include/definiciones.h \
-  /home/user/SharedFiles/Proyecto/include/sprites.h \
-  /home/user/SharedFiles/Proyecto/include/juego.h
+  /home/user/SharedFiles/ProyectoEC/include/graficos.h \
+  /home/user/SharedFiles/ProyectoEC/include/definiciones.h \
+  /home/user/SharedFiles/ProyectoEC/include/sprites.h \
+  /home/user/SharedFiles/ProyectoEC/include/juego.h
 
 /opt/devkitPro/libnds/include/nds.h:
 
@@ -148,10 +148,10 @@ main.o: /home/user/SharedFiles/Proyecto/source/main.c \
 
 /opt/devkitPro/libnds/include/nds/arm9/decompress.h:
 
-/home/user/SharedFiles/Proyecto/include/graficos.h:
+/home/user/SharedFiles/ProyectoEC/include/graficos.h:
 
-/home/user/SharedFiles/Proyecto/include/definiciones.h:
+/home/user/SharedFiles/ProyectoEC/include/definiciones.h:
 
-/home/user/SharedFiles/Proyecto/include/sprites.h:
+/home/user/SharedFiles/ProyectoEC/include/sprites.h:
 
-/home/user/SharedFiles/Proyecto/include/juego.h:
+/home/user/SharedFiles/ProyectoEC/include/juego.h:
