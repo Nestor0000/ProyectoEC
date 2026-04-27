@@ -12,6 +12,7 @@ y en otro ejemplo de Jaeden Ameronen
 #include <unistd.h>		// Librería para asegurar la compatibilidad entre sistemas operativos
 
 // Librerías desarrolladas por nosotros para el proyecto
+#include "sprites.h"
 #include "juego.h"
 #include "definiciones.h"
 #include "perifericos.h"
@@ -22,66 +23,51 @@ int tiempo;
 
 void juego()
 {
-	// Definiciones de variables
-	int i=9;
-	int tecla=0;
+    // ------------------ INICIALIZACIÓN GRÁFICA ------------------
+    videoSetMode(MODE_0_2D);
+    oamInit(&oamMain, SpriteMapping_1D_32, false);
 
-	//ESTADO=ESPERA;
-	
-	// Escribe en la fila 22 columna 5 de la pantalla	
-	iprintf("\x1b[22;5HPrueba de escritura");
+    memoriaReserva();
+    EstablecerPaletaPrincipal();
+    GuardarSpritesMemoria();
 
-/* Si se quiere visualizar el valor de una variable escribir %d dentro de las comillas y el nombre de la variable fuera de las comillas */
-	iprintf("\x1b[23;5HPrueba de escritura con variable. Valor=%d", i);
+    // ------------------ VARIABLES ------------------
+    int i = 9;
 
-	//******************************* EN LA 2.ACTIVIDAD ********************************//
-        // LLAMADAS A REALIZAR (ORDEN RECOMENDADO):
-	// Configurar el teclado.
-	// Configurar el temporizador.
-	// Establecer las rutinas de atención a interrupciones.
-	// Habilitar las interrupciones del teclado.
-	// Habilitar las interrupciones del temporizador.
-	// Habilitar interrupciones.
-	//******************************************************************************//
-	irqInit();
-	irqEnable(IRQ_VBLANK);
-	ConfigurarTeclado(0xC001);
-	ConfigurarTemporizador(0xC000,0X00C0);
-	//EstablecerVectorInt();
-	HabilitarIntTeclado();
-	HabilitarIntTempo();
-	irqEnable(IRQ_KEYS|IRQ_TIMER0);
-	PonerEnMarchaTempo();
-	
+    // Debug por pantalla
+    iprintf("\x1b[22;5HPrueba de escritura");
+    iprintf("\x1b[23;5HValor=%d", i);
 
-	visualizarFondo1();
-	Nave jugador;
-	jugador.x = 128;
-	jugador.y = 96;
-	MostrarNave(NAVE_ARRIBA, jugador.x, jugador.y);
-	while(1)
-	{	
-		
-      /*******************************EN LA 1.ACTIVIDAD *****************************************/
-		 //Si el estado es ESPERA: codificar aquí la encuesta del teclado, sacar por pantalla la tecla que se ha pulsado, y si se pulsa la tecla START cambiar de estado */
+    // ------------------ INTERRUPCIONES ------------------
+    irqInit();
+    irqEnable(IRQ_VBLANK);
 
-		/*if(ESTADO==GAME){
-			if(TeclaDetectada()==DERECHA){
-				tecla=TeclaPulsada();
-				if(tecla==START){
-					ESTADO=CERRADA;
-					visualizarFondo1();
-	
-				}
-				iprintf("Tecla pulsada: %d", tecla);	
-				while(TeclaDetectada()==1);		
-			}
-					
-		}*/
+    ConfigurarTeclado(0xC001);
+    ConfigurarTemporizador(0xC000,0X00C0);
 
-	}
+    HabilitarIntTeclado();
+    HabilitarIntTempo();
 
-	// Inhibir las interrupciones al final
+    irqEnable(IRQ_KEYS | IRQ_TIMER0);
+
+    PonerEnMarchaTempo();
+
+    // ------------------ FONDO ------------------
+    visualizarFondo1();
+
+    // ------------------ NAVE ------------------
+    Nave jugador;
+    jugador.x = 100;
+    jugador.y = 80;
+
+    // ------------------ BUCLE PRINCIPAL ------------------
+    while(1)
+    {
+        swiWaitForVBlank();
+
+        // Dibujar nave fija
+        MostrarNave(SPR_NAVE_ARRIBA, jugador.x, jugador.y);
+    }
 }
 
 /***********************2025-2026*******************************/

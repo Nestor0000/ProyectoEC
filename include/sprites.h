@@ -3,6 +3,7 @@ extern u16* gfx;
 extern u16* gfx2;
 extern u16* gfx3;
 extern u16* gfxSub;
+extern u16* gfx_nave;
 
 
 extern void memoriaReserva();

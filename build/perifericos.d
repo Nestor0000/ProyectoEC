@@ -1,4 +1,4 @@
-perifericos.o: /home/user/SharedFiles/ProyectoEC/source/perifericos.c \
+perifericos.o: /home/user/SharedFiles/Proyecto/source/perifericos.c \
   /opt/devkitPro/libnds/include/nds.h \
   /opt/devkitPro/libnds/include/nds/libversion.h \
   /opt/devkitPro/libnds/include/nds/ndstypes.h \
@@ -47,7 +47,7 @@ perifericos.o: /home/user/SharedFiles/ProyectoEC/source/perifericos.c \
   /opt/devkitPro/libnds/include/nds/arm9/sprite.h \
   /opt/devkitPro/libnds/include/nds/system.h \
   /opt/devkitPro/libnds/include/nds/arm9/decompress.h \
-  /home/user/SharedFiles/ProyectoEC/include/definiciones.h
+  /home/user/SharedFiles/Proyecto/include/definiciones.h
 
 /opt/devkitPro/libnds/include/nds.h:
 
@@ -145,4 +145,4 @@ perifericos.o: /home/user/SharedFiles/ProyectoEC/source/perifericos.c \
 
 /opt/devkitPro/libnds/include/nds/arm9/decompress.h:
 
-/home/user/SharedFiles/ProyectoEC/include/definiciones.h:
+/home/user/SharedFiles/Proyecto/include/definiciones.h:

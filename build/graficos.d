@@ -1,4 +1,4 @@
-graficos.o: /home/user/SharedFiles/ProyectoEC/source/graficos.c \
+graficos.o: /home/user/SharedFiles/Proyecto/source/graficos.c \
   /opt/devkitPro/libnds/include/nds.h \
   /opt/devkitPro/libnds/include/nds/libversion.h \
   /opt/devkitPro/libnds/include/nds/ndstypes.h \
@@ -47,8 +47,8 @@ graficos.o: /home/user/SharedFiles/ProyectoEC/source/graficos.c \
   /opt/devkitPro/libnds/include/nds/arm9/sprite.h \
   /opt/devkitPro/libnds/include/nds/system.h \
   /opt/devkitPro/libnds/include/nds/arm9/decompress.h \
-  /home/user/SharedFiles/ProyectoEC/include/graficos.h \
-  /home/user/SharedFiles/ProyectoEC/include/sprites.h
+  /home/user/SharedFiles/Proyecto/include/graficos.h \
+  /home/user/SharedFiles/Proyecto/include/sprites.h
 
 /opt/devkitPro/libnds/include/nds.h:
 
@@ -146,6 +146,6 @@ graficos.o: /home/user/SharedFiles/ProyectoEC/source/graficos.c \
 
 /opt/devkitPro/libnds/include/nds/arm9/decompress.h:
 
-/home/user/SharedFiles/ProyectoEC/include/graficos.h:
+/home/user/SharedFiles/Proyecto/include/graficos.h:
 
-/home/user/SharedFiles/ProyectoEC/include/sprites.h:
+/home/user/SharedFiles/Proyecto/include/sprites.h:

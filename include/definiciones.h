@@ -56,10 +56,10 @@ extern int ESTADO;
 
 
 //Definiciones de los sprites
-#define NAVE_ARRIBA 0
-#define NAVE_DERECHA 1
-#define NAVE_ABAJO 2
-#define NAVE_IZQUIERDA 3
+#define SPR_NAVE_ARRIBA 0
+#define SPR_NAVE_DERECHA 1
+#define SPR_NAVE_ABAJO 2
+#define SPR_NAVE_IZQUIERDA 3
 
 /***********************2025-2026*******************************/
 
