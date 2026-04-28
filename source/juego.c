@@ -22,11 +22,12 @@ y en otro ejemplo de Jaeden Ameronen
 int tiempo;
 
 void juego() {
+    
     // Definiciones de variables
     int i=9;
     int tecla=0;
 
-    //ESTADO=ESPERA;
+    ESTADO=GAME;
 
     // Escribe en la fila 22 columna 5 de la pantalla
     iprintf("\x1b[22;5HPrueba de escritura");
@@ -58,31 +59,56 @@ void juego() {
     Nave jugador;
     jugador.x = 110;
     jugador.y = 96;
-    MostrarNave(SPR_NAVE_ARRIBA, jugador.x, jugador.y);
+    MostrarNave(SPR_NAVE_ARRIBA, jugador);
     while(1)
     {
         swiWaitForVBlank();
         /*******************************EN LA 1.ACTIVIDAD *****************************************/
         //Si el estado es ESPERA: codificar aquí la encuesta del teclado, sacar por pantalla la tecla que se ha pulsado, y si se pulsa la tecla START cambiar de estado */
 
-        /*if(ESTADO==GAME){
-            if(TeclaDetectada()==DERECHA){
-                tecla=TeclaPulsada();
-                if(tecla==START){
+        if(ESTADO==GAME){
+            if(TeclaPulsada()==DERECHA && jugador.x < 225){
+                BorrarNave(SPR_NAVE_ARRIBA, jugador);
+                //tecla=TeclaPulsada();
+                jugador.x = jugador.x + 3;
+                MostrarNave(SPR_NAVE_ARRIBA, jugador);
+            } else if(TeclaPulsada()==IZQUIERDA && jugador.x > 0){
+                BorrarNave(SPR_NAVE_ARRIBA, jugador);
+                jugador.x = jugador.x - 3;
+                MostrarNave(SPR_NAVE_ARRIBA, jugador);
+            } else if (TeclaPulsada()==ARRIBA && jugador.y > 0){
+                BorrarNave(SPR_NAVE_ARRIBA, jugador);
+                jugador.y = jugador.y - 3;
+                MostrarNave(SPR_NAVE_ARRIBA, jugador);
+            } else if (TeclaPulsada()== ABAJO && jugador.y < 165){
+                BorrarNave(SPR_NAVE_ARRIBA, jugador);
+                jugador.y = jugador.y + 3;
+                MostrarNave(SPR_NAVE_ARRIBA, jugador);
+            }
+            
+            
+
+
+
+               /* if(tecla==START){
                     ESTADO=CERRADA;
                     visualizarFondo1();
 
                 }
                 iprintf("Tecla pulsada: %d", tecla);
                 while(TeclaDetectada()==1);
-            }
 
-        }*/
+                */
+            } 
+
+        }
 
     }
 
+
+
     // Inhibir las interrupciones al final
-}
+
 
 /***********************2025-2026*******************************/
 
