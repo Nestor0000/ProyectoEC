@@ -14,14 +14,17 @@ Código desarrollado basado en el ejemplo "Simple sprite demo" de dovoto y en ot
 
 u16* gfxrombo;
 u16* gfxromboGrande;
+u16* gfxnave;
 
 
 /* Reservar memoria para cada sprite que se quiera mostrar en pantalla */
 void memoriaReserva()
 {
 	/* Por cada sprite que se quiera incluir en la pantalla principal hay que hacer algo equivalente a lo que sigue */
-	gfxrombo= oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
-	gfxromboGrande=oamAllocateGfx(&oamMain, SpriteSize_32x32, SpriteColorFormat_256Color);
+	//gfxrombo= oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
+	//gfxromboGrande=oamAllocateGfx(&oamMain, SpriteSize_32x32, SpriteColorFormat_256Color);
+	gfxnave=oamAllocateGfx(&oamMain, SpriteSize_32x32, SpriteColorFormat_256Color);
+
 }
 
 /* A cada uno de los 256 valores que puede tomar un píxel en la PALETA PRINCIPAL
@@ -32,12 +35,50 @@ void EstablecerPaletaPrincipal() {
 	SPRITE_PALETTE[1] = RGB15(31,0,0); // los píxeles con valor 1 serán de color rojo.
 	SPRITE_PALETTE[2] = RGB15(0,31,0); // los píxeles con valor 2 serán verdes.
 	SPRITE_PALETTE[3] = RGB15(0,0,31); // los píxeles con valor 3 serán azules.
+	SPRITE_PALETTE[4] = RGB15(31,31,0);
 }
 
 /* Definición de un sprite de 16x16 píxeles para dibujar un rombo */
 /* Por la forma que tienen de trabajar los bancos de memoria, la imagen del sprite se divide en bloques de 8x8 píxeles. Los primeros 64 (8x8) píxeles que indicamos
 aparecerán en el cuadrante superior izquierdo de la imagen del sprite, los siguientes 64 en el cuadrante superior derecho, los siguientes en el cuadrante inferior izquierdo y los
 últimos en el cuadrante inferior derecho */
+
+u8 nave_arriba[1024] = {
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,4,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,4,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,2,4,2,1,1,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,4,4,4,2,1,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,1,1,1,1,2,4,0,4,2,1,1,1,1,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,1,3,1,1,2,4,0,4,2,1,1,3,1,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,1,3,1,1,2,4,0,4,2,1,1,3,1,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1,1,1,1,2,1,2,4,4,4,4,2,1,2,1,1,1,1,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1,3,1,1,2,0,2,4,3,3,4,2,0,2,1,1,3,1,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1,3,1,1,0,2,4,3,3,3,3,4,2,0,1,1,3,1,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1,2,1,1,2,4,4,3,4,4,3,4,4,2,1,1,2,1,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1,2,1,2,4,4,4,4,4,4,4,4,4,4,2,1,2,1,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1,2,2,4,4,4,3,4,4,4,4,3,4,4,4,2,2,1,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1,2,4,4,1,3,3,4,4,4,4,3,3,1,4,4,2,1,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1,2,4,1,1,3,3,1,4,4,1,3,3,1,1,4,2,1,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1,2,1,1,1,1,1,1,2,2,1,1,1,1,1,1,2,1,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+};
+
+
 
 u8 rombo[256] = 
 {
@@ -118,16 +159,16 @@ u8 romboGrande[1024] =
 void GuardarSpritesMemoria(){ 
 	
 int i;
-	//sprite de 16*16
-	for(i = 0; i < 16 * 16 / 2; i++) 
-	{	
-		gfxrombo[i] = rombo[i*2] | (rombo[(i*2)+1]<<8);				
-	}
 	//sprite de 32x32
-	for(i = 0; i < 32 * 32 / 2; i++) 
+/*	for(i = 0; i < 32 * 32 / 2; i++)
 	{	
 		gfxromboGrande[i] = romboGrande[i*2] | (romboGrande[(i*2)+1]<<8);				
 	}
+*/
+	for(i = 0; i < 32 * 32 / 2; i++) 
+{	
+    gfxnave[i] = nave_arriba[i*2] | (nave_arriba[(i*2)+1] << 8);
+}
 }
 
 /* Esta función dibuja un rombo en la posición x, y de pantalla. A cada rombo que se quiera mostrar en pantalla se le debe asignar un índice distinto, un valor entre 0 y 126 */
@@ -217,6 +258,20 @@ oamSet(&oamMain, // main graphics engine context
 oamUpdate(&oamMain); 
 
 }
+
+void MostrarNave(int indice, int x, int y){
+	oamSet(&oamMain,
+			indice,
+			x, y,
+			0,
+			0,
+			SpriteSize_32x32,
+			SpriteColorFormat_256Color,
+			gfxnave,
+			-1,false,false,false,false,false);
+			oamUpdate(&oamMain);
+}
+void BorrarNave(int indice, int x, int y){}
 
 /***********************2025-2026*******************************/
 
