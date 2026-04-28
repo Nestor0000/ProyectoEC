@@ -156,19 +156,38 @@ u8 romboGrande[1024] =
 
 /* Carga en memoria cada uno de los sprites que hemos dibujado */
 
-void GuardarSpritesMemoria(){ 
-	
-int i;
+void GuardarSpritesMemoria(){
+
+	int i;
 	//sprite de 32x32
-/*	for(i = 0; i < 32 * 32 / 2; i++)
-	{	
-		gfxromboGrande[i] = romboGrande[i*2] | (romboGrande[(i*2)+1]<<8);				
+	/*	for(i = 0; i < 32 * 32 / 2; i++)
+		{
+			gfxromboGrande[i] = romboGrande[i*2] | (romboGrande[(i*2)+1]<<8);
+		}
+	*/
+	int tx, ty, x, y;
+	int srcIndex;
+	int dstIndex = 0;
+
+	for (ty = 0; ty < 4; ty++)          // 4 bloques verticales
+	{
+		for (tx = 0; tx < 4; tx++)      // 4 bloques horizontales
+		{
+			for (y = 0; y < 8; y++)
+			{
+				for (x = 0; x < 8; x += 2)
+				{
+					srcIndex =
+						(ty * 8 + y) * 32 +
+						(tx * 8 + x);
+
+					gfxnave[dstIndex++] =
+						nave_arriba[srcIndex] |
+						(nave_arriba[srcIndex + 1] << 8);
+				}
+			}
+		}
 	}
-*/
-	for(i = 0; i < 32 * 32 / 2; i++) 
-{	
-    gfxnave[i] = nave_arriba[i*2] | (nave_arriba[(i*2)+1] << 8);
-}
 }
 
 /* Esta función dibuja un rombo en la posición x, y de pantalla. A cada rombo que se quiera mostrar en pantalla se le debe asignar un índice distinto, un valor entre 0 y 126 */
