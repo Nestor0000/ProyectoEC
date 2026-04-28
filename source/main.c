@@ -26,9 +26,7 @@ int main(void) {
 	HabilitarInterrupciones();
 
 	// Llamada al juego que vosotros programaréis
-	void juego() {
-		
-	}
+	juego();
 
 	
 
