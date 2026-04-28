@@ -56,7 +56,7 @@ void juego() {
 
     visualizarFondo1();
     Nave jugador;
-    jugador.x = 128;
+    jugador.x = 110;
     jugador.y = 96;
     MostrarNave(SPR_NAVE_ARRIBA, jugador.x, jugador.y);
     while(1)
