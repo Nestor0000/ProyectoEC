@@ -94,26 +94,33 @@ void juego() {
                 jugador.y = jugador.y + 2;
                 MostrarNave(orientacion_actual, jugador);
             }
-               if(cooldown_rotacion == 0 && (TeclaPulsada()==R && orientacion_actual == SPR_NAVE_ARRIBA) || (TeclaPulsada()==L && orientacion_actual== SPR_NAVE_ABAJO)){
+               if(cooldown_rotacion == 0 && ((TeclaPulsada()==R && orientacion_actual == SPR_NAVE_ARRIBA) || (TeclaPulsada()==L && orientacion_actual== SPR_NAVE_ABAJO))){
                     BorrarNave(orientacion_actual, jugador);
                     orientacion_actual = SPR_NAVE_DERECHA;
                     MostrarNave(orientacion_actual, jugador);
                     GuardarSpritesMemoria(orientacion_actual);
                     cooldown_rotacion = 25;
             }
-              if(cooldown_rotacion == 0 && TeclaPulsada()==R && orientacion_actual == SPR_NAVE_DERECHA){
+              if(cooldown_rotacion == 0 && ((TeclaPulsada()==R && orientacion_actual == SPR_NAVE_DERECHA) || (TeclaPulsada()==L && orientacion_actual== SPR_NAVE_IZQUIERDA))){
                      BorrarNave(orientacion_actual, jugador);
                      orientacion_actual = SPR_NAVE_ABAJO;
                      MostrarNave(orientacion_actual, jugador);
                      GuardarSpritesMemoria(orientacion_actual);
                      cooldown_rotacion = 25;
               }
-              if(cooldown_rotacion == 0 && TeclaPulsada()==L && orientacion_actual == SPR_NAVE_DERECHA) {
+              if(cooldown_rotacion == 0 && ((TeclaPulsada()==L && orientacion_actual == SPR_NAVE_DERECHA) || (TeclaPulsada()==R && orientacion_actual== SPR_NAVE_IZQUIERDA))) {
                      BorrarNave(orientacion_actual, jugador);
                      orientacion_actual = SPR_NAVE_ARRIBA;
                      MostrarNave(orientacion_actual, jugador);
                      GuardarSpritesMemoria(orientacion_actual);
                      cooldown_rotacion = 25;
+              }
+              if(cooldown_rotacion == 0 && ((TeclaPulsada()==L && orientacion_actual == SPR_NAVE_ARRIBA) || (TeclaPulsada()==R && orientacion_actual== SPR_NAVE_ABAJO))) {
+                BorrarNave(orientacion_actual, jugador);
+                orientacion_actual = SPR_NAVE_IZQUIERDA;
+                MostrarNave(orientacion_actual, jugador);
+                GuardarSpritesMemoria(orientacion_actual);
+                cooldown_rotacion = 25;
               }
             
             
