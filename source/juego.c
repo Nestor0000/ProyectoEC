@@ -75,7 +75,6 @@ void juego() {
         //Si el estado es ESPERA: codificar aquí la encuesta del teclado, sacar por pantalla la tecla que se ha pulsado, y si se pulsa la tecla START cambiar de estado */
 
         if(ESTADO==GAME){
-         
             if(TeclaPulsada()==DERECHA && jugador.x < 225){
                 BorrarNave(jugador);
                 //tecla=TeclaPulsada();
