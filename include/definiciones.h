@@ -61,5 +61,7 @@ extern int ESTADO;
 #define SPR_NAVE_ABAJO 2
 #define SPR_NAVE_IZQUIERDA 3
 
+
+
 /***********************2025-2026*******************************/
 
