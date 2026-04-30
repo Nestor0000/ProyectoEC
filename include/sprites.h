@@ -17,7 +17,7 @@ extern void EstablecerPaletaSecundaria();
 /* Para cada uno de los 256 valores que puede tomar un Píxel le da un color en la pantalla secundaria. El valor 0 es transparente y los valores sin definir negros */
 
 
-extern void GuardarSpritesMemoria();
+extern void GuardarSpritesMemoria(int orientacion_nave);
 /* Carga en memoria los Sprites dibujados */
 
 

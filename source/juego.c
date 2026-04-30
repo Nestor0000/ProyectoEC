@@ -28,6 +28,10 @@ void juego() {
     int tecla=0;
 
     ESTADO=GAME;
+    int cooldown_rotacion = 0;
+    int orientacion_actual;
+    orientacion_actual = SPR_NAVE_ARRIBA;
+
 
     // Escribe en la fila 22 columna 5 de la pantalla
     iprintf("\x1b[22;5HPrueba de escritura");
@@ -63,28 +67,54 @@ void juego() {
     while(1)
     {
         swiWaitForVBlank();
+
+        if(cooldown_rotacion > 0){
+        cooldown_rotacion--;
+    }
         /*******************************EN LA 1.ACTIVIDAD *****************************************/
         //Si el estado es ESPERA: codificar aquí la encuesta del teclado, sacar por pantalla la tecla que se ha pulsado, y si se pulsa la tecla START cambiar de estado */
 
         if(ESTADO==GAME){
+         
             if(TeclaPulsada()==DERECHA && jugador.x < 225){
-                BorrarNave(SPR_NAVE_ARRIBA, jugador);
+                BorrarNave(orientacion_actual, jugador);
                 //tecla=TeclaPulsada();
-                jugador.x = jugador.x + 3;
-                MostrarNave(SPR_NAVE_ARRIBA, jugador);
+                jugador.x = jugador.x + 2;
+                MostrarNave(orientacion_actual, jugador);
             } else if(TeclaPulsada()==IZQUIERDA && jugador.x > 0){
-                BorrarNave(SPR_NAVE_ARRIBA, jugador);
-                jugador.x = jugador.x - 3;
-                MostrarNave(SPR_NAVE_ARRIBA, jugador);
+                BorrarNave(orientacion_actual, jugador);
+                jugador.x = jugador.x - 2;
+                MostrarNave(orientacion_actual, jugador);
             } else if (TeclaPulsada()==ARRIBA && jugador.y > 0){
-                BorrarNave(SPR_NAVE_ARRIBA, jugador);
-                jugador.y = jugador.y - 3;
-                MostrarNave(SPR_NAVE_ARRIBA, jugador);
+                BorrarNave(orientacion_actual, jugador);
+                jugador.y = jugador.y - 2;
+                MostrarNave(orientacion_actual, jugador);
             } else if (TeclaPulsada()== ABAJO && jugador.y < 165){
-                BorrarNave(SPR_NAVE_ARRIBA, jugador);
-                jugador.y = jugador.y + 3;
-                MostrarNave(SPR_NAVE_ARRIBA, jugador);
+                BorrarNave(orientacion_actual, jugador);
+                jugador.y = jugador.y + 2;
+                MostrarNave(orientacion_actual, jugador);
             }
+               if(cooldown_rotacion == 0 && (TeclaPulsada()==R && orientacion_actual == SPR_NAVE_ARRIBA) || (TeclaPulsada()==L && orientacion_actual== SPR_NAVE_ABAJO)){
+                    BorrarNave(orientacion_actual, jugador);
+                    orientacion_actual = SPR_NAVE_DERECHA;
+                    MostrarNave(orientacion_actual, jugador);
+                    GuardarSpritesMemoria(orientacion_actual);
+                    cooldown_rotacion = 25;
+            }
+              if(cooldown_rotacion == 0 && TeclaPulsada()==R && orientacion_actual == SPR_NAVE_DERECHA){
+                     BorrarNave(orientacion_actual, jugador);
+                     orientacion_actual = SPR_NAVE_ABAJO;
+                     MostrarNave(orientacion_actual, jugador);
+                     GuardarSpritesMemoria(orientacion_actual);
+                     cooldown_rotacion = 25;
+              }
+              if(cooldown_rotacion == 0 && TeclaPulsada()==L && orientacion_actual == SPR_NAVE_DERECHA) {
+                     BorrarNave(orientacion_actual, jugador);
+                     orientacion_actual = SPR_NAVE_ARRIBA;
+                     MostrarNave(orientacion_actual, jugador);
+                     GuardarSpritesMemoria(orientacion_actual);
+                     cooldown_rotacion = 25;
+              }
             
             
 

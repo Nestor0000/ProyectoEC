@@ -10,6 +10,7 @@ Definición del sistema de video, NO SE NECESITA CAMBIAR NADA AQUÍ
 #include <unistd.h>		
 #include "graficos.h"
 #include "sprites.h"
+#include "definiciones.h"
 
 
 void inicializarVideo() {
@@ -123,7 +124,7 @@ void inicializarGraficosSprites()
 	initSpriteMem();
 	memoriaReserva();
 	EstablecerPaletaPrincipal();
-	GuardarSpritesMemoria();
+	GuardarSpritesMemoria(SPR_NAVE_ARRIBA);
 }
 
 /***********************2025-2026*******************************/
