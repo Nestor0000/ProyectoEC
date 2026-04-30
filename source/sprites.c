@@ -121,7 +121,7 @@ u8 nave_derecha[1024] = {
 
 
 u8 nave_izquierda[1024] = {
-
+};
 
 
 u8 nave_abajo[1024] = {
@@ -370,9 +370,9 @@ oamUpdate(&oamMain);
 
 }
 
-void MostrarNave(int indice, Nave jugador){
+void MostrarNave(Nave jugador){
 	oamSet(&oamMain,
-			indice,
+			jugador.orientacion_actual,
 			jugador.x, jugador.y,
 			0,
 			0,
@@ -382,9 +382,9 @@ void MostrarNave(int indice, Nave jugador){
 			-1,false,false,false,false,false);
 			oamUpdate(&oamMain);
 }
-void BorrarNave(int indice, Nave jugador){
+void BorrarNave(Nave jugador){
 	oamSet(&oamMain, // main graphics engine context
-		indice,           // oam index (0 to 127)  
+		jugador.orientacion_actual,           // oam index (0 to 127)
 		jugador.x, jugador.y,   // x and y pixel location of the sprite
 		0,                    // priority, lower renders last (on top)
 		0,			  // this is the palette index if multiple palettes or the alpha value if bmp sprite	

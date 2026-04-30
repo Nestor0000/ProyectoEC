@@ -5,6 +5,7 @@ extern u16* gfx3;
 extern u16* gfxSub;
 typedef struct {
     int x,y;
+    int orientacion_actual;
 } Nave;
 
 extern void memoriaReserva();
@@ -36,7 +37,7 @@ extern void MostrarRomboGrande(int indice, int x, int y);
 extern void BorrarRomboGrande(int indice, int x, int y);
 /* Esta función borra de la pantalla el rombo grande con el índice que se le indique como parámetro */
 
-extern void MostrarNave(int indice, Nave jugador);
-extern void BorrarNave(int indice, Nave jugador);
+extern void MostrarNave(Nave jugador);
+extern void BorrarNave(Nave jugador);
 /***********************2025-2026*******************************/
 

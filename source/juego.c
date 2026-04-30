@@ -29,8 +29,7 @@ void juego() {
 
     ESTADO=GAME;
     int cooldown_rotacion = 0;
-    int orientacion_actual;
-    orientacion_actual = SPR_NAVE_ARRIBA;
+
 
 
     // Escribe en la fila 22 columna 5 de la pantalla
@@ -63,7 +62,8 @@ void juego() {
     Nave jugador;
     jugador.x = 110;
     jugador.y = 96;
-    MostrarNave(SPR_NAVE_ARRIBA, jugador);
+    jugador.orientacion_actual = SPR_NAVE_ARRIBA;
+    MostrarNave(jugador);
     while(1)
     {
         swiWaitForVBlank();
@@ -77,42 +77,42 @@ void juego() {
         if(ESTADO==GAME){
          
             if(TeclaPulsada()==DERECHA && jugador.x < 225){
-                BorrarNave(orientacion_actual, jugador);
+                BorrarNave(jugador);
                 //tecla=TeclaPulsada();
                 jugador.x = jugador.x + 2;
-                MostrarNave(orientacion_actual, jugador);
+                MostrarNave(jugador);
             } else if(TeclaPulsada()==IZQUIERDA && jugador.x > 0){
-                BorrarNave(orientacion_actual, jugador);
+                BorrarNave(jugador);
                 jugador.x = jugador.x - 2;
-                MostrarNave(orientacion_actual, jugador);
+                MostrarNave(jugador);
             } else if (TeclaPulsada()==ARRIBA && jugador.y > 0){
-                BorrarNave(orientacion_actual, jugador);
+                BorrarNave(jugador);
                 jugador.y = jugador.y - 2;
-                MostrarNave(orientacion_actual, jugador);
+                MostrarNave(jugador);
             } else if (TeclaPulsada()== ABAJO && jugador.y < 165){
-                BorrarNave(orientacion_actual, jugador);
+                BorrarNave(jugador);
                 jugador.y = jugador.y + 2;
-                MostrarNave(orientacion_actual, jugador);
+                MostrarNave(jugador);
             }
-               if(cooldown_rotacion == 0 && (TeclaPulsada()==R && orientacion_actual == SPR_NAVE_ARRIBA) || (TeclaPulsada()==L && orientacion_actual== SPR_NAVE_ABAJO)){
-                    BorrarNave(orientacion_actual, jugador);
-                    orientacion_actual = SPR_NAVE_DERECHA;
-                    MostrarNave(orientacion_actual, jugador);
-                    GuardarSpritesMemoria(orientacion_actual);
+               if(cooldown_rotacion == 0 && (TeclaPulsada()==R && jugador.orientacion_actual == SPR_NAVE_ARRIBA) || (TeclaPulsada()==L && jugador.orientacion_actual== SPR_NAVE_ABAJO)){
+                    BorrarNave(jugador);
+                    jugador.orientacion_actual = SPR_NAVE_DERECHA;
+                    MostrarNave(jugador);
+                    GuardarSpritesMemoria(jugador.orientacion_actual);
                     cooldown_rotacion = 25;
             }
-              if(cooldown_rotacion == 0 && TeclaPulsada()==R && orientacion_actual == SPR_NAVE_DERECHA){
-                     BorrarNave(orientacion_actual, jugador);
-                     orientacion_actual = SPR_NAVE_ABAJO;
-                     MostrarNave(orientacion_actual, jugador);
-                     GuardarSpritesMemoria(orientacion_actual);
+              if(cooldown_rotacion == 0 && TeclaPulsada()==R && jugador.orientacion_actual == SPR_NAVE_DERECHA){
+                     BorrarNave(jugador);
+                     jugador.orientacion_actual = SPR_NAVE_ABAJO;
+                     MostrarNave(jugador);
+                     GuardarSpritesMemoria(jugador.orientacion_actual);
                      cooldown_rotacion = 25;
               }
-              if(cooldown_rotacion == 0 && TeclaPulsada()==L && orientacion_actual == SPR_NAVE_DERECHA) {
-                     BorrarNave(orientacion_actual, jugador);
-                     orientacion_actual = SPR_NAVE_ARRIBA;
-                     MostrarNave(orientacion_actual, jugador);
-                     GuardarSpritesMemoria(orientacion_actual);
+              if(cooldown_rotacion == 0 && TeclaPulsada()==L && jugador.orientacion_actual == SPR_NAVE_DERECHA) {
+                     BorrarNave(jugador);
+                     jugador.orientacion_actual = SPR_NAVE_ARRIBA;
+                     MostrarNave(jugador);
+                     GuardarSpritesMemoria(jugador.orientacion_actual);
                      cooldown_rotacion = 25;
               }
             
