@@ -1,12 +1,10 @@
 // Curso 2025-2026
+#include "entidades.h"
 extern u16* gfx;
 extern u16* gfx2;
 extern u16* gfx3;
 extern u16* gfxSub;
-typedef struct {
-    int x,y;
-    int orientacion_actual;
-} Nave;
+
 
 extern void memoriaReserva();
 
@@ -20,6 +18,8 @@ extern void EstablecerPaletaSecundaria();
 
 extern void GuardarSpritesMemoria(int orientacion_nave);
 /* Carga en memoria los Sprites dibujados */
+extern void GuardarSpriteDisparoMemoria ();
+
 
 
 extern void MostrarRombo(int indice, int x, int y);
@@ -37,6 +37,7 @@ extern void MostrarRomboGrande(int indice, int x, int y);
 extern void BorrarRomboGrande(int indice, int x, int y);
 /* Esta función borra de la pantalla el rombo grande con el índice que se le indique como parámetro */
 
+extern void MostarDisparo(Disparo proyectil);
 extern void MostrarNave(Nave jugador);
 extern void BorrarNave(Nave jugador);
 /***********************2025-2026*******************************/

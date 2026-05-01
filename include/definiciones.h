@@ -60,6 +60,7 @@ extern int ESTADO;
 #define SPR_NAVE_DERECHA 1
 #define SPR_NAVE_ABAJO 2
 #define SPR_NAVE_IZQUIERDA 3
+#define SPR_DISPARO_NAVE 4
 
 
 

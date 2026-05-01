@@ -44,6 +44,8 @@ int TeclaPulsada()
 
 }
 
+
+
 void ConfigurarTeclado(int Conf_Tec)
 {
 	// Configuración del teclado. Modificar su registro de control en base a los bits

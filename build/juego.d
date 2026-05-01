@@ -48,6 +48,7 @@ juego.o: /home/user/SharedFiles/ProyectoEC/source/juego.c \
   /opt/devkitPro/libnds/include/nds/system.h \
   /opt/devkitPro/libnds/include/nds/arm9/decompress.h \
   /home/user/SharedFiles/ProyectoEC/include/sprites.h \
+  /home/user/SharedFiles/ProyectoEC/include/entidades.h \
   /home/user/SharedFiles/ProyectoEC/include/juego.h \
   /home/user/SharedFiles/ProyectoEC/include/definiciones.h \
   /home/user/SharedFiles/ProyectoEC/include/perifericos.h \
@@ -151,6 +152,8 @@ juego.o: /home/user/SharedFiles/ProyectoEC/source/juego.c \
 /opt/devkitPro/libnds/include/nds/arm9/decompress.h:
 
 /home/user/SharedFiles/ProyectoEC/include/sprites.h:
+
+/home/user/SharedFiles/ProyectoEC/include/entidades.h:
 
 /home/user/SharedFiles/ProyectoEC/include/juego.h:
 

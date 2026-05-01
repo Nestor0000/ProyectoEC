@@ -20,7 +20,6 @@ y en otro ejemplo de Jaeden Ameronen
 #include "fondos.h"
 
 int tiempo;
-
 void juego() {
     
     // Definiciones de variables
@@ -51,7 +50,7 @@ void juego() {
     irqEnable(IRQ_VBLANK);
     ConfigurarTeclado(0xC001);
     ConfigurarTemporizador(0xC000,0X00C0);
-    //EstablecerVectorInt();
+    EstablecerVectorInt();
     HabilitarIntTeclado();
     HabilitarIntTempo();
     irqEnable(IRQ_KEYS|IRQ_TIMER0);
@@ -59,7 +58,6 @@ void juego() {
 
 
     visualizarFondo1();
-    Nave jugador;
     jugador.x = 110;
     jugador.y = 96;
     jugador.orientacion_actual = SPR_NAVE_ARRIBA;
@@ -115,12 +113,13 @@ void juego() {
                      cooldown_rotacion = 25;
               }
               if(cooldown_rotacion == 0 && ((TeclaPulsada()==L && jugador.orientacion_actual == SPR_NAVE_ARRIBA) || (TeclaPulsada()==R && jugador.orientacion_actual== SPR_NAVE_ABAJO))) {
-                BorrarNave(orientacion_actual, jugador);
-                orientacion_actual = SPR_NAVE_IZQUIERDA;
-                MostrarNave(orientacion_actual, jugador);
-                GuardarSpritesMemoria(orientacion_actual);
+                BorrarNave(jugador);
+                jugador.orientacion_actual = SPR_NAVE_IZQUIERDA;
+                MostrarNave(jugador);
+                GuardarSpritesMemoria(jugador.orientacion_actual);
                 cooldown_rotacion = 25;
               }
+              
 
             
 

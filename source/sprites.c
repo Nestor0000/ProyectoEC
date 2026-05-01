@@ -15,6 +15,7 @@ Código desarrollado basado en el ejemplo "Simple sprite demo" de dovoto y en ot
 u16* gfxrombo;
 u16* gfxromboGrande;
 u16* gfxnave;
+u16* gfxdisparo;
 
 
 /* Reservar memoria para cada sprite que se quiera mostrar en pantalla */
@@ -24,6 +25,7 @@ void memoriaReserva()
 	//gfxrombo= oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
 	//gfxromboGrande=oamAllocateGfx(&oamMain, SpriteSize_32x32, SpriteColorFormat_256Color);
 	gfxnave=oamAllocateGfx(&oamMain, SpriteSize_32x32, SpriteColorFormat_256Color);
+	gfxdisparo=oamAllocateGfx(&oamMain, SpriteSize_32x32, SpriteColorFormat_256Color);
 
 }
 
@@ -32,10 +34,11 @@ void memoriaReserva()
    MODIFICAR SEGÚN LOS COLORES QUE QUERAIS UTILIZAR EN VUESTROS SPRITES */
 void EstablecerPaletaPrincipal() {
 
-	SPRITE_PALETTE[1] = RGB15(31,0,0); 
-	SPRITE_PALETTE[2] = RGB15(31,31,31); 
+	SPRITE_PALETTE[1] = RGB15(31,0,0);  // rojo puro 
+	SPRITE_PALETTE[2] = RGB15(31,31,31); // blanco
 	SPRITE_PALETTE[3] = RGB15(0,0,31); 
 	SPRITE_PALETTE[4] = RGB15(31,31,0);
+	SPRITE_PALETTE[5] = RGB15(31,15,15);  // rojo claro
 }
 
 /* Definición de un sprite de 16x16 píxeles para dibujar un rombo */
@@ -145,6 +148,41 @@ u8 nave_izquierda[1024] = {
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,2,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+};
+
+u8 disparo_nave[1024] = {
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,5,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,1,1,5,2,5,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,1,5,2,2,2,5,1,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,1,1,5,2,5,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,5,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -288,6 +326,13 @@ void GuardarSpritesMemoria(int orientacion_nave){
 					srcIndex =
 						(ty * 8 + y) * 32 +
 						(tx * 8 + x);
+
+					/*if() {
+                        gfxdisparo[dstIndex++] =
+						disparo_nave[srcIndex] |
+						(disparo_nave[srcIndex + 1] << 8);
+					} */
+
 					if(orientacion_nave == SPR_NAVE_ARRIBA){
 						gfxnave[dstIndex++] =
 						nave_arriba[srcIndex] |
@@ -313,6 +358,36 @@ void GuardarSpritesMemoria(int orientacion_nave){
 		}
 	}
 }
+
+void GuardarSpriteDisparoMemoria (){
+	int i;
+	int tx, ty, x, y;
+	int srcIndex;
+	int dstIndex = 0;
+
+	for (ty = 0; ty < 4; ty++)          // 4 bloques verticales
+	{
+		for (tx = 0; tx < 4; tx++)      // 4 bloques horizontales
+		{
+			for (y = 0; y < 8; y++)
+			{
+				for (x = 0; x < 8; x += 2)
+				{
+					    srcIndex =
+						(ty * 8 + y) * 32 +
+						(tx * 8 + x);
+
+                        gfxdisparo[dstIndex++] =
+						disparo_nave[srcIndex] |
+						(disparo_nave[srcIndex + 1] << 8); 
+					
+				}
+			}
+		}
+	}
+}
+
+
 
 /* Esta función dibuja un rombo en la posición x, y de pantalla. A cada rombo que se quiera mostrar en pantalla se le debe asignar un índice distinto, un valor entre 0 y 126 */
 
@@ -400,6 +475,23 @@ oamSet(&oamMain, // main graphics engine context
 		); 
 oamUpdate(&oamMain); 
 
+}
+
+void Mostrardisparo(Disparo proyectil){
+	oamSet(&oamMain,
+			proyectil.orientacion_actual,
+			proyectil.x, proyectil.y,
+			0,
+			0,
+			SpriteSize_32x32,
+			SpriteColorFormat_256Color,
+			gfxdisparo,
+			-1,false,
+			false,
+			false,false,
+			false);
+
+			oamUpdate(&oamMain);
 }
 
 void MostrarNave(Nave jugador){

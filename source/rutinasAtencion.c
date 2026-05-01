@@ -10,6 +10,7 @@ rutinasAtencion.c
 #include "perifericos.h"
 #include "fondos.h"
 #include "sprites.h"
+#include "entidades.h"
 
 int ESTADO; // Para controlar el estado del autómata en que esté
 int seg3;   // Para ver si pasan tres segundos
@@ -28,6 +29,8 @@ if (ESTADO == CERRADA)
 	}
 }
 }
+
+ 
 
 void RutAtencionTempo()
 {
@@ -60,13 +63,27 @@ if (ESTADO!=ESPERA)
 }
 	
 }
+*/
 
 void EstablecerVectorInt()
 {
 // A COMPLETAR POR USTEDES
-	irqSet(IRQ_KEYS,RutAtencionTeclado);
-	irqSet(IRQ_TIMER0,RutAtencionTempo);
+	//irqSet(IRQ_KEYS,RutAtencionTeclado);
+	//irqSet(IRQ_TIMER0,RutAtencionTempo);
+	irqSet(IRQ_KEYS, RutAtencionDisparar);
 }
-*/
+
+
+void RutAtencionDisparar() {
+	if (ESTADO == GAME) {
+		if(TeclaPulsada()== B){
+			Disparo proyectil;
+			proyectil.x = jugador.x;
+            proyectil.y = jugador.y + 3;
+			MostarDisparo(proyectil);
+            //GuardarSpriteDisparoMemoria();
+		}
+	}
+}
 /***********************2025-2026*******************************/
 
