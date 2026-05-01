@@ -125,6 +125,7 @@ void inicializarGraficosSprites()
 	memoriaReserva();
 	EstablecerPaletaPrincipal();
 	GuardarSpritesMemoria(SPR_NAVE_ARRIBA);
+    GuardarSpriteDisparoMemoria();
 }
 
 /***********************2025-2026*******************************/

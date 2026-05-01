@@ -29,7 +29,7 @@ void visualizarFondo1(){
 }
 
 void visualizarFondo2(){
-	dmaCopyHalfWords(DMA_CHANNEL,fondo2Bitmap,(uint16 *)BG_BMP_RAM(0),fondo1BitmapLen);
+	dmaCopyHalfWords(DMA_CHANNEL,fondo2Bitmap,(uint16 *)BG_BMP_RAM(0),fondo2BitmapLen);
 }
 void visualizarFondo3(){
 	dmaCopyHalfWords(DMA_CHANNEL,fondo3Bitmap,(uint16 *)BG_BMP_RAM(0),fondo3BitmapLen);

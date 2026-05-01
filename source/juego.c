@@ -20,6 +20,7 @@ y en otro ejemplo de Jaeden Ameronen
 #include "fondos.h"
 
 int tiempo;
+Nave jugador;
 void juego() {
     
     // Definiciones de variables
@@ -48,14 +49,14 @@ void juego() {
     //******************************************************************************//
     irqInit();
     irqEnable(IRQ_VBLANK);
-    ConfigurarTeclado(0xC001);
+    //ConfigurarTeclado(0xC001);
+	ConfigurarTeclado(0x83FF);
     ConfigurarTemporizador(0xC000,0X00C0);
     EstablecerVectorInt();
     HabilitarIntTeclado();
     HabilitarIntTempo();
     irqEnable(IRQ_KEYS|IRQ_TIMER0);
     PonerEnMarchaTempo();
-
 
     visualizarFondo1();
     jugador.x = 110;
@@ -98,21 +99,21 @@ void juego() {
                    GuardarSpritesMemoria(jugador.orientacion_actual);
                     cooldown_rotacion = 25;
             }
-              if(cooldown_rotacion == 0 && ((TeclaPulsada()==R && jugador.orientacion_actual == SPR_NAVE_DERECHA) || (TeclaPulsada()==L && jugador.orientacion_actual== SPR_NAVE_IZQUIERDA))){
+              else if(cooldown_rotacion == 0 && ((TeclaPulsada()==R && jugador.orientacion_actual == SPR_NAVE_DERECHA) || (TeclaPulsada()==L && jugador.orientacion_actual== SPR_NAVE_IZQUIERDA))){
                   BorrarNave(jugador);
                   jugador.orientacion_actual = SPR_NAVE_ABAJO;
                   MostrarNave(jugador);
                   GuardarSpritesMemoria(jugador.orientacion_actual);
                      cooldown_rotacion = 25;
               }
-              if(cooldown_rotacion == 0 && ((TeclaPulsada()==L && jugador.orientacion_actual == SPR_NAVE_DERECHA) || (TeclaPulsada()==R && jugador.orientacion_actual== SPR_NAVE_IZQUIERDA))) {
+              else if(cooldown_rotacion == 0 && ((TeclaPulsada()==L && jugador.orientacion_actual == SPR_NAVE_DERECHA) || (TeclaPulsada()==R && jugador.orientacion_actual== SPR_NAVE_IZQUIERDA))) {
                   BorrarNave(jugador);
                   jugador.orientacion_actual = SPR_NAVE_ARRIBA;
                   MostrarNave(jugador);
                   GuardarSpritesMemoria(jugador.orientacion_actual);
                      cooldown_rotacion = 25;
               }
-              if(cooldown_rotacion == 0 && ((TeclaPulsada()==L && jugador.orientacion_actual == SPR_NAVE_ARRIBA) || (TeclaPulsada()==R && jugador.orientacion_actual== SPR_NAVE_ABAJO))) {
+              else if(cooldown_rotacion == 0 && ((TeclaPulsada()==L && jugador.orientacion_actual == SPR_NAVE_ARRIBA) || (TeclaPulsada()==R && jugador.orientacion_actual== SPR_NAVE_ABAJO))) {
                 BorrarNave(jugador);
                 jugador.orientacion_actual = SPR_NAVE_IZQUIERDA;
                 MostrarNave(jugador);

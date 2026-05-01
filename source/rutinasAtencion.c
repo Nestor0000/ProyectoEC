@@ -10,7 +10,7 @@ rutinasAtencion.c
 #include "perifericos.h"
 #include "fondos.h"
 #include "sprites.h"
-#include "entidades.h"
+#include "rutinasAtencion.h"
 
 int ESTADO; // Para controlar el estado del autómata en que esté
 int seg3;   // Para ver si pasan tres segundos
@@ -31,8 +31,8 @@ if (ESTADO == CERRADA)
 }
 
  
-
-void RutAtencionTempo()
+*/
+/*void RutAtencionTempo()
 {
 	static int tick=0;
 	static int seg=0;
@@ -46,7 +46,7 @@ if (ESTADO!=ESPERA)
 		seg++;
 		iprintf("\x1b[13;5HSegundos que han pasado=%d", seg);
 		tick=0;
-		if (ESTADO == ABIERTA)
+		/*if (ESTADO == ABIERTA)
 		{
 			seg3++;
 			if (seg3==3)
@@ -62,28 +62,30 @@ if (ESTADO!=ESPERA)
 	}
 }
 	
-}
-*/
-
-void EstablecerVectorInt()
-{
-// A COMPLETAR POR USTEDES
-	//irqSet(IRQ_KEYS,RutAtencionTeclado);
-	//irqSet(IRQ_TIMER0,RutAtencionTempo);
-	irqSet(IRQ_KEYS, RutAtencionDisparar);
-}
-
+}*/
 
 void RutAtencionDisparar() {
+	iprintf("\x1b[1;1HISRejecutada");
 	if (ESTADO == GAME) {
 		if(TeclaPulsada()== B){
 			Disparo proyectil;
 			proyectil.x = jugador.x;
-            proyectil.y = jugador.y + 3;
-			MostarDisparo(proyectil);
-            //GuardarSpriteDisparoMemoria();
+			proyectil.y = jugador.y + 2;
+			MostrarDisparo(proyectil);
+			//GuardarSpriteDisparoMemoria();
 		}
 	}
 }
+void EstablecerVectorInt()
+{
+// A COMPLETAR POR USTEDES
+	//irqSet(IRQ_KEYS,RutAtencionTeclado);
+
+	irqSet(IRQ_KEYS, RutAtencionDisparar);
+	//irqSet(IRQ_TIMER0,RutAtencionTempo);
+}
+
+
+
 /***********************2025-2026*******************************/
 

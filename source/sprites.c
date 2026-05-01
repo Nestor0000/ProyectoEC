@@ -477,9 +477,9 @@ oamUpdate(&oamMain);
 
 }
 
-void Mostrardisparo(Disparo proyectil){
+void MostrarDisparo(Disparo proyectil){
 	oamSet(&oamMain,
-			proyectil.orientacion_actual,
+			SPR_DISPARO_NAVE,
 			proyectil.x, proyectil.y,
 			0,
 			0,
