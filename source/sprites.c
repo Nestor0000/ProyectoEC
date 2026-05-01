@@ -477,9 +477,9 @@ oamUpdate(&oamMain);
 
 }
 
-void MostrarDisparo(Disparo proyectil){
+void MostrarDisparo(Disparo proyectil, int indice){
 	oamSet(&oamMain,
-			SPR_DISPARO_NAVE,
+			indice,
 			proyectil.x, proyectil.y,
 			0,
 			0,
