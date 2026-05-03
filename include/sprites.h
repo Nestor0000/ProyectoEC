@@ -37,7 +37,8 @@ extern void MostrarRomboGrande(int indice, int x, int y);
 extern void BorrarRomboGrande(int indice, int x, int y);
 /* Esta función borra de la pantalla el rombo grande con el índice que se le indique como parámetro */
 
-extern void MostrarDisparo(Disparo proyectil, int indice);
+extern void MostrarDisparo(Disparo *proyectil);
+extern void BorrarDisparo(Disparo *proyectil);
 extern void MostrarNave(Nave jugador);
 extern void BorrarNave(Nave jugador);
 /***********************2025-2026*******************************/

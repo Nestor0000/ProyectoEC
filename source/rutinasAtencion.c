@@ -68,7 +68,7 @@ void RutAtencionTeclado() {
 	iprintf("\x1b[1;1HISRejecutada");
 	int tecla = TeclaPulsada();
 	if (ESTADO == GAME) {
-		if(tecla == A){
+		/*if(tecla == A){
 			iprintf("\x1b[1;1HISRteclaApulsada");
 			InhibirIntTeclado();
 			Disparo proyectil;
@@ -77,6 +77,48 @@ void RutAtencionTeclado() {
 			MostrarDisparo(proyectil, SPR_DISPARO_NAVE);
 			HabilitarIntTeclado();
 			//GuardarSpriteDisparoMemoria();
+		}*/
+		if(tecla==B && contDisparos <10){
+			InhibirIntTeclado();
+			int i = 0;
+			int k = 0; //Esto es para salir del bucle cuando se encuentre uno inactivo para poder usarlo
+			Disparo *proyectil = NULL;
+			while(i<10 && k==0){
+				//para corregir
+				if(disparosNave!=NULL &&disparosNave[i].activo == INACTIVO){
+					proyectil= &disparosNave[i];
+					k=1;
+				}
+				i++;
+			}
+			if(jugador.orientacion_actual == SPR_NAVE_ARRIBA){
+				proyectil->x = jugador.x;
+				proyectil->y=jugador.y-3;
+				proyectil->orientacion_actual = SPR_NAVE_ARRIBA;
+				contDisparos++;
+			}
+			else if(jugador.orientacion_actual ==SPR_NAVE_DERECHA){
+				proyectil->x = jugador.x + 3;
+				proyectil->y=jugador.y;
+				proyectil->orientacion_actual = SPR_NAVE_DERECHA;
+				contDisparos++;
+			}
+			else if(jugador.orientacion_actual ==SPR_NAVE_IZQUIERDA){
+				proyectil->x = jugador.x-3;
+				proyectil->y=jugador.y;
+				proyectil->orientacion_actual = SPR_NAVE_IZQUIERDA;
+				contDisparos++;
+			}
+			else if(jugador.orientacion_actual ==SPR_NAVE_ABAJO){
+				proyectil->x = jugador.x;
+				proyectil->y=jugador.y + 3;
+				proyectil->orientacion_actual = SPR_NAVE_ABAJO;
+				contDisparos++;
+			}
+			proyectil->activo = ACTIVO;
+			MostrarDisparo(proyectil);
+			HabilitarIntTeclado();
+			
 		}
 	}
 }

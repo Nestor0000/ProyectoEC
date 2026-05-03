@@ -51,6 +51,7 @@ main.o: /home/user/SharedFiles/ProyectoEC/source/main.c \
   /home/user/SharedFiles/ProyectoEC/include/definiciones.h \
   /home/user/SharedFiles/ProyectoEC/include/sprites.h \
   /home/user/SharedFiles/ProyectoEC/include/entidades.h \
+  /home/user/SharedFiles/ProyectoEC/include/definiciones.h \
   /home/user/SharedFiles/ProyectoEC/include/juego.h
 
 /opt/devkitPro/libnds/include/nds.h:
@@ -156,5 +157,7 @@ main.o: /home/user/SharedFiles/ProyectoEC/source/main.c \
 /home/user/SharedFiles/ProyectoEC/include/sprites.h:
 
 /home/user/SharedFiles/ProyectoEC/include/entidades.h:
+
+/home/user/SharedFiles/ProyectoEC/include/definiciones.h:
 
 /home/user/SharedFiles/ProyectoEC/include/juego.h:
