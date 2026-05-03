@@ -64,14 +64,18 @@ if (ESTADO!=ESPERA)
 	
 }*/
 
-void RutAtencionDisparar() {
+void RutAtencionTeclado() {
 	iprintf("\x1b[1;1HISRejecutada");
+	int tecla = TeclaPulsada();
 	if (ESTADO == GAME) {
-		if(TeclaPulsada()== B){
+		if(tecla == A){
+			iprintf("\x1b[1;1HISRteclaApulsada");
+			InhibirIntTeclado();
 			Disparo proyectil;
 			proyectil.x = jugador.x;
 			proyectil.y = jugador.y + 2;
-			MostrarDisparo(proyectil);
+			MostrarDisparo(proyectil, SPR_DISPARO_NAVE);
+			HabilitarIntTeclado();
 			//GuardarSpriteDisparoMemoria();
 		}
 	}
@@ -81,7 +85,7 @@ void EstablecerVectorInt()
 // A COMPLETAR POR USTEDES
 	//irqSet(IRQ_KEYS,RutAtencionTeclado);
 
-	irqSet(IRQ_KEYS, RutAtencionDisparar);
+	irqSet(IRQ_KEYS, RutAtencionTeclado);
 	//irqSet(IRQ_TIMER0,RutAtencionTempo);
 }
 

@@ -50,12 +50,13 @@ void juego() {
     irqInit();
     irqEnable(IRQ_VBLANK);
     //ConfigurarTeclado(0xC001);
-	ConfigurarTeclado(0x83FF);
-    ConfigurarTemporizador(0xC000,0X00C0);
+	ConfigurarTeclado(0x43FF);
+    ConfigurarTemporizador(0xC000,0X00C0); //revisar parametros 
     EstablecerVectorInt();
     HabilitarIntTeclado();
     HabilitarIntTempo();
     irqEnable(IRQ_KEYS|IRQ_TIMER0);
+    HabilitarInterrupciones();
     PonerEnMarchaTempo();
 
     visualizarFondo1();

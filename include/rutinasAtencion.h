@@ -6,7 +6,6 @@ rutinasAtencion.h
 #include "entidades.h"
 extern void RutAtencionTeclado ();
 extern void RutAtencionTempo();
-extern void RutAtencionDisparar();
 extern void EstablecerVectorInt();
 
 
