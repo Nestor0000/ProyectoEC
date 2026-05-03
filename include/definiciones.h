@@ -56,11 +56,18 @@ extern int ESTADO;
 
 
 //Definiciones de los sprites
-#define SPR_NAVE_ARRIBA 0
-#define SPR_NAVE_DERECHA 1
-#define SPR_NAVE_ABAJO 2
-#define SPR_NAVE_IZQUIERDA 3
-#define SPR_DISPARO_NAVE 4
+#define SPR_NAVE_ARRIBA     0
+#define SPR_NAVE_DERECHA    1
+#define SPR_NAVE_ABAJO      2
+#define SPR_NAVE_IZQUIERDA  3
+#define SPR_DISPARO_NAVE    4 
+#define SPR_ASTEROIDE       5
+
+
+
+
+
+#define MAX_ASTEROIDES 50
 
 
 /***********************2025-2026*******************************/

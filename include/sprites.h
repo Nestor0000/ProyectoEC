@@ -19,6 +19,7 @@ extern void EstablecerPaletaSecundaria();
 extern void GuardarSpritesMemoria(int orientacion_nave);
 /* Carga en memoria los Sprites dibujados */
 extern void GuardarSpriteDisparoMemoria ();
+extern void GuardarSpriteAsteroideMemoria ();
 
 
 
@@ -38,7 +39,14 @@ extern void BorrarRomboGrande(int indice, int x, int y);
 /* Esta función borra de la pantalla el rombo grande con el índice que se le indique como parámetro */
 
 extern void MostrarDisparo(Disparo proyectil, int indice);
+extern void BorrarAsteroide(Asteroide enemigo, int indice);
+extern void MostrarAsteroide(Asteroide enemigo, int indice);
 extern void MostrarNave(Nave jugador);
 extern void BorrarNave(Nave jugador);
+
+extern void InitAsteroides();
+extern void SpawnAsteroide();
+extern void ActualizarAsteroides();
+extern void AparicionAsteroides();
 /***********************2025-2026*******************************/
 

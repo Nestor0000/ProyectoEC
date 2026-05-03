@@ -68,12 +68,23 @@ void RutAtencionTeclado() {
 	iprintf("\x1b[1;1HISRejecutada");
 	int tecla = TeclaPulsada();
 	if (ESTADO == GAME) {
-		if(tecla == A){
+		if(tecla == B){
 			iprintf("\x1b[1;1HISRteclaApulsada");
 			InhibirIntTeclado();
 			Disparo proyectil;
-			proyectil.x = jugador.x;
-			proyectil.y = jugador.y + 2;
+			if (jugador.orientacion_actual == 0) {
+				proyectil.x = jugador.x;
+				proyectil.y = jugador.y - 10;
+			} else if (jugador.orientacion_actual == 1) {
+				proyectil.x = jugador.x + 10;
+				proyectil.y = jugador.y;
+			} else if (jugador.orientacion_actual == 2) {
+				proyectil.x = jugador.x;
+				proyectil.y = jugador.y + 10;
+			} else {
+				proyectil.x = jugador.x - 10;
+				proyectil.y = jugador.y;
+			}
 			MostrarDisparo(proyectil, SPR_DISPARO_NAVE);
 			HabilitarIntTeclado();
 			//GuardarSpriteDisparoMemoria();

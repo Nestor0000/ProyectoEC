@@ -49,6 +49,7 @@ sprites.o: /home/user/SharedFiles/ProyectoEC/source/sprites.c \
   /opt/devkitPro/libnds/include/nds/arm9/decompress.h \
   /home/user/SharedFiles/ProyectoEC/include/sprites.h \
   /home/user/SharedFiles/ProyectoEC/include/entidades.h \
+  /home/user/SharedFiles/ProyectoEC/include/definiciones.h \
   /home/user/SharedFiles/ProyectoEC/include/definiciones.h
 
 /opt/devkitPro/libnds/include/nds.h:
@@ -150,5 +151,7 @@ sprites.o: /home/user/SharedFiles/ProyectoEC/source/sprites.c \
 /home/user/SharedFiles/ProyectoEC/include/sprites.h:
 
 /home/user/SharedFiles/ProyectoEC/include/entidades.h:
+
+/home/user/SharedFiles/ProyectoEC/include/definiciones.h:
 
 /home/user/SharedFiles/ProyectoEC/include/definiciones.h:

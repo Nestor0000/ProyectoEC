@@ -53,6 +53,7 @@ rutinasAtencion.o:  \
   /home/user/SharedFiles/ProyectoEC/include/fondos.h \
   /home/user/SharedFiles/ProyectoEC/include/sprites.h \
   /home/user/SharedFiles/ProyectoEC/include/entidades.h \
+  /home/user/SharedFiles/ProyectoEC/include/definiciones.h \
   /home/user/SharedFiles/ProyectoEC/include/rutinasAtencion.h
 
 /opt/devkitPro/libnds/include/nds.h:
@@ -160,5 +161,7 @@ rutinasAtencion.o:  \
 /home/user/SharedFiles/ProyectoEC/include/sprites.h:
 
 /home/user/SharedFiles/ProyectoEC/include/entidades.h:
+
+/home/user/SharedFiles/ProyectoEC/include/definiciones.h:
 
 /home/user/SharedFiles/ProyectoEC/include/rutinasAtencion.h:
