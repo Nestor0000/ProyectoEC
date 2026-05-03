@@ -14,6 +14,9 @@ rutinasAtencion.c
 
 int ESTADO; // Para controlar el estado del autómata en que esté
 int seg3;   // Para ver si pasan tres segundos
+extern volatile int tiempo; // extern popr que es de juego.c y volatile por que puede cambiar por interrupciones
+extern volatile int fondo_actual=1;
+
 /*
 void RutAtencionTeclado ()
 {
@@ -32,7 +35,7 @@ if (ESTADO == CERRADA)
 
  
 */
-/*void RutAtencionTempo()
+/*void RutAtencionTempo() esta es la funcion antigua
 {
 	static int tick=0;
 	static int seg=0;
@@ -80,14 +83,48 @@ void RutAtencionTeclado() {
 		}
 	}
 }
+void RutAtencionTempo()
+{ 
+	tiempo++;
+    if(tiempo>=2400)//20 segs segun chati
+	{
+		tiempo = 0;
+		if(fondo_actual==1)
+		{
+			visualizarFondo2();
+			fondo_actual = 2;
+		}
+		else if(fondo_actual==2)
+		{
+			visualizarFondo3();
+			fondo_actual = 3;
+
+		}
+		else if(fondo_actual==3)
+		{
+			visualizarFondo4();
+			fondo_actual = 4;
+		}
+
+
+
+	}
+}
+	
+
+
+
+
+
 void EstablecerVectorInt()
 {
 // A COMPLETAR POR USTEDES
 	//irqSet(IRQ_KEYS,RutAtencionTeclado);
 
 	irqSet(IRQ_KEYS, RutAtencionTeclado);
-	//irqSet(IRQ_TIMER0,RutAtencionTempo);
+	irqSet(IRQ_TIMER0,RutAtencionTempo);
 }
+
 
 
 

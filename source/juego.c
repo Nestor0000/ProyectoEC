@@ -18,15 +18,15 @@ y en otro ejemplo de Jaeden Ameronen
 #include "perifericos.h"
 #include "rutinasAtencion.h"
 #include "fondos.h"
-
-int tiempo;
+volatile int fondo_actual;
+volatile int tiempo;
 Nave jugador;
 void juego() {
     
     // Definiciones de variables
     int i=9;
     int tecla=0;
-
+	consoleDemoInit();
     ESTADO=GAME;
     int cooldown_rotacion = 0;
 
@@ -48,27 +48,29 @@ void juego() {
     // Habilitar interrupciones.
     //******************************************************************************//
     irqInit();
+	EstablecerVectorInt();
     irqEnable(IRQ_VBLANK);
     //ConfigurarTeclado(0xC001);
 	ConfigurarTeclado(0x43FF);
-    ConfigurarTemporizador(0xC000,0X00C0); //revisar parametros 
-    EstablecerVectorInt();
+    ConfigurarTemporizador(61440,0x0041); //revisar parametros 
     HabilitarIntTeclado();
     HabilitarIntTempo();
-    irqEnable(IRQ_KEYS|IRQ_TIMER0);
     HabilitarInterrupciones();
     PonerEnMarchaTempo();
-
-    visualizarFondo1();
+	visualizarFondo1();
+	 fondo_actual=1;
     jugador.x = 110;
     jugador.y = 96;
     jugador.orientacion_actual = SPR_NAVE_ARRIBA;
     MostrarNave(jugador);
-    while(1)
+
+	while(1)
     {
         swiWaitForVBlank();
-
-        if(cooldown_rotacion > 0){
+        iprintf("\x1b[2;1HIE=%08lX", IE);
+    	iprintf("\x1b[3;1HIME=%08lX", IME);
+   		iprintf("\x1b[4;1HTempo=%d   ", tiempo);
+		if(cooldown_rotacion > 0){
         cooldown_rotacion--;
     }
         /*******************************EN LA 1.ACTIVIDAD *****************************************/
@@ -140,7 +142,11 @@ void juego() {
 
         }
 
-    }
+    
+	
+	}
+
+
 
 
 
