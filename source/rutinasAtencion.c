@@ -81,7 +81,7 @@ void RutAtencionTeclado() {
 			HabilitarIntTeclado();
 			//GuardarSpriteDisparoMemoria();
 		}*/
-		if(tecla==B && contDisparos <10){
+		if(tecla==B && contDisparos <10 && cooldown_disparo == 0){
 			InhibirIntTeclado();
 			int i = 0;
 			int k = 0; //Esto es para salir del bucle cuando se encuentre uno inactivo para poder usarlo
@@ -120,6 +120,7 @@ void RutAtencionTeclado() {
 			}
 			proyectil->activo = ACTIVO;
 			MostrarDisparo(proyectil);
+			cooldown_disparo=30;
 			HabilitarIntTeclado();
 			
 		}
@@ -147,9 +148,9 @@ void RutAtencionTempo()
 			visualizarFondo4();
 			fondo_actual = 4;
 		}
-
-
-
+	}
+	if(cooldown_disparo>0){
+		cooldown_disparo--;
 	}
 }
 	
