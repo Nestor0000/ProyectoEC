@@ -88,7 +88,8 @@ void InhibirIntTeclado()
 }  
 
 void HabilitarIntTempo()
-{
+{iprintf("\x1b[2;1HIE=%08lX", IE);
+
 
 
 	// Habilitar las interrupciones del temporizador (timer0)

@@ -19,9 +19,11 @@ y en otro ejemplo de Jaeden Ameronen
 #include "rutinasAtencion.h"
 #include "fondos.h"
 
-int tiempo;
+volatile int tiempo;
 int contDisparos;
 int teclaPulsada;
+volatile int fondo_actual;
+
 Nave jugador;
 Disparo disparosNave[MAX_DISPAROS];
 volatile int cooldown_disparo = 0;
@@ -33,7 +35,7 @@ void juego() {
     int j = 0;//se usara j como indice para recorrer bucles ya que i tiene otro uso
     ESTADO=GAME;
     int cooldown_rotacion = 0;
-    
+
     for(j=0;j<MAX_DISPAROS; j++){
         disparosNave[j].indice = j+5;
     }
@@ -57,27 +59,29 @@ void juego() {
     irqEnable(IRQ_VBLANK);
     //ConfigurarTeclado(0xC001);
 	ConfigurarTeclado(0x43FF);
-    ConfigurarTemporizador(0xC000,0X00C0); //revisar parametros 
+    ConfigurarTemporizador(61440,0x0041);
     EstablecerVectorInt();
     HabilitarIntTeclado();
     HabilitarIntTempo();
     irqEnable(IRQ_KEYS|IRQ_TIMER0);
     HabilitarInterrupciones();
     PonerEnMarchaTempo();
-
-    visualizarFondo1();
+	visualizarFondo1();
+	 fondo_actual=1;
     jugador.x = 110;
     jugador.y = 96;
     jugador.orientacion_actual = SPR_NAVE_ARRIBA;
     MostrarNave(jugador);
-    while(1)
-    {
-        
-        swiWaitForVBlank();
 
-        if(cooldown_rotacion > 0){
-            cooldown_rotacion--;
-        }
+	while(1)
+    {
+        swiWaitForVBlank();
+        iprintf("\x1b[2;1HIE=%08lX", IE);
+    	iprintf("\x1b[3;1HIME=%08lX", IME);
+   		iprintf("\x1b[4;1HTempo=%d   ", tiempo);
+		if(cooldown_rotacion > 0){
+        cooldown_rotacion--;
+    }
         /*******************************EN LA 1.ACTIVIDAD *****************************************/
         //Si el estado es ESPERA: codificar aquí la encuesta del teclado, sacar por pantalla la tecla que se ha pulsado, y si se pulsa la tecla START cambiar de estado */
 
@@ -130,7 +134,7 @@ void juego() {
                 cooldown_rotacion = 25;
               }
 
-              
+
               for (j = 0; j < MAX_DISPAROS; j++)
               {
                 Disparo *proyectil = &disparosNave[j];
@@ -180,11 +184,11 @@ void juego() {
                     }
                 }
               }
-              
-                
-                
-              
-              
+
+
+
+
+
 
             
 
