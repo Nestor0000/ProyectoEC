@@ -32,6 +32,8 @@ volatile int cooldown_disparo = 0;
 Asteroide asteroides[MAX_ASTEROIDES];
 int spawnasteroides_timer = 0;
 int game_tick = 0;
+int tempo_activado = 0;
+int asteroides_inicializados = 0;
 
 void InitAsteroides() {
     int i;
@@ -171,28 +173,41 @@ void juego() {
     HabilitarIntTempo();
     irqEnable(IRQ_KEYS|IRQ_TIMER0);
     HabilitarInterrupciones();
-    PonerEnMarchaTempo();
-	visualizarFondo1();
-	 fondo_actual=1;
+
+
     jugador.x = 110;
     jugador.y = 96;
     jugador.orientacion_actual = SPR_NAVE_ARRIBA;
-    MostrarNave(jugador);
-    GuardarSpritesMemoria(jugador.orientacion_actual);
-    InitAsteroides();
+
+
+
 
 
 	while(1)
     {
         swiWaitForVBlank();
-         game_tick++;
-        if(cooldown_rotacion > 0){
-            cooldown_rotacion--;
-        }
+
+
         /*******************************EN LA 1.ACTIVIDAD *****************************************/
         //Si el estado es ESPERA: codificar aquí la encuesta del teclado, sacar por pantalla la tecla que se ha pulsado, y si se pulsa la tecla START cambiar de estado */
 
         if(ESTADO==GAME){
+            if(tempo_activado == 0) {
+                PonerEnMarchaTempo();
+                tempo_activado = 1;
+            }
+            if(asteroides_inicializados == 0){
+                InitAsteroides();
+                asteroides_inicializados = 1;
+            }
+            visualizarFondo1();
+            fondo_actual=1;
+            MostrarNave(jugador);
+            GuardarSpritesMemoria(jugador.orientacion_actual);
+            //game_tick++;
+            if(cooldown_rotacion > 0){
+                cooldown_rotacion--;
+            }
             spawnasteroides_timer++;
             if(spawnasteroides_timer > 25){
                 SpawnAsteroide();
