@@ -120,7 +120,7 @@ void RutAtencionTeclado() {
 			}
 			proyectil->activo = ACTIVO;
 			MostrarDisparo(proyectil);
-			cooldown_disparo=30;
+			cooldown_disparo=60;
 			HabilitarIntTeclado();
 			
 		}
