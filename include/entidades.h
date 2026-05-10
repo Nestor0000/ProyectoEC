@@ -8,11 +8,24 @@ typedef struct {
 
 typedef struct {
     int x,y;
+    int vx, vy;
+    int activo;
+    int velocidad;
+    int lado;
+} Asteroide;
+
+
+
+typedef struct {
+    int x,y;
     int orientacion_actual;
 	int activo;
     int indice;
 } Disparo;
+
 extern Nave jugador;
+extern Asteroide asteroides[MAX_ASTEROIDES];
+
 extern Disparo disparosNave[MAX_DISPAROS];
 extern int contDisparos;
 #endif

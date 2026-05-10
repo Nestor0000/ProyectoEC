@@ -18,6 +18,7 @@ y en otro ejemplo de Jaeden Ameronen
 #include "perifericos.h"
 #include "rutinasAtencion.h"
 #include "fondos.h"
+#include "entidades.h"
 
 volatile int tiempo;
 int contDisparos;
@@ -27,6 +28,110 @@ volatile int fondo_actual;
 Nave jugador;
 Disparo disparosNave[MAX_DISPAROS];
 volatile int cooldown_disparo = 0;
+
+Asteroide asteroides[MAX_ASTEROIDES];
+int spawnasteroides_timer = 0;
+int game_tick = 0;
+
+void InitAsteroides() {
+    int i;
+    for(i = 0; i < MAX_ASTEROIDES; i++) {
+        asteroides[i].activo = 0;
+    }
+}
+void SpawnAsteroide() {
+    int i;
+    for(i = 0; i < MAX_ASTEROIDES; i++) {
+
+        if(asteroides[i].activo == 0) {
+
+            int lado = rand() % 4;
+            asteroides[i].lado = lado;
+            int speed = 1;
+
+            if(lado == 0) { // esto es el lado de arriba
+                asteroides[i].x = rand() % 256;
+                asteroides[i].y = 0;
+                asteroides[i].vx = 0;
+                asteroides[i].vy = speed;
+            }
+
+            else if(lado == 1) { // esto es el lado de abajo
+                asteroides[i].x = rand() % 256;
+                asteroides[i].y = 192;
+                asteroides[i].vx = 0;
+                asteroides[i].vy = -speed;
+            }
+
+            else if(lado == 2) { // esto es el lado de izquierda
+                asteroides[i].x = 0;
+                asteroides[i].y = rand() % 192;
+                asteroides[i].vx = speed;
+                asteroides[i].vy = 0;
+            }
+
+            else { // esto es el lado derecha
+                asteroides[i].x = 256;
+                asteroides[i].y = rand() % 192;
+                asteroides[i].vx = -speed;
+                asteroides[i].vy = 0;
+            }
+
+            asteroides[i].activo = 1;
+            break;
+        }
+    }
+}
+void ActualizarAsteroides() {
+
+    int i;
+    for(i = 0; i < MAX_ASTEROIDES; i++) {
+
+        if(asteroides[i].activo == 1) {
+
+            // si se sale de pantalla → desactivar
+            if(asteroides[i].x < -32 || asteroides[i].x > 256 ||
+               asteroides[i].y < -32 || asteroides[i].y > 192) {
+
+                // opcional: borrarlo visualmente antes de apagarlo
+                BorrarAsteroide(asteroides[i], i);
+
+                asteroides[i].activo = 0;
+               }
+        }
+    }
+}
+void AparicionAsteroides() {
+    int i;
+
+    for(i = 0; i < MAX_ASTEROIDES; i++) {
+
+        if(asteroides[i].activo) {
+
+            // 1. borrar posición anterior
+            BorrarAsteroide(asteroides[i], i);
+
+            // 2. actualizar posición según lado
+            if(asteroides[i].lado == 0) {
+                asteroides[i].y += 1;
+            }
+            else if(asteroides[i].lado == 1) {
+                asteroides[i].y -= 1;
+            }
+            else if(asteroides[i].lado == 2) {
+                asteroides[i].x += 1;
+            }
+            else if(asteroides[i].lado == 3) {
+                asteroides[i].x -= 1;
+            }
+
+            // 3. volver a dibujar en nueva posición
+            MostrarAsteroide(asteroides[i], i);
+            GuardarSpriteAsteroideMemoria();
+        }
+    }
+}
+
 void juego() {
     
     // Definiciones de variables
@@ -76,20 +181,26 @@ void juego() {
 	while(1)
     {
         swiWaitForVBlank();
-        iprintf("\x1b[2;1HIE=%08lX", IE);
-    	iprintf("\x1b[3;1HIME=%08lX", IME);
-   		iprintf("\x1b[4;1HTempo=%d   ", tiempo);
-		if(cooldown_rotacion > 0){
+         game_tick++;
+        if(cooldown_rotacion > 0){
         cooldown_rotacion--;
     }
         /*******************************EN LA 1.ACTIVIDAD *****************************************/
         //Si el estado es ESPERA: codificar aquí la encuesta del teclado, sacar por pantalla la tecla que se ha pulsado, y si se pulsa la tecla START cambiar de estado */
 
         if(ESTADO==GAME){
+            spawnasteroides_timer++;
+            if(spawnasteroides_timer > 25){
+                SpawnAsteroide();
+                spawnasteroides_timer = 0;
+            }
+            ActualizarAsteroides();
+            AparicionAsteroides();
+            GuardarSpriteAsteroideMemoria();
+
             teclaPulsada=TeclaPulsada();
             if(teclaPulsada==DERECHA && jugador.x < 225){
                 BorrarNave(jugador);
-                //tecla=TeclaPulsada();
                 jugador.x = jugador.x + 2;
                 MostrarNave(jugador);
             } else if(teclaPulsada==IZQUIERDA && jugador.x > 0){
@@ -185,12 +296,6 @@ void juego() {
                 }
               }
 
-
-
-
-
-
-            
 
 
 
