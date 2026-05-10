@@ -20,50 +20,51 @@ extern volatile int fondo_actual=1;
 
 
 void RutAtencionTeclado() {
-		if(tecla==B && contDisparos <10 && cooldown_disparo == 0){
-			InhibirIntTeclado();
-			int i = 0;
-			int k = 0; //Esto es para salir del bucle cuando se encuentre uno inactivo para poder usarlo
-			Disparo *proyectil = NULL;
-			while(i<10 && k==0){
-				//para corregir
-				if(disparosNave!=NULL &&disparosNave[i].activo == INACTIVO){
-					proyectil= &disparosNave[i];
-					k=1;
-				}
-				i++;
+	int tecla = TeclaPulsada();
+	if(tecla==B && contDisparos <10 && cooldown_disparo == 0){
+		InhibirIntTeclado();
+		int i = 0;
+		int k = 0; //Esto es para salir del bucle cuando se encuentre uno inactivo para poder usarlo
+		Disparo *proyectil = NULL;
+		while(i<10 && k==0){
+			//para corregir
+			if(disparosNave!=NULL &&disparosNave[i].activo == INACTIVO){
+				proyectil= &disparosNave[i];
+				k=1;
 			}
-			if(jugador.orientacion_actual == SPR_NAVE_ARRIBA){
-				proyectil->x = jugador.x;
-				proyectil->y=jugador.y-3;
-				proyectil->orientacion_actual = SPR_NAVE_ARRIBA;
-				contDisparos++;
-			}
-			else if(jugador.orientacion_actual ==SPR_NAVE_DERECHA){
-				proyectil->x = jugador.x + 3;
-				proyectil->y=jugador.y;
-				proyectil->orientacion_actual = SPR_NAVE_DERECHA;
-				contDisparos++;
-			}
-			else if(jugador.orientacion_actual ==SPR_NAVE_IZQUIERDA){
-				proyectil->x = jugador.x-3;
-				proyectil->y=jugador.y;
-				proyectil->orientacion_actual = SPR_NAVE_IZQUIERDA;
-				contDisparos++;
-			}
-			else if(jugador.orientacion_actual ==SPR_NAVE_ABAJO){
-				proyectil->x = jugador.x;
-				proyectil->y=jugador.y + 3;
-				proyectil->orientacion_actual = SPR_NAVE_ABAJO;
-				contDisparos++;
-			}
-			proyectil->activo = ACTIVO;
-			MostrarDisparo(proyectil);
-			cooldown_disparo=60;
-			HabilitarIntTeclado();
-
+			i++;
 		}
+		if(jugador.orientacion_actual == SPR_NAVE_ARRIBA){
+			proyectil->x = jugador.x;
+			proyectil->y=jugador.y-3;
+			proyectil->orientacion_actual = SPR_NAVE_ARRIBA;
+			contDisparos++;
+		}
+		else if(jugador.orientacion_actual ==SPR_NAVE_DERECHA){
+			proyectil->x = jugador.x + 3;
+			proyectil->y=jugador.y;
+			proyectil->orientacion_actual = SPR_NAVE_DERECHA;
+			contDisparos++;
+		}
+		else if(jugador.orientacion_actual ==SPR_NAVE_IZQUIERDA){
+			proyectil->x = jugador.x-3;
+			proyectil->y=jugador.y;
+			proyectil->orientacion_actual = SPR_NAVE_IZQUIERDA;
+			contDisparos++;
+		}
+		else if(jugador.orientacion_actual ==SPR_NAVE_ABAJO){
+			proyectil->x = jugador.x;
+			proyectil->y=jugador.y + 3;
+			proyectil->orientacion_actual = SPR_NAVE_ABAJO;
+			contDisparos++;
+		}
+		proyectil->activo = ACTIVO;
+		MostrarDisparo(proyectil);
+		cooldown_disparo=60;
+		HabilitarIntTeclado();
+
 	}
+
 }
 void RutAtencionTempo()
 {
@@ -80,12 +81,13 @@ void RutAtencionTempo()
 		{
 			visualizarFondo3();
 			fondo_actual = 3;
-
+		}
 		else if(fondo_actual==3)
 		{
 			visualizarFondo4();
 			fondo_actual = 4;
 		}
+	}
 	if(cooldown_disparo>0){
 		cooldown_disparo--;
 	}

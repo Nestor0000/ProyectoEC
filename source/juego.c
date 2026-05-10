@@ -37,6 +37,7 @@ void InitAsteroides() {
     int i;
     for(i = 0; i < MAX_ASTEROIDES; i++) {
         asteroides[i].activo = 0;
+        asteroides[i].indice = i+16;
     }
 }
 void SpawnAsteroide() {
@@ -94,7 +95,7 @@ void ActualizarAsteroides() {
                asteroides[i].y < -32 || asteroides[i].y > 192) {
 
                 // opcional: borrarlo visualmente antes de apagarlo
-                BorrarAsteroide(asteroides[i], i);
+                BorrarAsteroide(asteroides[i]);
 
                 asteroides[i].activo = 0;
                }
@@ -109,7 +110,7 @@ void AparicionAsteroides() {
         if(asteroides[i].activo) {
 
             // 1. borrar posición anterior
-            BorrarAsteroide(asteroides[i], i);
+            BorrarAsteroide(asteroides[i]);
 
             // 2. actualizar posición según lado
             if(asteroides[i].lado == 0) {
@@ -126,7 +127,7 @@ void AparicionAsteroides() {
             }
 
             // 3. volver a dibujar en nueva posición
-            MostrarAsteroide(asteroides[i], i);
+            MostrarAsteroide(asteroides[i]);
             GuardarSpriteAsteroideMemoria();
         }
     }
@@ -177,14 +178,17 @@ void juego() {
     jugador.y = 96;
     jugador.orientacion_actual = SPR_NAVE_ARRIBA;
     MostrarNave(jugador);
+    GuardarSpritesMemoria(jugador.orientacion_actual);
+    InitAsteroides();
+
 
 	while(1)
     {
         swiWaitForVBlank();
          game_tick++;
         if(cooldown_rotacion > 0){
-        cooldown_rotacion--;
-    }
+            cooldown_rotacion--;
+        }
         /*******************************EN LA 1.ACTIVIDAD *****************************************/
         //Si el estado es ESPERA: codificar aquí la encuesta del teclado, sacar por pantalla la tecla que se ha pulsado, y si se pulsa la tecla START cambiar de estado */
 

@@ -461,10 +461,10 @@ void GuardarSpriteAsteroideMemoria (){
 /* Esta función dibuja un rombo en la posición x, y de pantalla. A cada rombo que se quiera mostrar en pantalla se le debe asignar un índice distinto, un valor entre 0 y 126 */
 
 
-void MostrarAsteroide(Asteroide enemigo, int indice)
+void MostrarAsteroide(Asteroide enemigo)
 {
 		oamSet(&oamMain, // main graphics engine context
-		indice,           // oam index (0 to 127)  
+		enemigo.indice,           // oam index (0 to 127)
 		enemigo.x, enemigo.y,   // x and y pixel location of the sprite
 		0,                    // priority, lower renders last (on top)
 		0,			  // this is the palette index if multiple palettes or the alpha value if bmp sprite	
@@ -480,9 +480,9 @@ void MostrarAsteroide(Asteroide enemigo, int indice)
 
 }
 
-void BorrarAsteroide(Asteroide enemigo, int indice){
+void BorrarAsteroide(Asteroide enemigo){
 	oamSet(&oamMain, // main graphics engine context
-		indice,           // oam index (0 to 127)
+		enemigo.indice,           // oam index (0 to 127)
 		enemigo.x, enemigo.y,   // x and y pixel location of the sprite
 		0,                    // priority, lower renders last (on top)
 		0,			  // this is the palette index if multiple palettes or the alpha value if bmp sprite	

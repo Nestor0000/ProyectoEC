@@ -40,8 +40,8 @@ extern void BorrarRomboGrande(int indice, int x, int y);
 
 extern void MostrarDisparo(Disparo *proyectil);
 extern void BorrarDisparo(Disparo *proyectil);
-extern void BorrarAsteroide(Asteroide enemigo, int indice);
-extern void MostrarAsteroide(Asteroide enemigo, int indice);
+extern void BorrarAsteroide(Asteroide enemigo);
+extern void MostrarAsteroide(Asteroide enemigo);
 extern void MostrarNave(Nave jugador);
 extern void BorrarNave(Nave jugador);
 

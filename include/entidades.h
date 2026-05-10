@@ -12,6 +12,7 @@ typedef struct {
     int activo;
     int velocidad;
     int lado;
+    int indice;
 } Asteroide;
 
 
