@@ -44,6 +44,8 @@ int TeclaPulsada()
 
 }
 
+
+
 void ConfigurarTeclado(int Conf_Tec)
 {
 	// Configuración del teclado. Modificar su registro de control en base a los bits
@@ -68,7 +70,7 @@ void HabilitarIntTeclado()
 	// y después volver a habilitar las interrupciones de forma general 
 	DeshabilitarInterrrupciones(); // IME=0;
         // ESCRIBID AQUÍ VUESTRO CÓDIGO
-	IE=IE|0x0800;
+	IE=IE|0x1000;
 	HabilitarInterrupciones(); // IME=1;
 }
 
@@ -81,12 +83,13 @@ void InhibirIntTeclado()
 
 	DeshabilitarInterrrupciones(); // IME=0;
 	// ESCRIBID AQUÍ VUESTRO CÓDIGO
-	IE=IE&0XF7FF;
+	IE=IE&0XEFFF;
 	HabilitarInterrupciones(); // IME=1;
 }  
 
 void HabilitarIntTempo()
-{
+{iprintf("\x1b[2;1HIE=%08lX", IE);
+
 
 
 	// Habilitar las interrupciones del temporizador (timer0)
@@ -94,7 +97,7 @@ void HabilitarIntTempo()
 	// y después volver a habilitar las interrupciones de forma general 
 	DeshabilitarInterrrupciones(); // IME=0;
 	// ESCRIBID AQUÍ VUESTRO CÓDIGO
-	IE=IE|0X0004;
+	IE=IE|0X0008;
 	HabilitarInterrupciones(); // IME=1;
 }
 
@@ -114,13 +117,13 @@ void InhibirIntTempo()
 void PonerEnMarchaTempo()
 {
 	// ESCRIBID AQUÍ VUESTRO CÓDIGO
-	TIMER0_CNT = TIMER0_CNT|0X0040;
+	TIMER0_CNT = TIMER0_CNT|0X0080;
 }
 
 void PararTempo()
 {
 	// ESCRIBID AQUÍ VUESTRO CÓDIGO
-	TIMER0_CNT=TIMER0_CNT&0XFFBF;
+	TIMER0_CNT=TIMER0_CNT&0XFF7F;
 }
 
 /***********************2025-2026*******************************/
