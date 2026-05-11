@@ -1,4 +1,4 @@
-graficos.o: C:/Users/Me/Desktop/ProyectoEC/source/graficos.c \
+fondos.o: C:/Users/Me/Desktop/ProyectoEC/source/fondos.c \
  C:/devkitPro/libnds/include/nds.h C:/devkitPro/calico/include/calico.h \
  C:/devkitPro/calico/include/calico/types.h \
  C:/devkitPro/calico/include/calico/arm/psr.h \
@@ -111,8 +111,12 @@ graficos.o: C:/Users/Me/Desktop/ProyectoEC/source/graficos.c \
  C:/devkitPro/libnds/include/nds/arm9/trig_lut.h \
  C:/devkitPro/libnds/include/nds/arm9/video.h \
  C:/devkitPro/libnds/include/nds/arm9/videoGL.h \
+ C:/Users/Me/Desktop/ProyectoEC/include/fondos.h \
  C:/Users/Me/Desktop/ProyectoEC/include/graficos.h \
- C:/Users/Me/Desktop/ProyectoEC/include/sprites.h
+ C:/Users/Me/Desktop/ProyectoEC/build/fondo1.h \
+ C:/Users/Me/Desktop/ProyectoEC/build/fondo2.h \
+ C:/Users/Me/Desktop/ProyectoEC/build/fondo3.h \
+ C:/Users/Me/Desktop/ProyectoEC/build/fondo4.h
 C:/devkitPro/libnds/include/nds.h:
 C:/devkitPro/calico/include/calico.h:
 C:/devkitPro/calico/include/calico/types.h:
@@ -226,5 +230,9 @@ C:/devkitPro/libnds/include/nds/arm9/sprite.h:
 C:/devkitPro/libnds/include/nds/arm9/trig_lut.h:
 C:/devkitPro/libnds/include/nds/arm9/video.h:
 C:/devkitPro/libnds/include/nds/arm9/videoGL.h:
+C:/Users/Me/Desktop/ProyectoEC/include/fondos.h:
 C:/Users/Me/Desktop/ProyectoEC/include/graficos.h:
-C:/Users/Me/Desktop/ProyectoEC/include/sprites.h:
+C:/Users/Me/Desktop/ProyectoEC/build/fondo1.h:
+C:/Users/Me/Desktop/ProyectoEC/build/fondo2.h:
+C:/Users/Me/Desktop/ProyectoEC/build/fondo3.h:
+C:/Users/Me/Desktop/ProyectoEC/build/fondo4.h:
