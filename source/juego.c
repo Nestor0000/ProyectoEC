@@ -18,20 +18,18 @@ y en otro ejemplo de Jaeden Ameronen
 #include "perifericos.h"
 #include "rutinasAtencion.h"
 #include "fondos.h"
+#include "entidades.h"
 
-<<<<<<< Updated upstream
-int tiempo;
-=======
 // --- RELOJES Y TIEMPO ---
 volatile int tiempo = 0;
 volatile int ticks_fase = 0;
-int game_tick = 0;              //Corregidlo sino, pero según yo esto también es algo de tiempo -Shuhao
+int game_tick = 0;
 
-// --- PARÁMETROS DE DIFICULTAD (Velocidad, cantidad, fase, étc)---
-int fase_actual = 1;            // Empezar por defecto en FASE 1
-int velocidad_fase = 1;         // Velocidad con la que INICIAN los ENEMIGOS
-int espera_spawn_fase = 25;     // Cada cuántos ticks sale un asteroide e ira disminuyendo (Sustituye el spawnasteroides_timer=0)
-int spawnasteroides_timer = 0;  // Para controlar el tiempo entre spawns de asteroides
+// --- PARÁMETROS DE DIFICULTAD (Velocidad y cantidad de los enemigos, fases, etc) ---
+int fase_actual = 1;                //Empieza por defecto en la fase 1
+int velocidad_fase = 1;             //Velocidad con la que inician los enemigos
+int espera_spawn_fase = 25;         //Cada cuanto tardan en aparecer los enemigos (en ticks)
+int spawnasteroides_timer = 0;      //Para controlar el tiempo entre spawns de enemigos
 
 // --- REGISTROS DE MOVIMIENTO Y DISPAROS ---
 int contDisparos;
@@ -41,13 +39,12 @@ volatile int cooldown_disparo = 0;
 // --- MISCELANEO ---
 int tempo_activado = 0;
 int asteroides_inicializados = 0;
-volatile int fondo_actual=1;
+volatile int fondo_actual = 1;
 
-// --- ENTIDADES IN-GAME (Objetos que se pueden ver en pantalla) ---
+// --- ENTIDADES IN-GAME ---
 Nave jugador;
 Disparo disparosNave[MAX_DISPAROS];
 Asteroide asteroides[MAX_ASTEROIDES];
-
 
 void InitAsteroides() {
     int i;
@@ -144,20 +141,24 @@ void AparicionAsteroides() {
 
             // 3. volver a dibujar en nueva posición
             MostrarAsteroide(asteroides[i]);
-            //GuardarSpriteAsteroideMemoria(); problema de esto es que es repetir inencesariamente 20 veces lo mismo, en vez de solo 1 vez
+            //GuardarSpriteAsteroideMemoria();
         }
     }
     GuardarSpriteAsteroideMemoria();
 }
->>>>>>> Stashed changes
 
 void juego() {
     
     // Definiciones de variables
     int i=9;
     int tecla=0;
-
+    int j = 0;//se usara j como indice para recorrer bucles ya que i tiene otro uso
     ESTADO=GAME;
+    int cooldown_rotacion = 0;
+
+    for(j=0;j<MAX_DISPAROS; j++){
+        disparosNave[j].indice = j+5;
+    }
 
     // Escribe en la fila 22 columna 5 de la pantalla
     iprintf("\x1b[22;5HPrueba de escritura");
@@ -176,94 +177,40 @@ void juego() {
     //******************************************************************************//
     irqInit();
     irqEnable(IRQ_VBLANK);
-    ConfigurarTeclado(0xC001);
-    ConfigurarTemporizador(0xC000,0X00C0);
-    //EstablecerVectorInt();
+    //ConfigurarTeclado(0xC001);
+	ConfigurarTeclado(0x43FF);
+    ConfigurarTemporizador(61440,0x0041);
+    EstablecerVectorInt();
     HabilitarIntTeclado();
     HabilitarIntTempo();
     irqEnable(IRQ_KEYS|IRQ_TIMER0);
-    PonerEnMarchaTempo();
+    HabilitarInterrupciones();
 
 
-    visualizarFondo1();
-    Nave jugador;
     jugador.x = 110;
     jugador.y = 96;
-<<<<<<< Updated upstream
-    MostrarNave(SPR_NAVE_ARRIBA, jugador);
-    while(1)
-    {
-        swiWaitForVBlank();
-=======
     jugador.orientacion_actual = SPR_NAVE_ARRIBA;
 
 
 
-    visualizarFondo1();
-    fondo_actual=1;
+
 
 	while(1)
     {
         swiWaitForVBlank();
-        // Un pequeño comentario: creo que aquí tendría que ir en realidad el oamUpdate, 
-        // en vez de en sprites.c, pero eso poneros a revisadlo a fondo cuando podaís, 
-        //porque significa cambiar unas cuantas cosillas que no me la quiero jugar
-        // -Shuhao
 
->>>>>>> Stashed changes
+
         /*******************************EN LA 1.ACTIVIDAD *****************************************/
         //Si el estado es ESPERA: codificar aquí la encuesta del teclado, sacar por pantalla la tecla que se ha pulsado, y si se pulsa la tecla START cambiar de estado */
 
+
+        // --- INDICADORES DE DIFICULTAD PARA ASEGURAR FUNCIONAMIENTO (TEMPORAL)
+        iprintf("\x1b[1;1H--- STATUS ---");
+        iprintf("\x1b[2;1HFase actual: %d      ", fase_actual);
+        iprintf("\x1b[3;1HVelocidad:   %d      ", velocidad_fase);
+        iprintf("\x1b[4;1HSpawn Rate:  %d      ", espera_spawn_fase);
+
         if(ESTADO==GAME){
-<<<<<<< Updated upstream
-            if(TeclaPulsada()==DERECHA && jugador.x < 225){
-                BorrarNave(SPR_NAVE_ARRIBA, jugador);
-                //tecla=TeclaPulsada();
-                jugador.x = jugador.x + 3;
-                MostrarNave(SPR_NAVE_ARRIBA, jugador);
-            } else if(TeclaPulsada()==IZQUIERDA && jugador.x > 0){
-                BorrarNave(SPR_NAVE_ARRIBA, jugador);
-                jugador.x = jugador.x - 3;
-                MostrarNave(SPR_NAVE_ARRIBA, jugador);
-            } else if (TeclaPulsada()==ARRIBA && jugador.y > 0){
-                BorrarNave(SPR_NAVE_ARRIBA, jugador);
-                jugador.y = jugador.y - 3;
-                MostrarNave(SPR_NAVE_ARRIBA, jugador);
-            } else if (TeclaPulsada()== ABAJO && jugador.y < 165){
-                BorrarNave(SPR_NAVE_ARRIBA, jugador);
-                jugador.y = jugador.y + 3;
-                MostrarNave(SPR_NAVE_ARRIBA, jugador);
-            }
-            
-            
-=======
-
-            // --- 1. PRIMER CAMBIO DE FASE ---
-            if  (ticks_fase>=30000){
-                ticks_fase = 0;
-                fase_actual++;
-                velocidad_fase++;
-                
-                //En cualquier caso, cuando el tiempo fuese menor a 5:
-                //Se quedaría en 5 para evitar que spawneen a la velocidad de la luz.
-                if  (espera_spawn_fase > 5) {
-                    espera_spawn_fase -= 5;
-                }
-
-                if (fase_actual==2){
-                    visualizarFondo2();
-                    fondo_actual=2;
-                }
-                else if (fase_actual==3){
-                    visualizarFondo3();
-                    fondo_actual=3;
-                }
-
-                //Mostrar en pantalla en que fase estamos
-                iprintf("x1b[1;1HFase actual: %d", fase_actual);
-                
-            }
-            
             if(tempo_activado == 0) {
                 PonerEnMarchaTempo();
                 tempo_activado = 1;
@@ -272,6 +219,8 @@ void juego() {
                 InitAsteroides();
                 asteroides_inicializados = 1;
             }
+            visualizarFondo1();
+            fondo_actual=1;
             MostrarNave(jugador);
             GuardarSpritesMemoria(jugador.orientacion_actual);
             //game_tick++;
@@ -285,7 +234,7 @@ void juego() {
             }
             ActualizarAsteroides();
             AparicionAsteroides();
-            //GuardarSpriteAsteroideMemoria();
+            GuardarSpriteAsteroideMemoria();
 
             teclaPulsada=TeclaPulsada();
             if(teclaPulsada==DERECHA && jugador.x < 225){
@@ -385,7 +334,6 @@ void juego() {
                 }
               }
 
->>>>>>> Stashed changes
 
 
 
@@ -410,5 +358,4 @@ void juego() {
 
 
 /***********************2025-2026*******************************/
-
 
