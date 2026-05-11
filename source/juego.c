@@ -20,11 +20,12 @@ y en otro ejemplo de Jaeden Ameronen
 #include "fondos.h"
 #include "entidades.h"
 
+bool colisionDetectada;
+
 volatile int tiempo;
 int contDisparos;
 int teclaPulsada;
 volatile int fondo_actual;
-
 Nave jugador;
 Disparo disparosNave[MAX_DISPAROS];
 volatile int cooldown_disparo = 0;
@@ -34,7 +35,17 @@ int spawnasteroides_timer = 0;
 int game_tick = 0;
 int tempo_activado = 0;
 int asteroides_inicializados = 0;
-
+int colisiona(int x1,int y1, int w1, int h1, int x2, int y2, int w2, int h2){
+    return (x1<x2+w2) && (x1+w1>x2)&&(y1<y2+h2)&&(y1+h1>y2);
+}
+int colisionaDisparoAsteroide(Disparo *d, Asteroide *a){
+    return colisiona(d->x,d->y,d->hitbox.w,d->hitbox.h
+        ,a->x,a->y,a->hitbox.w,a->hitbox.h);
+}
+int colisionaNaveAsteroide(Nave *n, Asteroide *a){
+    return colisiona(n->x,n->y,n->hitbox.w,n->hitbox.h
+        ,a->x,a->y,a->hitbox.w,a->hitbox.h);
+}
 void InitAsteroides() {
     int i;
     for(i = 0; i < MAX_ASTEROIDES; i++) {
@@ -80,6 +91,10 @@ void SpawnAsteroide() {
                 asteroides[i].vy = 0;
             }
 
+            asteroides[i].hitbox.offsetX = 0;
+            asteroides[i].hitbox.offsetY = 0;
+            asteroides[i].hitbox.w = 16;
+            asteroides[i].hitbox.h = 16;
             asteroides[i].activo = 1;
             break;
         }
@@ -178,10 +193,13 @@ void juego() {
     jugador.x = 110;
     jugador.y = 96;
     jugador.orientacion_actual = SPR_NAVE_ARRIBA;
+    jugador.hitbox.offsetX = 0;
+    jugador.hitbox.offsetY = 0;
+    jugador.hitbox.w = 16;
+    jugador.hitbox.h = 16;
 
-
-
-
+    visualizarFondo1();
+    fondo_actual=1;
 
 	while(1)
     {
@@ -200,8 +218,7 @@ void juego() {
                 InitAsteroides();
                 asteroides_inicializados = 1;
             }
-            visualizarFondo1();
-            fondo_actual=1;
+            
             MostrarNave(jugador);
             GuardarSpritesMemoria(jugador.orientacion_actual);
             //game_tick++;
@@ -222,18 +239,66 @@ void juego() {
                 BorrarNave(jugador);
                 jugador.x = jugador.x + 2;
                 MostrarNave(jugador);
+
+                colisionDetectada=false;
+                for(j=0;j<MAX_ASTEROIDES && !colisionDetectada;j++){
+                    if(asteroides[j].activo==1 && colisionaNaveAsteroide(&jugador,&asteroides[j])){
+                        ESTADO=GAME_OVER;
+                        
+                                
+                        BorrarAsteroide(asteroides[j]);
+                        asteroides[j].activo = 0;
+                        colisionDetectada = true;
+                    }
+                }
+                colisionDetectada=false;
             } else if(teclaPulsada==IZQUIERDA && jugador.x > 0){
                 BorrarNave(jugador);
                 jugador.x = jugador.x - 2;
                 MostrarNave(jugador);
+
+                colisionDetectada=false;
+                for(j=0;j<MAX_ASTEROIDES && !colisionDetectada;j++){
+                    if(asteroides[j].activo==1 && colisionaNaveAsteroide(&jugador,&asteroides[j])){
+                        ESTADO=GAME_OVER;
+                        BorrarAsteroide(asteroides[j]);
+                        asteroides[j].activo = 0;
+                        colisionDetectada = true;
+                    }
+                }
+                colisionDetectada=false;
             } else if (teclaPulsada==ARRIBA && jugador.y > 0){
                 BorrarNave(jugador);
                 jugador.y = jugador.y - 2;
                 MostrarNave(jugador);
+                colisionDetectada=false;
+                for(j=0;j<MAX_ASTEROIDES && !colisionDetectada;j++){
+                    if(asteroides[j].activo==1 && colisionaNaveAsteroide(&jugador,&asteroides[j])){
+                        ESTADO=GAME_OVER;
+                        
+                                
+                        BorrarAsteroide(asteroides[j]);
+                        asteroides[j].activo = 0;
+                        colisionDetectada = true;
+                    }
+                }
+                colisionDetectada=false;
             } else if (teclaPulsada== ABAJO && jugador.y < 165){
                 BorrarNave(jugador);
                 jugador.y = jugador.y + 2;
                 MostrarNave(jugador);
+                colisionDetectada=false;
+                for(j=0;j<MAX_ASTEROIDES && !colisionDetectada;j++){
+                    if(asteroides[j].activo==1 && colisionaNaveAsteroide(&jugador,&asteroides[j])){
+                        ESTADO=GAME_OVER;
+                        
+                                
+                        BorrarAsteroide(asteroides[j]);
+                        asteroides[j].activo = 0;
+                        colisionDetectada = true;
+                    }
+                }
+                colisionDetectada=false;
             }
                if(cooldown_rotacion == 0 && ((teclaPulsada==R && jugador.orientacion_actual == SPR_NAVE_ARRIBA) || (teclaPulsada==L && jugador.orientacion_actual== SPR_NAVE_ABAJO))){
                    BorrarNave(jugador);
@@ -267,12 +332,27 @@ void juego() {
 
               for (j = 0; j < MAX_DISPAROS; j++)
               {
+                colisionDetectada=false;
                 Disparo *proyectil = &disparosNave[j];
+                int k;
                 if(proyectil->activo == ACTIVO && proyectil->orientacion_actual == SPR_NAVE_ARRIBA){
                     if(proyectil->y>0){
                         BorrarDisparo(proyectil);
                         proyectil->y = proyectil->y - 3;
                         MostrarDisparo(proyectil);
+
+                        for(k=0;k<MAX_ASTEROIDES && !colisionDetectada;k++){
+                            if(asteroides[k].activo==1 && colisionaDisparoAsteroide(proyectil,&asteroides[k])){
+                                BorrarDisparo(proyectil);
+                                proyectil->activo = INACTIVO;
+                                contDisparos--;
+                                
+                                BorrarAsteroide(asteroides[k]);
+                                asteroides[k].activo = 0;
+                                colisionDetectada = true;
+                            }
+                        }
+                        colisionDetectada=false;
                     }
                     else{
                         proyectil->activo = INACTIVO;
@@ -285,6 +365,19 @@ void juego() {
                         BorrarDisparo(proyectil);
                         proyectil->x = proyectil->x + 3;
                         MostrarDisparo(proyectil);
+
+                        for(k=0;k<MAX_ASTEROIDES && !colisionDetectada;k++){
+                            if(asteroides[k].activo==1 && colisionaDisparoAsteroide(proyectil,&asteroides[k])){
+                                BorrarDisparo(proyectil);
+                                proyectil->activo = INACTIVO;
+                                contDisparos--;
+                                
+                                BorrarAsteroide(asteroides[k]);
+                                asteroides[k].activo = 0;
+                                colisionDetectada = true;
+                            }
+                        }
+                        colisionDetectada=false;
                     }else{
                         proyectil->activo =INACTIVO;
                         BorrarDisparo(proyectil);
@@ -296,6 +389,19 @@ void juego() {
                         BorrarDisparo(proyectil);
                         proyectil->y = proyectil->y+3;
                         MostrarDisparo(proyectil);
+
+                        for(k=0;k<MAX_ASTEROIDES && !colisionDetectada;k++){
+                            if(asteroides[k].activo==1 && colisionaDisparoAsteroide(proyectil,&asteroides[k])){
+                                BorrarDisparo(proyectil);
+                                proyectil->activo = INACTIVO;
+                                contDisparos--;
+                                
+                                BorrarAsteroide(asteroides[k]);
+                                asteroides[k].activo = 0;
+                                colisionDetectada = true;
+                            }
+                        }
+                        colisionDetectada=false;
                     }else{
                         proyectil->activo = INACTIVO;
                         BorrarDisparo(proyectil);
@@ -307,6 +413,19 @@ void juego() {
                         BorrarDisparo(proyectil);
                         proyectil->x = proyectil->x-3;
                         MostrarDisparo(proyectil);
+
+                        for(k=0;k<MAX_ASTEROIDES && !colisionDetectada;k++){
+                            if(asteroides[k].activo==1 && colisionaDisparoAsteroide(proyectil,&asteroides[k])){
+                                BorrarDisparo(proyectil);
+                                proyectil->activo = INACTIVO;
+                                contDisparos--;
+                                
+                                BorrarAsteroide(asteroides[k]);
+                                asteroides[k].activo = 0;
+                                colisionDetectada = true;
+                            }
+                        }
+                        colisionDetectada=false;
                     }else{
                         proyectil->activo =INACTIVO;
                         BorrarDisparo(proyectil);

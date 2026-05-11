@@ -59,6 +59,11 @@ void RutAtencionTeclado() {
 			contDisparos++;
 		}
 		proyectil->activo = ACTIVO;
+		proyectil->hitbox.offsetX=0;
+		proyectil->hitbox.offsetY=0;
+		proyectil->hitbox.w =4;
+		proyectil->hitbox.h =4;
+		
 		MostrarDisparo(proyectil);
 		cooldown_disparo=60;
 		HabilitarIntTeclado();
