@@ -15,6 +15,10 @@ typedef struct {
     int indice;
 } Asteroide;
 
+typedef struct {
+    int x,y;
+    int recarga_balas;
+} Orbe;
 
 
 typedef struct {

@@ -17,6 +17,7 @@ u16* gfxromboGrande;
 u16* gfxnave;
 u16* gfxdisparo;
 u16* gfxasteroide;
+u16* gfxorbe;
 
 
 /* Reservar memoria para cada sprite que se quiera mostrar en pantalla */
@@ -28,6 +29,7 @@ void memoriaReserva()
 	gfxnave=oamAllocateGfx(&oamMain, SpriteSize_32x32, SpriteColorFormat_256Color);
 	gfxdisparo=oamAllocateGfx(&oamMain, SpriteSize_32x32, SpriteColorFormat_256Color);
 	gfxasteroide=oamAllocateGfx(&oamMain, SpriteSize_32x32, SpriteColorFormat_256Color);
+	gfxorbe=oamAllocateGfx(&oamMain, SpriteSize_32x32, SpriteColorFormat_256Color);
 
 }
 
@@ -263,6 +265,41 @@ u8 asteroide[1024] = {
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 };
 
+u8 orbe[1024] = {
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,6,6,6,6,6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,6,6,4,4,4,4,4,4,6,6,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,6,4,4,4,4,4,4,4,4,4,4,6,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,6,4,4,4,4,4,4,4,4,4,4,4,4,6,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,6,4,4,4,4,4,4,4,4,4,4,4,4,6,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,6,4,4,4,4,4,4,4,4,4,4,4,4,4,4,6,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,6,4,4,4,4,4,4,4,4,4,4,4,4,4,4,6,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,6,4,4,4,4,4,4,4,4,4,4,4,4,4,4,6,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,6,4,4,4,4,4,4,4,4,4,4,4,4,4,4,6,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,6,4,4,4,4,4,4,4,4,4,4,4,4,4,4,6,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,6,4,4,4,4,4,4,4,4,4,4,4,4,6,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,6,4,4,4,4,4,4,4,4,4,4,4,4,6,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,6,4,4,4,4,4,4,4,4,4,4,6,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,6,6,4,4,4,4,4,4,6,6,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,6,6,6,6,6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+};
+
 
 
 
@@ -455,11 +492,75 @@ void GuardarSpriteAsteroideMemoria (){
 	}
 }
 
+void GuardarSpriteOrbeMemoria () {
+	int i;
+	int tx, ty, x, y;
+	int srcIndex;
+	int dstIndex = 0;
+
+		for (ty = 0; ty < 4; ty++)          // 4 bloques verticales
+	{
+		for (tx = 0; tx < 4; tx++)      // 4 bloques horizontales
+		{
+			for (y = 0; y < 8; y++)
+			{
+				for (x = 0; x < 8; x += 2)
+				{
+					    srcIndex =
+						(ty * 8 + y) * 32 +
+						(tx * 8 + x);
+
+                        gfxorbe[dstIndex++] =
+						orbe[srcIndex] |
+						(orbe[srcIndex + 1] << 8); 
+					
+				}
+			}
+		}
+	}
+}
+
 
 
 
 /* Esta función dibuja un rombo en la posición x, y de pantalla. A cada rombo que se quiera mostrar en pantalla se le debe asignar un índice distinto, un valor entre 0 y 126 */
 
+void MostrarOrbe(Orbe orbe, int indice)
+{
+	oamSet(&oamMain, // main graphics engine context
+		indice,           // oam index (0 to 127)
+		orbe.x, orbe.y,   // x and y pixel location of the sprite
+		0,                    // priority, lower renders last (on top)
+		0,			  // this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_32x32,     
+		SpriteColorFormat_256Color, 
+		gfxorbe,// +16*16/2,      // pointer to the loaded graphics
+		-1,                  // sprite rotation data  
+		false,               // double the size when rotating?
+		false,			// hide the sprite?
+		false, false, // vflip, hflip
+		false	// apply mosaic
+		); 
+
+}
+
+void BorrarOrbe(Orbe orbe, int indice){
+	oamSet(&oamMain, // main graphics engine context
+		indice,           // oam index (0 to 127)
+		orbe.x, orbe.y,   // x and y pixel location of the sprite
+		0,                    // priority, lower renders last (on top)
+		0,			  // this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_32x32, 
+		SpriteColorFormat_256Color, 
+		gfxorbe,             // +16*16/2,      // pointer to the loaded graphics
+		-1,                  // sprite rotation data  
+		false,               // double the size when rotating?
+		true,			// hide the sprite?
+		false, false, // vflip, hflip
+		false	// apply mosaic
+		); 
+oamUpdate(&oamMain);
+}
 
 void MostrarAsteroide(Asteroide enemigo)
 {
