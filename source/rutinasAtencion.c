@@ -67,6 +67,11 @@ void RutAtencionTeclado() {
 			contDisparos++;
 		}
 		proyectil->activo = ACTIVO;
+		proyectil->hitbox.offsetX=0;
+		proyectil->hitbox.offsetY=0;
+		proyectil->hitbox.w =4;
+		proyectil->hitbox.h =4;
+		
 		MostrarDisparo(proyectil);
 		cooldown_disparo=60;
 		HabilitarIntTeclado();
@@ -81,10 +86,17 @@ void RutAtencionTempo()
 	{
 		tiempo = 0;
 
-		if (fase_actual < 5) {
+		if (fase_actual < 4) {
 			fase_actual++;
+			//Tope de velocidad para que no se vuelva injugable
+			if (velocidad_fase<3){
 			velocidad_fase++;
-			espera_spawn_fase -= 4;
+			}
+			// Cada vez hay menos tiempo entre spawns de asteroides  
+			if (espera_spawn_fase > 10)
+			{
+				espera_spawn_fase -= 5;
+			}
 		}
 
 
