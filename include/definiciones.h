@@ -70,4 +70,12 @@ extern volatile int cooldown_disparo;
 #define MAX_ASTEROIDES 50
 
 
+//Estado del disparo
+#define INACTIVO 0
+#define ACTIVO 1
+#define MAX_DISPAROS 10
+extern volatile int cooldown_disparo;
+#define MAX_ASTEROIDES 50
+
+
 /***********************2025-2026*******************************/

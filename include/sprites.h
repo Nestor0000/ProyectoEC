@@ -50,3 +50,9 @@ extern void SpawnAsteroide();
 extern void ActualizarAsteroides();
 extern void AparicionAsteroides();
 /***********************2025-2026*******************************/
+
+extern void InitAsteroides();
+extern void SpawnAsteroide();
+extern void ActualizarAsteroides();
+extern void AparicionAsteroides();
+/***********************2025-2026*******************************/
