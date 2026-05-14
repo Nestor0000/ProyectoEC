@@ -29,7 +29,7 @@ volatile int fondo_actual;
 volatile int contador_orbe = 0;
 volatile bool orbe_activo = false;
 Orbe orbe;
-
+bool orbe_recogido = false;
 
 
 Nave jugador;
@@ -51,6 +51,9 @@ int colisionaDisparoAsteroide(Disparo *d, Asteroide *a){
 int colisionaNaveAsteroide(Nave *n, Asteroide *a){
     return colisiona(n->x,n->y,n->hitbox.w,n->hitbox.h
         ,a->x,a->y,a->hitbox.w,a->hitbox.h);
+}
+int colisionaDisparoOrbe(Disparo *d, Orbe *o) {
+	return colisiona(d->x, d->y, d->hitbox.w, d->hitbox.h, o->x, o->y, o->hitbox.w, o->hitbox.h);
 }
 void InitAsteroides() {
     int i;
@@ -158,7 +161,6 @@ void AparicionAsteroides() {
 
 void Spawn_Orbe () {
     orbe.recarga_balas = 20;
-    bool orbe_recogido = false;
     if (!orbe_activo) {
             if (contador_orbe >= 600 + (rand() % 1200)) {
                  orbe.x = rand() % 220;
@@ -166,11 +168,16 @@ void Spawn_Orbe () {
                  MostrarOrbe(orbe, SPR_ORBE);
                  GuardarSpriteOrbeMemoria();
                  orbe_activo = true;
+				orbe.hitbox.offsetX = 0;
+            	orbe.hitbox.offsetY = 0;
+            	orbe.hitbox.w = 16;
+            	orbe.hitbox.h = 16;
             }
     }
     if (orbe_recogido){
         BorrarOrbe(orbe, SPR_ORBE);
         orbe_activo = false;
+        orbe_recogido = false;
         contador_orbe = 0;
     }
 
@@ -377,6 +384,13 @@ void juego() {
                         BorrarDisparo(proyectil);
                         proyectil->y = proyectil->y - 3;
                         MostrarDisparo(proyectil);
+                        
+                        if(orbe_activo && colisionaDisparoOrbe(proyectil, &orbe)) {
+                            orbe_recogido = true;
+                            proyectil->activo = INACTIVO;
+                            BorrarDisparo(proyectil);
+                            contDisparos--;
+                        }
 
                         for(k=0;k<MAX_ASTEROIDES && !colisionDetectada;k++){
                             if(asteroides[k].activo==1 && colisionaDisparoAsteroide(proyectil,&asteroides[k])){
@@ -402,7 +416,13 @@ void juego() {
                         BorrarDisparo(proyectil);
                         proyectil->x = proyectil->x + 3;
                         MostrarDisparo(proyectil);
-
+                        
+                        if(orbe_activo && colisionaDisparoOrbe(proyectil, &orbe)) {
+                            orbe_recogido = true;
+                            proyectil->activo = INACTIVO;
+                            BorrarDisparo(proyectil);
+                            contDisparos--;
+                        }
                         for(k=0;k<MAX_ASTEROIDES && !colisionDetectada;k++){
                             if(asteroides[k].activo==1 && colisionaDisparoAsteroide(proyectil,&asteroides[k])){
                                 BorrarDisparo(proyectil);
@@ -427,6 +447,13 @@ void juego() {
                         proyectil->y = proyectil->y+3;
                         MostrarDisparo(proyectil);
 
+                        if(orbe_activo && colisionaDisparoOrbe(proyectil, &orbe)) {
+                            orbe_recogido = true;
+                            proyectil->activo = INACTIVO;
+                            BorrarDisparo(proyectil);
+                            contDisparos--;
+                        }
+
                         for(k=0;k<MAX_ASTEROIDES && !colisionDetectada;k++){
                             if(asteroides[k].activo==1 && colisionaDisparoAsteroide(proyectil,&asteroides[k])){
                                 BorrarDisparo(proyectil);
@@ -450,7 +477,12 @@ void juego() {
                         BorrarDisparo(proyectil);
                         proyectil->x = proyectil->x-3;
                         MostrarDisparo(proyectil);
-
+                        if(orbe_activo && colisionaDisparoOrbe(proyectil, &orbe)) {
+                            orbe_recogido = true;
+                            proyectil->activo = INACTIVO;
+                            BorrarDisparo(proyectil);
+                            contDisparos--;
+                        }
                         for(k=0;k<MAX_ASTEROIDES && !colisionDetectada;k++){
                             if(asteroides[k].activo==1 && colisionaDisparoAsteroide(proyectil,&asteroides[k])){
                                 BorrarDisparo(proyectil);

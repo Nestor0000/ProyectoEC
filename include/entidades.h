@@ -24,6 +24,7 @@ typedef struct {
 typedef struct {
     int x,y;
     int recarga_balas;
+	Hitbox hitbox;
 } Orbe;
 
 
