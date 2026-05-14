@@ -63,7 +63,7 @@ void RutAtencionTeclado() {
 		proyectil->hitbox.offsetY=0;
 		proyectil->hitbox.w =4;
 		proyectil->hitbox.h =4;
-		
+
 		MostrarDisparo(proyectil);
 		cooldown_disparo=60;
 		HabilitarIntTeclado();
@@ -72,7 +72,7 @@ void RutAtencionTeclado() {
 
 }
 void RutAtencionTempo()
-{	
+{ if(ESTADO==GAME){
 	tiempo++;
     if(tiempo>=2400)//20 segs segun chati
 	{
@@ -92,13 +92,14 @@ void RutAtencionTempo()
 			visualizarFondo4();
 			fondo_actual = 4;
 		}
+		}
 	}
 	if(cooldown_disparo>0){
 		cooldown_disparo--;
 	}
 	if(!orbe_activo) {
 		contador_orbe++;
-	} 
+	}
 }
 void EstablecerVectorInt()
 {

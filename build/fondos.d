@@ -47,6 +47,7 @@ fondos.o: /home/user/SharedFiles/ProyectoEC/source/fondos.c \
   /opt/devkitPro/libnds/include/nds/arm9/sprite.h \
   /opt/devkitPro/libnds/include/nds/system.h \
   /opt/devkitPro/libnds/include/nds/arm9/decompress.h \
+  /home/user/SharedFiles/ProyectoEC/build/fondomenu.h \
   /home/user/SharedFiles/ProyectoEC/include/fondos.h \
   /home/user/SharedFiles/ProyectoEC/include/graficos.h \
   /home/user/SharedFiles/ProyectoEC/build/fondo1.h \
@@ -150,6 +151,8 @@ fondos.o: /home/user/SharedFiles/ProyectoEC/source/fondos.c \
 /opt/devkitPro/libnds/include/nds/system.h:
 
 /opt/devkitPro/libnds/include/nds/arm9/decompress.h:
+
+/home/user/SharedFiles/ProyectoEC/build/fondomenu.h:
 
 /home/user/SharedFiles/ProyectoEC/include/fondos.h:
 

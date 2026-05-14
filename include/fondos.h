@@ -3,7 +3,7 @@
 /*-------------------------------------
 fondos.h
 -------------------------------------*/
-
+extern void visualizarFondoMenu();
 extern void visualizarPuerta();
 extern void visualizarPuertaAbierta();
 extern void visualizarFondo2();

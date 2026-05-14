@@ -22,6 +22,7 @@ y en otro ejemplo de Jaeden Ameronen
 
 bool colisionDetectada;
 
+#include <touch.h>
 volatile int tiempo;
 int contDisparos;
 int teclaPulsada;
@@ -35,7 +36,6 @@ bool orbe_recogido = false;
 Nave jugador;
 Disparo disparosNave[MAX_DISPAROS];
 volatile int cooldown_disparo = 0;
-
 Asteroide asteroides[MAX_ASTEROIDES];
 int spawnasteroides_timer = 0;
 int game_tick = 0;
@@ -120,6 +120,7 @@ void Eliminar_Asteroides() {
             if(asteroides[i].x < -32 || asteroides[i].x > 256 ||
                asteroides[i].y < -32 || asteroides[i].y > 192) {
 
+                // opcional: borrarlo visualmente antes de apagarlo
                 BorrarAsteroide(asteroides[i]);
 
                 asteroides[i].activo = 0;
@@ -186,10 +187,10 @@ void Spawn_Orbe () {
 void juego() {
     
     // Definiciones de variables
-    int i=9;
-    int tecla=0;
-    int j = 0;//se usara j como indice para recorrer bucles ya que i tiene otro uso
-    ESTADO=GAME;
+    int i = 9;
+    int tecla = 0;
+    int j = 0; // se usara j como indice para recorrer bucles ya que i tiene otro uso
+    ESTADO = MENU;
     int cooldown_rotacion = 0;
 
     for(j=0;j<MAX_DISPAROS; j++){
@@ -221,8 +222,7 @@ void juego() {
     HabilitarIntTempo();
     irqEnable(IRQ_KEYS|IRQ_TIMER0);
     HabilitarInterrupciones();
-
-
+    inicializarFondos();
     jugador.x = 110;
     jugador.y = 96;
     jugador.orientacion_actual = SPR_NAVE_ARRIBA;
@@ -243,6 +243,14 @@ void juego() {
         Spawn_Orbe();
         swiWaitForVBlank();
 
+        visualizarFondoMenu();
+        touchRead(&PANT_DAT);
+        if (PANT_DAT.px > 0 && PANT_DAT.py > 0)
+        {
+            ESTADO = GAME;
+            iprintf("\x1b[2;1HPorky");
+            visualizarFondo1();
+        }
 
         /*******************************EN LA 1.ACTIVIDAD *****************************************/
         //Si el estado es ESPERA: codificar aquí la encuesta del teclado, sacar por pantalla la tecla que se ha pulsado, y si se pulsa la tecla START cambiar de estado */
@@ -250,7 +258,9 @@ void juego() {
         if(ESTADO==GAME){
 
             srand(jugador.x + jugador.y);
-            if(tempo_activado == 0) {
+
+            if (tempo_activado == 0)
+            {
                 PonerEnMarchaTempo();
                 tempo_activado = 1;
             }
@@ -289,7 +299,7 @@ void juego() {
                     if(asteroides[j].activo==1 && colisionaNaveAsteroide(&jugador,&asteroides[j])){
                         ESTADO=GAME_OVER;
                         fondo_actual = 5;
-                       
+
                         BorrarAsteroide(asteroides[j]);
                         asteroides[j].activo = 0;
                         colisionDetectada = true;
@@ -306,7 +316,7 @@ void juego() {
                     if(asteroides[j].activo==1 && colisionaNaveAsteroide(&jugador,&asteroides[j])){
                         ESTADO=GAME_OVER;
                         fondo_actual = 5;
-                        
+
                         BorrarAsteroide(asteroides[j]);
                         asteroides[j].activo = 0;
                         colisionDetectada = true;
@@ -322,7 +332,7 @@ void juego() {
                     if(asteroides[j].activo==1 && colisionaNaveAsteroide(&jugador,&asteroides[j])){
                         ESTADO=GAME_OVER;
                         fondo_actual = 5;
-                        
+
                         BorrarAsteroide(asteroides[j]);
                         asteroides[j].activo = 0;
                         colisionDetectada = true;
@@ -338,7 +348,7 @@ void juego() {
                     if(asteroides[j].activo==1 && colisionaNaveAsteroide(&jugador,&asteroides[j])){
                         ESTADO=GAME_OVER;
                         fondo_actual = 5;
-                        
+
                         BorrarAsteroide(asteroides[j]);
                         asteroides[j].activo = 0;
                         colisionDetectada = true;
@@ -386,7 +396,7 @@ void juego() {
                         BorrarDisparo(proyectil);
                         proyectil->y = proyectil->y - 3;
                         MostrarDisparo(proyectil);
-                        
+
                         if(orbe_activo && colisionaDisparoOrbe(proyectil, &orbe)) {
                             orbe_recogido = true;
                             proyectil->activo = INACTIVO;
@@ -418,7 +428,7 @@ void juego() {
                         BorrarDisparo(proyectil);
                         proyectil->x = proyectil->x + 3;
                         MostrarDisparo(proyectil);
-                        
+
                         if(orbe_activo && colisionaDisparoOrbe(proyectil, &orbe)) {
                             orbe_recogido = true;
                             proyectil->activo = INACTIVO;
@@ -504,7 +514,7 @@ void juego() {
                     }
                 }
               }
-            } 
+            }
 
         }
 
@@ -523,7 +533,7 @@ void juego() {
                     BorrarDisparo(p);
                 }
             }
-            
+
            visualizarFondoGameOver();
         }
     }
