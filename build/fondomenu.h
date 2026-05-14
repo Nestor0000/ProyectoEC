@@ -1,25 +1,25 @@
 
-//{{BLOCK(explosion)
+//{{BLOCK(fondomenu)
 
 //======================================================================
 //
-//	explosion, 32x32@16, 
+//	fondomenu, 256x192@16, 
 //	Alphabit on.
 //	+ bitmap not compressed
-//	Total size: 2048 = 2048
+//	Total size: 98304 = 98304
 //
-//	Time-stamp: 2026-05-14, 10:42:59
+//	Time-stamp: 2026-05-14, 10:43:11
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.3
 //	( http://www.coranac.com/projects/#grit )
 //
 //======================================================================
 
-#ifndef GRIT_EXPLOSION_H
-#define GRIT_EXPLOSION_H
+#ifndef GRIT_FONDOMENU_H
+#define GRIT_FONDOMENU_H
 
-#define explosionBitmapLen 2048
-extern const unsigned int explosionBitmap[512];
+#define fondomenuBitmapLen 98304
+extern const unsigned int fondomenuBitmap[24576];
 
-#endif // GRIT_EXPLOSION_H
+#endif // GRIT_FONDOMENU_H
 
-//}}BLOCK(explosion)
+//}}BLOCK(fondomenu)

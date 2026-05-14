@@ -12,7 +12,6 @@ perifericos.c
 int tecla; // Variable para guardar la tecla pulsada; valorar si es necesaria
 
 
-
 int TeclaDetectada() 
 {
 	// Devuelve TRUE si detecta que se ha pulsado alguna tecla.
@@ -125,6 +124,11 @@ void PararTempo()
 	// ESCRIBID AQUÍ VUESTRO CÓDIGO
 	TIMER0_CNT=TIMER0_CNT&0XFF7F;
 }
+
+
+	
+
+
 
 /***********************2025-2026*******************************/
 

@@ -67,7 +67,7 @@ void RutAtencionTeclado() {
 
 }
 void RutAtencionTempo()
-{
+{ if(ESTADO==GAME){
 	tiempo++;
     if(tiempo>=2400)//20 segs segun chati
 	{
@@ -86,6 +86,7 @@ void RutAtencionTempo()
 		{
 			visualizarFondo4();
 			fondo_actual = 4;
+		}
 		}
 	}
 	if(cooldown_disparo>0){
