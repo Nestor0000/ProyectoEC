@@ -288,8 +288,8 @@ void juego() {
                 for(j=0;j<MAX_ASTEROIDES && !colisionDetectada;j++){
                     if(asteroides[j].activo==1 && colisionaNaveAsteroide(&jugador,&asteroides[j])){
                         ESTADO=GAME_OVER;
-
-
+                        fondo_actual = 5;
+                       
                         BorrarAsteroide(asteroides[j]);
                         asteroides[j].activo = 0;
                         colisionDetectada = true;
@@ -305,6 +305,8 @@ void juego() {
                 for(j=0;j<MAX_ASTEROIDES && !colisionDetectada;j++){
                     if(asteroides[j].activo==1 && colisionaNaveAsteroide(&jugador,&asteroides[j])){
                         ESTADO=GAME_OVER;
+                        fondo_actual = 5;
+                        
                         BorrarAsteroide(asteroides[j]);
                         asteroides[j].activo = 0;
                         colisionDetectada = true;
@@ -319,8 +321,8 @@ void juego() {
                 for(j=0;j<MAX_ASTEROIDES && !colisionDetectada;j++){
                     if(asteroides[j].activo==1 && colisionaNaveAsteroide(&jugador,&asteroides[j])){
                         ESTADO=GAME_OVER;
-
-
+                        fondo_actual = 5;
+                        
                         BorrarAsteroide(asteroides[j]);
                         asteroides[j].activo = 0;
                         colisionDetectada = true;
@@ -335,8 +337,8 @@ void juego() {
                 for(j=0;j<MAX_ASTEROIDES && !colisionDetectada;j++){
                     if(asteroides[j].activo==1 && colisionaNaveAsteroide(&jugador,&asteroides[j])){
                         ESTADO=GAME_OVER;
-
-
+                        fondo_actual = 5;
+                        
                         BorrarAsteroide(asteroides[j]);
                         asteroides[j].activo = 0;
                         colisionDetectada = true;
@@ -502,23 +504,28 @@ void juego() {
                     }
                 }
               }
-
-
-
-
-               /* if(tecla==START){
-                    ESTADO=CERRADA;
-                    visualizarFondo1();
-
-                }
-                iprintf("Tecla pulsada: %d", tecla);
-                while(TeclaDetectada()==1);
-
-                */
             } 
 
         }
 
+        if(ESTADO==GAME_OVER){
+            InhibirIntTempo();
+            for(j = 0; j < MAX_ASTEROIDES; j++){
+                if(asteroides[j].activo){
+                     BorrarAsteroide( asteroides[j]);
+                }
+            }
+            BorrarNave(jugador);
+            for(j = 0; j <  MAX_DISPAROS; j++){
+                Disparo *p = & disparosNave[j];
+                if(p->activo == ACTIVO){
+                    p->activo = INACTIVO;
+                    BorrarDisparo(p);
+                }
+            }
+            
+           visualizarFondoGameOver();
+        }
     }
 
 

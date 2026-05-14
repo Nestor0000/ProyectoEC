@@ -52,7 +52,8 @@ fondos.o: /home/user/SharedFiles/ProyectoEC/source/fondos.c \
   /home/user/SharedFiles/ProyectoEC/build/fondo1.h \
   /home/user/SharedFiles/ProyectoEC/build/fondo2.h \
   /home/user/SharedFiles/ProyectoEC/build/fondo3.h \
-  /home/user/SharedFiles/ProyectoEC/build/fondo4.h
+  /home/user/SharedFiles/ProyectoEC/build/fondo4.h \
+  /home/user/SharedFiles/ProyectoEC/build/pantalla_gameover.h
 
 /opt/devkitPro/libnds/include/nds.h:
 
@@ -161,3 +162,5 @@ fondos.o: /home/user/SharedFiles/ProyectoEC/source/fondos.c \
 /home/user/SharedFiles/ProyectoEC/build/fondo3.h:
 
 /home/user/SharedFiles/ProyectoEC/build/fondo4.h:
+
+/home/user/SharedFiles/ProyectoEC/build/pantalla_gameover.h:
