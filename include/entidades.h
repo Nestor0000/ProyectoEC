@@ -21,6 +21,10 @@ typedef struct {
 	Hitbox hitbox;
 } Asteroide;
 
+typedef struct {
+    int x,y;
+    int recarga_balas;
+} Orbe;
 
 
 typedef struct {

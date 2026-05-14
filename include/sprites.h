@@ -20,6 +20,7 @@ extern void GuardarSpritesMemoria(int orientacion_nave);
 /* Carga en memoria los Sprites dibujados */
 extern void GuardarSpriteDisparoMemoria ();
 extern void GuardarSpriteAsteroideMemoria ();
+extern void GuardarSpriteOrbeMemoria();
 
 
 
@@ -37,7 +38,8 @@ extern void MostrarRomboGrande(int indice, int x, int y);
 
 extern void BorrarRomboGrande(int indice, int x, int y);
 /* Esta función borra de la pantalla el rombo grande con el índice que se le indique como parámetro */
-
+extern void MostrarOrbe(Orbe orbe, int indice);
+extern void BorrarOrbe(Orbe orbe, int indice);
 extern void MostrarDisparo(Disparo *proyectil);
 extern void BorrarDisparo(Disparo *proyectil);
 extern void BorrarAsteroide(Asteroide enemigo);

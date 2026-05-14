@@ -72,7 +72,7 @@ void RutAtencionTeclado() {
 
 }
 void RutAtencionTempo()
-{
+{	
 	tiempo++;
     if(tiempo>=2400)//20 segs segun chati
 	{
@@ -96,6 +96,9 @@ void RutAtencionTempo()
 	if(cooldown_disparo>0){
 		cooldown_disparo--;
 	}
+	if(!orbe_activo) {
+		contador_orbe++;
+	} 
 }
 void EstablecerVectorInt()
 {

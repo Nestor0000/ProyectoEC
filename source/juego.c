@@ -26,6 +26,12 @@ volatile int tiempo;
 int contDisparos;
 int teclaPulsada;
 volatile int fondo_actual;
+volatile int contador_orbe = 0;
+volatile bool orbe_activo = false;
+Orbe orbe;
+
+
+
 Nave jugador;
 Disparo disparosNave[MAX_DISPAROS];
 volatile int cooldown_disparo = 0;
@@ -100,8 +106,8 @@ void SpawnAsteroide() {
         }
     }
 }
-void ActualizarAsteroides() {
-
+void Eliminar_Asteroides() {
+// elimina los astereoides que se salen de la pantalla
     int i;
     for(i = 0; i < MAX_ASTEROIDES; i++) {
 
@@ -111,7 +117,6 @@ void ActualizarAsteroides() {
             if(asteroides[i].x < -32 || asteroides[i].x > 256 ||
                asteroides[i].y < -32 || asteroides[i].y > 192) {
 
-                // opcional: borrarlo visualmente antes de apagarlo
                 BorrarAsteroide(asteroides[i]);
 
                 asteroides[i].activo = 0;
@@ -148,6 +153,27 @@ void AparicionAsteroides() {
             GuardarSpriteAsteroideMemoria();
         }
     }
+}
+
+
+void Spawn_Orbe () {
+    orbe.recarga_balas = 20;
+    bool orbe_recogido = false;
+    if (!orbe_activo) {
+            if (contador_orbe >= 600 + (rand() % 1200)) {
+                 orbe.x = rand() % 220;
+                 orbe.y = rand() % 180;
+                 MostrarOrbe(orbe, SPR_ORBE);
+                 GuardarSpriteOrbeMemoria();
+                 orbe_activo = true;
+            }
+    }
+    if (orbe_recogido){
+        BorrarOrbe(orbe, SPR_ORBE);
+        orbe_activo = false;
+        contador_orbe = 0;
+    }
+
 }
 
 void juego() {
@@ -193,6 +219,10 @@ void juego() {
     jugador.x = 110;
     jugador.y = 96;
     jugador.orientacion_actual = SPR_NAVE_ARRIBA;
+    fondo_actual = 0;
+    srand(1);
+
+
     jugador.hitbox.offsetX = 0;
     jugador.hitbox.offsetY = 0;
     jugador.hitbox.w = 16;
@@ -203,6 +233,7 @@ void juego() {
 
 	while(1)
     {
+        Spawn_Orbe();
         swiWaitForVBlank();
 
 
@@ -210,6 +241,8 @@ void juego() {
         //Si el estado es ESPERA: codificar aquí la encuesta del teclado, sacar por pantalla la tecla que se ha pulsado, y si se pulsa la tecla START cambiar de estado */
 
         if(ESTADO==GAME){
+
+            srand(jugador.x + jugador.y);
             if(tempo_activado == 0) {
                 PonerEnMarchaTempo();
                 tempo_activado = 1;
@@ -218,7 +251,11 @@ void juego() {
                 InitAsteroides();
                 asteroides_inicializados = 1;
             }
-            
+            if (fondo_actual == 0) {
+            visualizarFondo1();
+            fondo_actual=1;
+            }
+
             MostrarNave(jugador);
             GuardarSpritesMemoria(jugador.orientacion_actual);
             //game_tick++;
@@ -230,7 +267,7 @@ void juego() {
                 SpawnAsteroide();
                 spawnasteroides_timer = 0;
             }
-            ActualizarAsteroides();
+            Eliminar_Asteroides();
             AparicionAsteroides();
             GuardarSpriteAsteroideMemoria();
 
@@ -244,8 +281,8 @@ void juego() {
                 for(j=0;j<MAX_ASTEROIDES && !colisionDetectada;j++){
                     if(asteroides[j].activo==1 && colisionaNaveAsteroide(&jugador,&asteroides[j])){
                         ESTADO=GAME_OVER;
-                        
-                                
+
+
                         BorrarAsteroide(asteroides[j]);
                         asteroides[j].activo = 0;
                         colisionDetectada = true;
@@ -275,8 +312,8 @@ void juego() {
                 for(j=0;j<MAX_ASTEROIDES && !colisionDetectada;j++){
                     if(asteroides[j].activo==1 && colisionaNaveAsteroide(&jugador,&asteroides[j])){
                         ESTADO=GAME_OVER;
-                        
-                                
+
+
                         BorrarAsteroide(asteroides[j]);
                         asteroides[j].activo = 0;
                         colisionDetectada = true;
@@ -291,8 +328,8 @@ void juego() {
                 for(j=0;j<MAX_ASTEROIDES && !colisionDetectada;j++){
                     if(asteroides[j].activo==1 && colisionaNaveAsteroide(&jugador,&asteroides[j])){
                         ESTADO=GAME_OVER;
-                        
-                                
+
+
                         BorrarAsteroide(asteroides[j]);
                         asteroides[j].activo = 0;
                         colisionDetectada = true;
@@ -346,7 +383,7 @@ void juego() {
                                 BorrarDisparo(proyectil);
                                 proyectil->activo = INACTIVO;
                                 contDisparos--;
-                                
+
                                 BorrarAsteroide(asteroides[k]);
                                 asteroides[k].activo = 0;
                                 colisionDetectada = true;
@@ -371,7 +408,7 @@ void juego() {
                                 BorrarDisparo(proyectil);
                                 proyectil->activo = INACTIVO;
                                 contDisparos--;
-                                
+
                                 BorrarAsteroide(asteroides[k]);
                                 asteroides[k].activo = 0;
                                 colisionDetectada = true;
@@ -395,7 +432,7 @@ void juego() {
                                 BorrarDisparo(proyectil);
                                 proyectil->activo = INACTIVO;
                                 contDisparos--;
-                                
+
                                 BorrarAsteroide(asteroides[k]);
                                 asteroides[k].activo = 0;
                                 colisionDetectada = true;
@@ -419,7 +456,7 @@ void juego() {
                                 BorrarDisparo(proyectil);
                                 proyectil->activo = INACTIVO;
                                 contDisparos--;
-                                
+
                                 BorrarAsteroide(asteroides[k]);
                                 asteroides[k].activo = 0;
                                 colisionDetectada = true;
