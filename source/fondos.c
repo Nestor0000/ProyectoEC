@@ -6,18 +6,25 @@
 #include <unistd.h>		
 
 /* Si queremos visualizar distintos fondos, aquí se debe incluir el fichero de cabecera (fichero .h) de cada fondo. Estos ficheros de cabecera se generan automáticamente durante la compilación */
-
+#include "fondomenu.h"
 #include "fondos.h"
 #include "graficos.h"
 #include "fondo1.h"
 #include "fondo2.h"
 #include "fondo3.h"
 #include "fondo4.h"
+#include "pantallaGameover.h"
 
 /* Se elige el canal de DMA que se utilizará para copiar las imágenes en memoria */
 static const int DMA_CHANNEL = 3;
 
 /* Para cada fondo que se quiera visualizar hay que escribir un procedimiento como el siguiente */
+
+void visualizarFondoMenu()
+{
+    dmaCopyHalfWords(DMA_CHANNEL,fondomenuBitmap,(uint16 *)BG_BMP_RAM(0),fondomenuBitmapLen);
+}
+
 
 
 void visualizarFondo1(){
@@ -36,6 +43,9 @@ void visualizarFondo3(){
 }
 void visualizarFondo4(){
 	dmaCopyHalfWords(DMA_CHANNEL,fondo4Bitmap,(uint16 *)BG_BMP_RAM(0),fondo4BitmapLen);
+}
+void visualizarFondoGameOver(){
+    dmaCopyHalfWords(DMA_CHANNEL,pantallaGameoverBitmap,(uint16 *)BG_BMP_RAM(0),pantallaGameoverBitmapLen);
 }
 
 /***********************2025-2026*******************************/

@@ -17,6 +17,7 @@ y en otro ejemplo de Jaeden Ameronen
 #include "sprites.h"
 #include "juego.h"
 
+touchPosition PANT_DAT;
 
 //---------------------------------------------------------------------------------
 int main(void) {
@@ -37,4 +38,3 @@ int main(void) {
 }
 
 /***********************2025-2026*******************************/
-

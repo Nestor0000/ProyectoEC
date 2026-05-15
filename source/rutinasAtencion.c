@@ -14,10 +14,17 @@ rutinasAtencion.c
 
 int ESTADO; // Para controlar el estado del autómata en que esté
 int seg3;   // Para ver si pasan tres segundos
+
+// --- Variables externas de juego.c ---
 extern volatile int tiempo; // extern popr que es de juego.c y volatile por que puede cambiar por interrupciones
-extern volatile int fondo_actual=1;
+extern volatile int fondo_actual;
+extern volatile int cooldown_disparo;
+extern int contDisparos;
 
-
+// --- Variables de dificultad
+extern int fase_actual;
+extern int velocidad_fase;
+extern int espera_spawn_fase;
 
 void RutAtencionTeclado() {
 	int tecla = TeclaPulsada();
@@ -59,6 +66,11 @@ void RutAtencionTeclado() {
 			contDisparos++;
 		}
 		proyectil->activo = ACTIVO;
+		proyectil->hitbox.offsetX=0;
+		proyectil->hitbox.offsetY=0;
+		proyectil->hitbox.w =4;
+		proyectil->hitbox.h =4;
+
 		MostrarDisparo(proyectil);
 		cooldown_disparo=60;
 		HabilitarIntTeclado();
@@ -72,6 +84,21 @@ void RutAtencionTempo()
     if(tiempo>=2400)//20 segs segun chati
 	{
 		tiempo = 0;
+
+		if (fase_actual < 4) {
+			fase_actual++;
+			//Tope de velocidad para que no se vuelva injugable
+			if (velocidad_fase<3){
+			velocidad_fase++;
+			}
+			// Cada vez hay menos tiempo entre spawns de asteroides
+			if (espera_spawn_fase > 10)
+			{
+				espera_spawn_fase -= 5;
+			}
+		}
+
+
 		if(fondo_actual==1)
 		{
 			visualizarFondo2();
@@ -91,14 +118,16 @@ void RutAtencionTempo()
 	if(cooldown_disparo>0){
 		cooldown_disparo--;
 	}
+	if(!orbe_activo) {
+		contador_orbe++;
+	}
 }
+
 void EstablecerVectorInt()
 {
 	irqSet(IRQ_KEYS, RutAtencionTeclado);
 	irqSet(IRQ_TIMER0,RutAtencionTempo);
 }
-
-
 
 /***********************2025-2026*******************************/
 

@@ -2,8 +2,13 @@
 #define ENTIDADES_H
 #include "definiciones.h"
 typedef struct {
+	int offsetX,offsetY;
+	int w,h;
+}Hitbox;
+typedef struct {
     int x,y;
     int orientacion_actual;
+	Hitbox hitbox;
 } Nave;
 
 typedef struct {
@@ -13,8 +18,14 @@ typedef struct {
     int velocidad;
     int lado;
     int indice;
+	Hitbox hitbox;
 } Asteroide;
 
+typedef struct {
+    int x,y;
+    int recarga_balas;
+	Hitbox hitbox;
+} Orbe;
 
 
 typedef struct {
@@ -22,6 +33,7 @@ typedef struct {
     int orientacion_actual;
 	int activo;
     int indice;
+	Hitbox hitbox;
 } Disparo;
 
 extern Nave jugador;
