@@ -72,6 +72,7 @@ void RutAtencionTeclado() {
 		proyectil->hitbox.w =4;
 		proyectil->hitbox.h =4;
 
+		probabilidad_supervivencia --;
 		MostrarDisparo(proyectil);
 		//este cooldown es para evitar que se peuda disparar demasiado rapido/seguido
 		cooldown_disparo=60;

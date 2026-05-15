@@ -24,6 +24,8 @@ volatile int tiempo = 0;
 volatile int ticks_fase = 0;
 int game_tick = 0;
 
+volatile int probabilidad_supervivencia = 100;
+
 // --- PARÁMETROS DE DIFICULTAD (Velocidad y cantidad de los enemigos, fases, etc) ---
 int fase_actual = 1;           // Empieza por defecto en la fase 1
 int velocidad_fase = 1;        // Velocidad con la que inician los enemigos
@@ -391,6 +393,8 @@ void juego()
                 }
                 colisionDetectada = false;
             }
+
+
             if (cooldown_rotacion == 0 && ((teclaPulsada == R && jugador.orientacion_actual == SPR_NAVE_ARRIBA) || (teclaPulsada == L && jugador.orientacion_actual == SPR_NAVE_ABAJO)))
             {
                 BorrarNave(jugador);
