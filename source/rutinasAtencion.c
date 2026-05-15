@@ -71,6 +71,7 @@ void RutAtencionTeclado() {
 		proyectil->hitbox.w =4;
 		proyectil->hitbox.h =4;
 
+		probabilidad_supervivencia --;
 		MostrarDisparo(proyectil);
 		cooldown_disparo=60;
 		HabilitarIntTeclado();

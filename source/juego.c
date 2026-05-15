@@ -24,6 +24,8 @@ volatile int tiempo = 0;
 volatile int ticks_fase = 0;
 int game_tick = 0;
 
+volatile int probabilidad_supervivencia = 100;
+
 // --- PARÁMETROS DE DIFICULTAD (Velocidad y cantidad de los enemigos, fases, etc) ---
 int fase_actual = 1;           // Empieza por defecto en la fase 1
 int velocidad_fase = 1;        // Velocidad con la que inician los enemigos
@@ -302,7 +304,9 @@ void juego()
             touchRead(&PANT_DAT);
             iprintf("\x1b[1;1Hx: %d", PANT_DAT.px);
             iprintf("\x1b[1;2HY: %d", PANT_DAT.py);
-            iprintf("\x1b[1;3Hestado: %d", ESTADO);
+            //iprintf("\x1b[1;3Hestado: %d", ESTADO);
+
+
             if (PANT_DAT.px > 0 && PANT_DAT.py > 0 || TeclaPulsada() == ARRIBA)
             {
 
@@ -311,6 +315,7 @@ void juego()
                 iprintf("\x1b[1;1Hx: %d", PANT_DAT.px);
                 iprintf("\x1b[1;2HY: %d", PANT_DAT.py);
                 iprintf("\x1b[1;3Hestado: %d", ESTADO);
+
             }
         }
 
@@ -319,6 +324,7 @@ void juego()
 
         if (ESTADO == GAME)
         {
+            iprintf("\x1b[1;4probsup: %d", probabilidad_supervivencia);
             swiWaitForVBlank();
             Spawn_Orbe();
             srand(TIMER0_DAT);
@@ -357,6 +363,7 @@ void juego()
             GuardarSpriteAsteroideMemoria();
 
             teclaPulsada = TeclaPulsada();
+
             if (teclaPulsada == DERECHA && jugador.x < 225)
             {
                 BorrarNave(jugador);
@@ -440,6 +447,8 @@ void juego()
                 }
                 colisionDetectada = false;
             }
+
+
             if (cooldown_rotacion == 0 && ((teclaPulsada == R && jugador.orientacion_actual == SPR_NAVE_ARRIBA) || (teclaPulsada == L && jugador.orientacion_actual == SPR_NAVE_ABAJO)))
             {
                 BorrarNave(jugador);
@@ -472,6 +481,7 @@ void juego()
                 GuardarSpritesMemoria(jugador.orientacion_actual);
                 cooldown_rotacion = 25;
             }
+
 
             for (j = 0; j < MAX_DISPAROS; j++)
             {

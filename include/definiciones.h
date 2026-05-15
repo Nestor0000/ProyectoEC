@@ -70,7 +70,7 @@ extern volatile int cooldown_disparo;
 extern volatile int contador_orbe;
 extern volatile bool orbe_activo;
 #define MAX_ASTEROIDES 50
-
+extern volatile int probabilidad_supervivencia;
 
 /***********************2025-2026*******************************/
 
