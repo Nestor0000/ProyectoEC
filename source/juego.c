@@ -23,6 +23,7 @@ y en otro ejemplo de Jaeden Ameronen
 volatile int tiempo = 0;
 volatile int ticks_fase = 0;
 int game_tick = 0;
+volatile int puntuacion = 0;
 
 volatile int probabilidad_supervivencia = 100;
 
@@ -223,7 +224,7 @@ void Spawn_Orbe()
     orbe.recarga_balas = 20;
     if (!orbe_activo)
     {
-        if (contador_orbe >= 600 + (rand() % 1200))
+        if (contador_orbe >= 900 + (rand() % 1200))
         {
             orbe.x = rand() % 220;
             orbe.y = rand() % 180;
@@ -238,6 +239,7 @@ void Spawn_Orbe()
     }
     if (orbe_recogido)
     {
+        probabilidad_supervivencia = probabilidad_supervivencia + 3;
         BorrarOrbe(orbe, SPR_ORBE);
         orbe_activo = false;
         orbe_recogido = false;
@@ -341,7 +343,7 @@ void juego()
 
         if (ESTADO == GAME)
         {
-            iprintf("\x1b[1;4probsup: %d", probabilidad_supervivencia);
+            //iprintf("\x1b[1;4probsup: %d", probabilidad_supervivencia);
             swiWaitForVBlank();
             Spawn_Orbe();
             srand(TIMER0_DAT);
@@ -663,7 +665,9 @@ void juego()
             }
         }
         else if (ESTADO == GAME_OVER)
+
     {
+        iprintf("\x1b[1;5Hpuntuacion: %d", puntuacion);
         for (j = 0; j < MAX_ASTEROIDES; j++)
         {
             if (asteroides[j].activo)

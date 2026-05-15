@@ -15,6 +15,7 @@ rutinasAtencion.c
 int ESTADO; // Para controlar el estado del autómata en que esté
 int seg3;   // Para ver si pasan tres segundos
 
+
 // --- Variables externas de juego.c ---
 extern volatile int tiempo; // extern popr que es de juego.c y volatile por que puede cambiar por interrupciones
 extern volatile int fondo_actual;
@@ -26,6 +27,9 @@ extern int contDisparos;
 extern int fase_actual;
 extern int velocidad_fase;
 extern int espera_spawn_fase;
+
+extern volatile int puntuacion;
+
 
 void RutAtencionTeclado() {
 	int tecla = TeclaPulsada();
@@ -84,6 +88,13 @@ void RutAtencionTeclado() {
 void RutAtencionTempo()
 {
 	tiempo++;
+	bool tiempo_puntuacion = false;
+
+	if (tiempo % 120 == 0 && ESTADO == GAME)
+	{
+    puntuacion++;
+	}
+
     if(tiempo>=2400)//20 segs segun chati
 	{
 		tiempo = 0;
