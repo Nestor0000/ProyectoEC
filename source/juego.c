@@ -288,7 +288,7 @@ void juego()
             fondo_actual = 0;
             touchRead(&PANT_DAT);
 
-            if (PANT_DAT.px > 0 && PANT_DAT.py > 0 || TeclaPulsada() == A)
+            if ((PANT_DAT.px > 0 && PANT_DAT.py > 0) || TeclaPulsada() == A)
             {
                 ESTADO = GAME;
             }
