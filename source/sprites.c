@@ -38,14 +38,14 @@ void memoriaReserva()
    MODIFICAR SEGÚN LOS COLORES QUE QUERAIS UTILIZAR EN VUESTROS SPRITES */
 void EstablecerPaletaPrincipal() {
 
-	SPRITE_PALETTE[1] = RGB15(31,0,0);  // rojo puro 
+	SPRITE_PALETTE[1] = RGB15(31,0,0);  // rojo puro
 	SPRITE_PALETTE[2] = RGB15(31,31,31); // blanco
-	SPRITE_PALETTE[3] = RGB15(0,0,31);  // azul 
-	SPRITE_PALETTE[4] = RGB15(31,31,0); // amarillo 
+	SPRITE_PALETTE[3] = RGB15(0,0,31);  // azul
+	SPRITE_PALETTE[4] = RGB15(31,31,0); // amarillo
 	SPRITE_PALETTE[5] = RGB15(31,15,15);  // rojo claro
 	SPRITE_PALETTE[6] = RGB15(0,0,0); // negro
 	SPRITE_PALETTE[7] = RGB15(10,20,31); // azul claro
-	
+
 }
 
 /* Definición de un sprite de 16x16 píxeles para dibujar un rombo */
@@ -268,6 +268,24 @@ u8 asteroide[1024] = {
 u8 orbe[1024] = {
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,4,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,4,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,2,4,2,1,1,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,4,4,4,2,1,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,1,1,1,1,2,4,0,4,2,1,1,1,1,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,1,3,1,1,2,4,0,4,2,1,1,3,1,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,1,3,1,1,2,4,0,4,2,1,1,3,1,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1,1,1,1,2,1,2,4,4,4,4,2,1,2,1,1,1,1,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1,3,1,1,2,0,2,4,3,3,4,2,0,2,1,1,3,1,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1,3,1,1,0,2,4,3,3,3,3,4,2,0,1,1,3,1,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1,2,1,1,2,4,4,3,4,4,3,4,4,2,1,1,2,1,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1,2,1,2,4,4,4,4,4,4,4,4,4,4,2,1,2,1,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1,2,2,4,4,4,3,4,4,4,4,3,4,4,4,2,2,1,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1,2,4,4,1,3,3,4,4,4,4,3,3,1,4,4,2,1,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1,2,4,1,1,3,3,1,4,4,1,3,3,1,1,4,2,1,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1,2,1,1,1,1,1,1,2,2,1,1,1,1,1,1,2,1,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -299,7 +317,6 @@ u8 orbe[1024] = {
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 };
-
 
 
 
@@ -422,14 +439,14 @@ void GuardarSpritesMemoria(int orientacion_nave){
 					 else if(orientacion_nave == SPR_NAVE_IZQUIERDA){
 						gfxnave[dstIndex++] =
 						nave_izquierda[srcIndex] |
-						(nave_izquierda[srcIndex + 1] << 8); 
+						(nave_izquierda[srcIndex + 1] << 8);
 					}
 					else if(orientacion_nave == SPR_NAVE_ABAJO){
 						gfxnave[dstIndex++] =
 						nave_abajo[srcIndex] |
 						(nave_abajo[srcIndex + 1] << 8);
-					} 
-					
+					}
+
 				}
 			}
 		}
@@ -456,8 +473,8 @@ void GuardarSpriteDisparoMemoria (){
 
                         gfxdisparo[dstIndex++] =
 						disparo_nave[srcIndex] |
-						(disparo_nave[srcIndex + 1] << 8); 
-					
+						(disparo_nave[srcIndex + 1] << 8);
+
 				}
 			}
 		}
@@ -484,8 +501,8 @@ void GuardarSpriteAsteroideMemoria (){
 
                         gfxasteroide[dstIndex++] =
 						asteroide[srcIndex] |
-						(asteroide[srcIndex + 1] << 8); 
-					
+						(asteroide[srcIndex + 1] << 8);
+
 				}
 			}
 		}
@@ -512,8 +529,8 @@ void GuardarSpriteOrbeMemoria () {
 
                         gfxorbe[dstIndex++] =
 						orbe[srcIndex] |
-						(orbe[srcIndex + 1] << 8); 
-					
+						(orbe[srcIndex + 1] << 8);
+
 				}
 			}
 		}
@@ -531,16 +548,16 @@ void MostrarOrbe(Orbe orbe, int indice)
 		indice,           // oam index (0 to 127)
 		orbe.x, orbe.y,   // x and y pixel location of the sprite
 		0,                    // priority, lower renders last (on top)
-		0,			  // this is the palette index if multiple palettes or the alpha value if bmp sprite	
-		SpriteSize_32x32,     
-		SpriteColorFormat_256Color, 
+		0,			  // this is the palette index if multiple palettes or the alpha value if bmp sprite
+		SpriteSize_32x32,
+		SpriteColorFormat_256Color,
 		gfxorbe,// +16*16/2,      // pointer to the loaded graphics
-		-1,                  // sprite rotation data  
+		-1,                  // sprite rotation data
 		false,               // double the size when rotating?
 		false,			// hide the sprite?
 		false, false, // vflip, hflip
 		false	// apply mosaic
-		); 
+		);
 
 }
 
@@ -549,16 +566,16 @@ void BorrarOrbe(Orbe orbe, int indice){
 		indice,           // oam index (0 to 127)
 		orbe.x, orbe.y,   // x and y pixel location of the sprite
 		0,                    // priority, lower renders last (on top)
-		0,			  // this is the palette index if multiple palettes or the alpha value if bmp sprite	
-		SpriteSize_32x32, 
-		SpriteColorFormat_256Color, 
+		0,			  // this is the palette index if multiple palettes or the alpha value if bmp sprite
+		SpriteSize_32x32,
+		SpriteColorFormat_256Color,
 		gfxorbe,             // +16*16/2,      // pointer to the loaded graphics
-		-1,                  // sprite rotation data  
+		-1,                  // sprite rotation data
 		false,               // double the size when rotating?
 		true,			// hide the sprite?
 		false, false, // vflip, hflip
 		false	// apply mosaic
-		); 
+		);
 oamUpdate(&oamMain);
 }
 
@@ -568,16 +585,16 @@ void MostrarAsteroide(Asteroide enemigo)
 		enemigo.indice,           // oam index (0 to 127)
 		enemigo.x, enemigo.y,   // x and y pixel location of the sprite
 		0,                    // priority, lower renders last (on top)
-		0,			  // this is the palette index if multiple palettes or the alpha value if bmp sprite	
-		SpriteSize_32x32,     
-		SpriteColorFormat_256Color, 
+		0,			  // this is the palette index if multiple palettes or the alpha value if bmp sprite
+		SpriteSize_32x32,
+		SpriteColorFormat_256Color,
 		gfxasteroide,// +16*16/2,      // pointer to the loaded graphics
-		-1,                  // sprite rotation data  
+		-1,                  // sprite rotation data
 		false,               // double the size when rotating?
 		false,			// hide the sprite?
 		false, false, // vflip, hflip
 		false	// apply mosaic
-		); 
+		);
 
 }
 
@@ -586,17 +603,17 @@ void BorrarAsteroide(Asteroide enemigo){
 		enemigo.indice,           // oam index (0 to 127)
 		enemigo.x, enemigo.y,   // x and y pixel location of the sprite
 		0,                    // priority, lower renders last (on top)
-		0,			  // this is the palette index if multiple palettes or the alpha value if bmp sprite	
-		SpriteSize_32x32, 
-		SpriteColorFormat_256Color, 
+		0,			  // this is the palette index if multiple palettes or the alpha value if bmp sprite
+		SpriteSize_32x32,
+		SpriteColorFormat_256Color,
 		gfxasteroide,             // +16*16/2,      // pointer to the loaded graphics
-		-1,                  // sprite rotation data  
+		-1,                  // sprite rotation data
 		false,               // double the size when rotating?
 		true,			// hide the sprite?
 		false, false, // vflip, hflip
 		false	// apply mosaic
-		); 
-oamUpdate(&oamMain); 
+		);
+oamUpdate(&oamMain);
 }
 
 
@@ -707,17 +724,17 @@ void BorrarDisparo(Disparo *proyectil){
 		proyectil->indice,           // oam index (0 to 127)
 		proyectil->x, proyectil->y,   // x and y pixel location of the sprite
 		0,                    // priority, lower renders last (on top)
-		0,			  // this is the palette index if multiple palettes or the alpha value if bmp sprite	
-		SpriteSize_32x32, 
-		SpriteColorFormat_256Color, 
+		0,			  // this is the palette index if multiple palettes or the alpha value if bmp sprite
+		SpriteSize_32x32,
+		SpriteColorFormat_256Color,
 		gfxdisparo,             // +16*16/2,      // pointer to the loaded graphics
-		-1,                  // sprite rotation data  
+		-1,                  // sprite rotation data
 		false,               // double the size when rotating?
 		true,			// hide the sprite?
 		false, false, // vflip, hflip
 		false	// apply mosaic
-		); 
-oamUpdate(&oamMain); 
+		);
+oamUpdate(&oamMain);
 }
 
 void MostrarNave(Nave jugador){
@@ -751,5 +768,4 @@ oamUpdate(&oamMain);
 }
 
 /***********************2025-2026*******************************/
-
 

@@ -20,27 +20,39 @@ y en otro ejemplo de Jaeden Ameronen
 #include "fondos.h"
 #include "entidades.h"
 
-bool colisionDetectada;
+// --- RELOJES Y TIEMPO ---
+volatile int tiempo = 0;
+volatile int ticks_fase = 0;
+int game_tick = 0;
 
-#include <touch.h>
-volatile int tiempo;
+// --- PARÁMETROS DE DIFICULTAD (Velocidad y cantidad de los enemigos, fases, etc) ---
+int fase_actual = 1;                //Empieza por defecto en la fase 1
+int velocidad_fase = 1;             //Velocidad con la que inician los enemigos
+int espera_spawn_fase = 25;         //Cada cuanto tardan en aparecer los enemigos (en ticks)
+int spawnasteroides_timer = 0;      //Para controlar el tiempo entre spawns de enemigos
+
+// --- REGISTROS DE MOVIMIENTO Y DISPAROS ---
 int contDisparos;
 int teclaPulsada;
+volatile int cooldown_disparo = 0;
+
+// --- MISCELANEO / ESTADO ---
+int tempo_activado = 0;
+int asteroides_inicializados = 0;
 volatile int fondo_actual;
+
+// --- ENTIDADES IN-GAME ---
+Nave jugador;
+Disparo disparosNave[MAX_DISPAROS];
+Asteroide asteroides[MAX_ASTEROIDES];
+
+bool colisionDetectada;
 volatile int contador_orbe = 0;
 volatile bool orbe_activo = false;
 Orbe orbe;
 bool orbe_recogido = false;
 
 
-Nave jugador;
-Disparo disparosNave[MAX_DISPAROS];
-volatile int cooldown_disparo = 0;
-Asteroide asteroides[MAX_ASTEROIDES];
-int spawnasteroides_timer = 0;
-int game_tick = 0;
-int tempo_activado = 0;
-int asteroides_inicializados = 0;
 int colisiona(int x1,int y1, int w1, int h1, int x2, int y2, int w2, int h2){
     return (x1<x2+w2) && (x1+w1>x2)&&(y1<y2+h2)&&(y1+h1>y2);
 }
@@ -51,9 +63,6 @@ int colisionaDisparoAsteroide(Disparo *d, Asteroide *a){
 int colisionaNaveAsteroide(Nave *n, Asteroide *a){
     return colisiona(n->x,n->y,n->hitbox.w,n->hitbox.h
         ,a->x,a->y,a->hitbox.w,a->hitbox.h);
-}
-int colisionaDisparoOrbe(Disparo *d, Orbe *o) {
-	return colisiona(d->x, d->y, d->hitbox.w, d->hitbox.h, o->x, o->y, o->hitbox.w, o->hitbox.h);
 }
 void InitAsteroides() {
     int i;
@@ -70,7 +79,7 @@ void SpawnAsteroide() {
 
             int lado = rand() % 4;
             asteroides[i].lado = lado;
-            int speed = 1;
+            int speed = velocidad_fase;
 
             if(lado == 0) { // esto es el lado de arriba
                 asteroides[i].x = rand() % 256;
@@ -109,8 +118,8 @@ void SpawnAsteroide() {
         }
     }
 }
-void Eliminar_Asteroides() {
-// elimina los astereoides que se salen de la pantalla
+void ActualizarAsteroides() {
+
     int i;
     for(i = 0; i < MAX_ASTEROIDES; i++) {
 
@@ -140,48 +149,24 @@ void AparicionAsteroides() {
 
             // 2. actualizar posición según lado
             if(asteroides[i].lado == 0) {
-                asteroides[i].y += 1;
+                asteroides[i].y += velocidad_fase;
             }
             else if(asteroides[i].lado == 1) {
-                asteroides[i].y -= 1;
+                asteroides[i].y -= velocidad_fase;
             }
             else if(asteroides[i].lado == 2) {
-                asteroides[i].x += 1;
+                asteroides[i].x += velocidad_fase;
             }
             else if(asteroides[i].lado == 3) {
-                asteroides[i].x -= 1;
+                asteroides[i].x -= velocidad_fase;
             }
 
             // 3. volver a dibujar en nueva posición
             MostrarAsteroide(asteroides[i]);
-            GuardarSpriteAsteroideMemoria();
+            //GuardarSpriteAsteroideMemoria();
         }
     }
-}
-
-
-void Spawn_Orbe () {
-    orbe.recarga_balas = 20;
-    if (!orbe_activo) {
-            if (contador_orbe >= 600 + (rand() % 1200)) {
-                 orbe.x = rand() % 220;
-                 orbe.y = rand() % 180;
-                 MostrarOrbe(orbe, SPR_ORBE);
-                 GuardarSpriteOrbeMemoria();
-                 orbe_activo = true;
-				orbe.hitbox.offsetX = 0;
-            	orbe.hitbox.offsetY = 0;
-            	orbe.hitbox.w = 16;
-            	orbe.hitbox.h = 16;
-            }
-    }
-    if (orbe_recogido){
-        BorrarOrbe(orbe, SPR_ORBE);
-        orbe_activo = false;
-        orbe_recogido = false;
-        contador_orbe = 0;
-    }
-
+    GuardarSpriteAsteroideMemoria();
 }
 
 void juego() {
@@ -256,6 +241,26 @@ void juego() {
         //Si el estado es ESPERA: codificar aquí la encuesta del teclado, sacar por pantalla la tecla que se ha pulsado, y si se pulsa la tecla START cambiar de estado */
 
         if(ESTADO==GAME){
+            if(TeclaPulsada()==DERECHA && jugador.x < 225){
+                BorrarNave(SPR_NAVE_ARRIBA, jugador);
+                //tecla=TeclaPulsada();
+                jugador.x = jugador.x + 3;
+                MostrarNave(SPR_NAVE_ARRIBA, jugador);
+            } else if(TeclaPulsada()==IZQUIERDA && jugador.x > 0){
+                BorrarNave(SPR_NAVE_ARRIBA, jugador);
+                jugador.x = jugador.x - 3;
+                MostrarNave(SPR_NAVE_ARRIBA, jugador);
+            } else if (TeclaPulsada()==ARRIBA && jugador.y > 0){
+                BorrarNave(SPR_NAVE_ARRIBA, jugador);
+                jugador.y = jugador.y - 3;
+                MostrarNave(SPR_NAVE_ARRIBA, jugador);
+            } else if (TeclaPulsada()== ABAJO && jugador.y < 165){
+                BorrarNave(SPR_NAVE_ARRIBA, jugador);
+                jugador.y = jugador.y + 3;
+                MostrarNave(SPR_NAVE_ARRIBA, jugador);
+            }
+            
+            
 
             srand(jugador.x + jugador.y);
 

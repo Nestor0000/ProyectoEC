@@ -1,1 +1,0 @@
-asteroide.o: asteroide.s
