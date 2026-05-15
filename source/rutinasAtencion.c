@@ -19,6 +19,7 @@ int seg3;   // Para ver si pasan tres segundos
 extern volatile int tiempo; // extern popr que es de juego.c y volatile por que puede cambiar por interrupciones
 extern volatile int fondo_actual;
 extern volatile int cooldown_disparo;
+extern volatile bool disparo_detectado;
 extern int contDisparos;
 
 // --- Variables de dificultad
@@ -71,6 +72,7 @@ void RutAtencionTeclado() {
 		proyectil->hitbox.w =4;
 		proyectil->hitbox.h =4;
 
+		disparo_detectado = true;
 		probabilidad_supervivencia --;
 		MostrarDisparo(proyectil);
 		cooldown_disparo=60;
