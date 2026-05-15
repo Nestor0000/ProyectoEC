@@ -22,10 +22,13 @@ y en otro ejemplo de Jaeden Ameronen
 // --- RELOJES Y TIEMPO ---
 volatile int tiempo = 0;
 volatile int ticks_fase = 0;
-int game_tick = 0;
-
 volatile int probabilidad_supervivencia = 100;
+volatile int cooldown_disparo = 0;
+volatile int fondo_actual;
+volatile int contador_orbe = 0;
+volatile bool orbe_activo = false;
 
+int game_tick = 0;
 // --- PARÁMETROS DE DIFICULTAD (Velocidad y cantidad de los enemigos, fases, etc) ---
 int fase_actual = 1;           // Empieza por defecto en la fase 1
 int velocidad_fase = 1;        // Velocidad con la que inician los enemigos
@@ -35,22 +38,18 @@ int spawnasteroides_timer = 0; // Para controlar el tiempo entre spawns de enemi
 // --- REGISTROS DE MOVIMIENTO Y DISPAROS ---
 int contDisparos;
 int teclaPulsada;
-volatile int cooldown_disparo = 0;
 
 // --- MISCELANEO / ESTADO ---
 int tempo_activado = 0;
 int asteroides_inicializados = 0;
-volatile int fondo_actual;
 
 // --- ENTIDADES IN-GAME ---
 Nave jugador;
+Orbe orbe;
 Disparo disparosNave[MAX_DISPAROS];
 Asteroide asteroides[MAX_ASTEROIDES];
 
 bool colisionDetectada;
-volatile int contador_orbe = 0;
-volatile bool orbe_activo = false;
-Orbe orbe;
 bool orbe_recogido = false;
 //esta funcion detecta colisiones en base a coordenadas y tamaños de la hitbox, es generico, hay funciones mas especificas que son simplemente para que
 //al desarrollador le sea mas comodo utilizar las funciones de colisiones al no tener que llamar a esto y solo tener que pasar las entidades necesarias
