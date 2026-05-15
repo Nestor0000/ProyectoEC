@@ -1,1 +1,0 @@
-fondomenu.o: fondomenu.s
