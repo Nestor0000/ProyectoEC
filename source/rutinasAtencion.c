@@ -31,16 +31,17 @@ void RutAtencionTeclado() {
 	if(tecla==B && contDisparos <10 && cooldown_disparo == 0){
 		InhibirIntTeclado();
 		int i = 0;
-		int k = 0; //Esto es para salir del bucle cuando se encuentre uno inactivo para poder usarlo
+		bool exit=false; //Esto es para salir del bucle cuando se encuentre uno inactivo para poder usarlo
 		Disparo *proyectil = NULL;
-		while(i<10 && k==0){
+		while(i<10 && !exit){
 			//para corregir
 			if(disparosNave!=NULL &&disparosNave[i].activo == INACTIVO){
 				proyectil= &disparosNave[i];
-				k=1;
+				exit=true;
 			}
 			i++;
 		}
+		//para los disparos en base a la orientacion de la  nave
 		if(jugador.orientacion_actual == SPR_NAVE_ARRIBA){
 			proyectil->x = jugador.x;
 			proyectil->y=jugador.y-3;
@@ -72,6 +73,7 @@ void RutAtencionTeclado() {
 		proyectil->hitbox.h =4;
 
 		MostrarDisparo(proyectil);
+		//este cooldown es para evitar que se peuda disparar demasiado rapido/seguido
 		cooldown_disparo=60;
 		HabilitarIntTeclado();
 
@@ -81,7 +83,7 @@ void RutAtencionTeclado() {
 void RutAtencionTempo()
 {
 	tiempo++;
-    if(tiempo>=2400)//20 segs segun chati
+    if(tiempo>=2400)//20 segs
 	{
 		tiempo = 0;
 
@@ -98,7 +100,7 @@ void RutAtencionTempo()
 			}
 		}
 
-
+		//para cambiar de fondos cada 20 segundos en base al fondo en el que esta, pero una vez avanza no es posible volver a mostrar el fondo anterior durante el juego
 		if(fondo_actual==1)
 		{
 			visualizarFondo2();
@@ -115,9 +117,11 @@ void RutAtencionTempo()
 			fondo_actual = 4;
 		}
 	}
+
 	if(cooldown_disparo>0){
 		cooldown_disparo--;
 	}
+	//para evitar que el orbe vuelva a aparecer hasta que pase pase cierto tiempo desde que se cogio el anterior orbe
 	if(!orbe_activo) {
 		contador_orbe++;
 	}

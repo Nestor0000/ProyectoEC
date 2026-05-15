@@ -6,8 +6,6 @@
 #include "sprites.h"
 #include "definiciones.h"
 
-u16* gfxrombo;
-u16* gfxromboGrande;
 u16* gfxnave;
 u16* gfxdisparo;
 u16* gfxasteroide;
@@ -18,8 +16,6 @@ u16* gfxorbe;
 void memoriaReserva()
 {
 	/* Por cada sprite que se quiera incluir en la pantalla principal hay que hacer algo equivalente a lo que sigue */
-	//gfxrombo= oamAllocateGfx(&oamMain, SpriteSize_16x16, SpriteColorFormat_256Color);
-	//gfxromboGrande=oamAllocateGfx(&oamMain, SpriteSize_32x32, SpriteColorFormat_256Color);
 	gfxnave=oamAllocateGfx(&oamMain, SpriteSize_32x32, SpriteColorFormat_256Color);
 	gfxdisparo=oamAllocateGfx(&oamMain, SpriteSize_32x32, SpriteColorFormat_256Color);
 	gfxasteroide=oamAllocateGfx(&oamMain, SpriteSize_32x32, SpriteColorFormat_256Color);
@@ -296,81 +292,6 @@ u8 orbe[1024] = {
 
 
 
-
-u8 rombo[256] =
-{
-	0,0,0,0,0,0,2,2,
-        0,0,0,0,0,2,2,2,	//	0,0,0,0,0,0,2,2, 2,2,0,0,0,0,0,0,
-	0,0,0,0,2,2,2,2,
-        0,0,0,2,2,2,2,2,	//	0,0,0,0,0,2,2,2, 2,2,2,0,0,0,0,0,
-	0,0,2,2,2,2,2,2,
-        0,2,2,2,2,2,2,2,	//	0,0,0,0,2,2,2,2, 2,2,2,2,0,0,0,0,
-	2,2,2,2,2,2,2,2,
-        2,2,2,2,2,2,2,2,	//	0,0,0,2,2,2,2,2, 2,2,2,2,2,0,0,0,
-
-	2,2,0,0,0,0,0,0,
-        2,2,2,0,0,0,0,0,	//	0,0,2,2,2,2,2,2, 2,2,2,2,2,2,0,0,
-	2,2,2,2,0,0,0,0,
-        2,2,2,2,2,0,0,0,	//	0,2,2,2,2,2,2,2, 2,2,2,2,2,2,2,0,
-	2,2,2,2,2,2,0,0,
-        2,2,2,2,2,2,2,0,	//	2,2,2,2,2,2,2,2, 2,2,2,2,2,2,2,2,
-	2,2,2,2,2,2,2,2,
-        2,2,2,2,2,2,2,2,	//	2,2,2,2,2,2,2,2, 2,2,2,2,2,2,2,2,
-
-	1,1,1,1,1,1,1,1,
-        1,1,1,1,1,1,1,1,	//	1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1,
-	0,1,1,1,1,1,1,1,
-        0,0,1,1,1,1,1,1,	//	1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1,
-	0,0,0,1,1,1,1,1,
-        0,0,0,0,1,1,1,1,	//	0,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,0,
-	0,0,0,0,0,1,1,1,
-        0,0,0,0,0,0,1,1,	//	0,0,1,1,1,1,1,1, 1,1,1,1,1,1,0,0,
-
-	1,1,1,1,1,1,1,1,
-        1,1,1,1,1,1,1,1,	//	0,0,0,1,1,1,1,1, 1,1,1,1,1,0,0,0,
-	1,1,1,1,1,1,1,0,
-        1,1,1,1,1,1,0,0,	//	0,0,0,0,1,1,1,1, 1,1,1,1,0,0,0,0,
-	1,1,1,1,1,0,0,0,
-        1,1,1,1,0,0,0,0,	//	0,0,0,0,0,1,1,1, 1,1,1,0,0,0,0,0,
-	1,1,1,0,0,0,0,0,
-        1,1,0,0,0,0,0,0,	//	0,0,0,0,0,0,1,1, 1,1,0,0,0,0,0,0,
-};
-
-u8 romboGrande[1024] =
-{
-	0,0,0,0,0,0,2,2,0,0,0,0,0,2,2,2,0,0,0,0,2,2,2,2,0,0,0,2,2,2,2,2,0,0,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
-
-	3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
-
-	3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
-
-	2,2,0,0,0,0,0,0,2,2,2,0,0,0,0,0,2,2,2,2,0,0,0,0,2,2,2,2,2,0,0,0,2,2,2,2,2,2,0,0,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
-
-	2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
-
-	0,0,0,0,0,0,1,1,0,0,0,0,0,1,1,1,0,0,0,0,1,1,1,1,0,0,0,1,1,1,1,1,0,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-
-	1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,1,0,0,0,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-
-	2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
-
-	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-
-	2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,0,0,2,2,2,2,2,2,0,0,0,2,2,2,2,2,0,0,0,0,2,2,2,2,0,0,0,0,0,2,2,2,0,0,0,0,0,0,2,2,
-
-	2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,0,0,2,2,2,2,2,0,0,0,2,2,2,2,0,0,0,0,2,2,2,0,0,0,0,0,2,2,0,0,0,0,0,0,
-
-	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-
-	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,
-
-	3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
-
-	3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
-
-	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,0,1,1,1,1,1,0,0,0,1,1,1,1,0,0,0,0,1,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,
-};
-
 /* Carga en memoria cada uno de los sprites que hemos dibujado */
 
 void GuardarSpritesMemoria(int orientacion_nave){
@@ -397,12 +318,6 @@ void GuardarSpritesMemoria(int orientacion_nave){
 					srcIndex =
 						(ty * 8 + y) * 32 +
 						(tx * 8 + x);
-
-					/*if() {
-                        gfxdisparo[dstIndex++] =
-						disparo_nave[srcIndex] |
-						(disparo_nave[srcIndex + 1] << 8);
-					} */
 
 					if(orientacion_nave == SPR_NAVE_ARRIBA){
 						gfxnave[dstIndex++] =
@@ -515,10 +430,6 @@ void GuardarSpriteOrbeMemoria () {
 }
 
 
-
-
-/* Esta función dibuja un rombo en la posición x, y de pantalla. A cada rombo que se quiera mostrar en pantalla se le debe asignar un índice distinto, un valor entre 0 y 126 */
-
 void MostrarOrbe(Orbe orbe, int indice)
 {
 	oamSet(&oamMain, // main graphics engine context
@@ -591,93 +502,6 @@ void BorrarAsteroide(Asteroide enemigo){
 		false	// apply mosaic
 		);
 oamUpdate(&oamMain);
-}
-
-
-void MostrarRombo(int indice, int x, int y)
-{
-
-oamSet(&oamMain, // main graphics engine context
-		indice,           // oam index (0 to 127)
-		x, y,   // x and y pixel location of the sprite
-		0,                    // priority, lower renders last (on top)
-		0,			  // this is the palette index if multiple palettes or the alpha value if bmp sprite
-		SpriteSize_16x16,
-		SpriteColorFormat_256Color,
-		gfxrombo,// +16*16/2,      // pointer to the loaded graphics
-		-1,                  // sprite rotation data
-		false,               // double the size when rotating?
-		false,			// hide the sprite?
-		false, false, // vflip, hflip
-		false	// apply mosaic
-		);
-
-oamUpdate(&oamMain);
-}
-
-/* Esta función borra de la pantalla el Rombo con el índice indicado */
-void BorrarRombo(int indice, int x, int y)
-{
-
-oamSet(&oamMain, // main graphics engine context
-		indice,           // oam index (0 to 127)
-		x, y,   // x and y pixel location of the sprite
-		0,                    // priority, lower renders last (on top)
-		0,			  // this is the palette index if multiple palettes or the alpha value if bmp sprite
-		SpriteSize_16x16,
-		SpriteColorFormat_256Color,
-		gfxrombo,// +16*16/2,      // pointer to the loaded graphics
-		-1,                  // sprite rotation data
-		false,               // double the size when rotating?
-		true,			// hide the sprite?
-		false, false, // vflip, hflip
-		false	// apply mosaic
-		);
-oamUpdate(&oamMain);
-
-}
-
-void MostrarRomboGrande(int indice, int x, int y)
-{
-
-oamSet(&oamMain, // main graphics engine context
-		indice,           // oam index (0 to 127)
-		x, y,   // x and y pixel location of the sprite
-		0,                    // priority, lower renders last (on top)
-		0,			  // this is the palette index if multiple palettes or the alpha value if bmp sprite
-		SpriteSize_32x32,
-		SpriteColorFormat_256Color,
-		gfxromboGrande,// +16*16/2,   // pointer to the loaded graphics
-		-1,                  // sprite rotation data
-		false,               // double the size when rotating?
-		false,			// hide the sprite?
-		false, false, // vflip, hflip
-		false	// apply mosaic
-		);
-
-
-oamUpdate(&oamMain);
-}
-
-void BorrarRomboGrande(int indice, int x, int y)
-{
-
-oamSet(&oamMain, // main graphics engine context
-		indice,           // oam index (0 to 127)
-		x, y,   // x and y pixel location of the sprite
-		0,                    // priority, lower renders last (on top)
-		0,			  // this is the palette index if multiple palettes or the alpha value if bmp sprite
-		SpriteSize_32x32,
-		SpriteColorFormat_256Color,
-		gfxromboGrande,// +16*16/2,  // pointer to the loaded graphics
-		-1,                  // sprite rotation data
-		false,               // double the size when rotating?
-		true,			// hide the sprite?
-		false, false, // vflip, hflip
-		false	// apply mosaic
-		);
-oamUpdate(&oamMain);
-
 }
 
 void MostrarDisparo(Disparo *proyectil){

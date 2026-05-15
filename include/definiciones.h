@@ -62,14 +62,18 @@ extern int ESTADO;
 #define SPR_NAVE_IZQUIERDA  3
 #define SPR_ORBE            4         
 
-//Estado del disparo
+//Estados de actividad de las entidades
 #define INACTIVO 0
 #define ACTIVO 1
+
+#define MAX_ASTEROIDES 50
 #define MAX_DISPAROS 10
+
+
 extern volatile int cooldown_disparo;
 extern volatile int contador_orbe;
 extern volatile bool orbe_activo;
-#define MAX_ASTEROIDES 50
+
 
 
 /***********************2025-2026*******************************/

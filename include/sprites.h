@@ -22,21 +22,6 @@ extern void GuardarSpriteDisparoMemoria ();
 extern void GuardarSpriteAsteroideMemoria ();
 extern void GuardarSpriteOrbeMemoria();
 
-
-
-extern void MostrarRombo(int indice, int x, int y);
-/* Esta función dibuja un rombo en la posición de pantalla x,y. A cada rombo que queramos sacar en pantalla se le debe asignar un índice distinto que puede tomara valores entre 0 y 126 */
-
-
-extern void BorrarRombo(int indice, int x, int y);
-/* Esta función borra de la pantalla el rombo con el índice que se le indique como parámetro */
-
-
-extern void MostrarRomboGrande(int indice, int x, int y);
-/* Esta función dibuja un rombo grande en la posición de pantalla x,y. A cada rombo que queramos sacar en pantalla se le debe asignar un índice distinto que puede tomara valores entre 0 y 126 */
-
-
-extern void BorrarRomboGrande(int indice, int x, int y);
 /* Esta función borra de la pantalla el rombo grande con el índice que se le indique como parámetro */
 extern void MostrarOrbe(Orbe orbe, int indice);
 extern void BorrarOrbe(Orbe orbe, int indice);
