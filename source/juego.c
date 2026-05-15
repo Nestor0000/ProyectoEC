@@ -23,7 +23,6 @@ y en otro ejemplo de Jaeden Ameronen
 volatile int tiempo = 0;
 volatile int ticks_fase = 0;
 volatile int probabilidad_supervivencia = 100;
-volatile int cooldown_disparo = 0;
 volatile int fondo_actual;
 volatile int contador_orbe = 0;
 volatile bool orbe_activo = false;
