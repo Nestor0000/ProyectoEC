@@ -288,7 +288,7 @@ void juego()
             fondo_actual = 0;
             touchRead(&PANT_DAT);
 
-            if (PANT_DAT.px > 0 && PANT_DAT.py > 0 || TeclaPulsada() == ARRIBA)
+            if (PANT_DAT.px > 0 && PANT_DAT.py > 0 || TeclaPulsada() == A)
             {
                 ESTADO = GAME;
             }
@@ -611,6 +611,7 @@ void juego()
         }
         else if (ESTADO == GAME_OVER)
     {
+            iprintf("\x1b[1;5Hpuntuacion: %d", puntuacion);
         for (i = 0; i < MAX_ASTEROIDES; i++)
         {
             if (asteroides[i].activo)
@@ -631,6 +632,14 @@ void juego()
         BorrarOrbe(orbe, SPR_ORBE);
         fondo_actual = 5;
         visualizarFondoGameOver();
+        if(TeclaPulsada() == A){
+            fondo_actual=0;
+            probabilidad_supervivencia = 100;
+            visualizarFondoMenu();
+            fase_actual = 1;
+            ESTADO = GAME;
+            puntuacion = 0;
+        }
     }
     }
     
