@@ -287,7 +287,7 @@ void juego()
             visualizarFondoMenu();
             fondo_actual = 0;
             touchRead(&PANT_DAT);
-
+            //No detecta el tactil y por tanto esta puesto asi
             if ((PANT_DAT.px > 0 && PANT_DAT.py > 0) || TeclaPulsada() == A)
             {
                 ESTADO = GAME;
