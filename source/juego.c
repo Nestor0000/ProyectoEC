@@ -204,7 +204,7 @@ void Spawn_Orbe()
     orbe.recarga_balas = 20;
     if (!orbe_activo)
     {
-        if (contador_orbe >= 600 + (rand() % 1200))
+        if (contador_orbe >= 900 + (rand() % 1200))
         {
             orbe.x = rand() % 220;
             orbe.y = rand() % 180;
@@ -223,6 +223,7 @@ void Spawn_Orbe()
         orbe_activo = false;
         orbe_recogido = false;
         contador_orbe = 0;
+        probabilidad_supervivencia+=3;
     }
 }
 
