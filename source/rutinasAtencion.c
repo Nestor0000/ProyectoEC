@@ -114,8 +114,6 @@ void RutAtencionTempo()
 			visualizarFondo4();
 			fondo_actual = 4;
 		}
-		}
-				
 	}
 	if(cooldown_disparo>0){
 		cooldown_disparo--;
@@ -130,6 +128,6 @@ void EstablecerVectorInt()
 	irqSet(IRQ_KEYS, RutAtencionTeclado);
 	irqSet(IRQ_TIMER0,RutAtencionTempo);
 }
-*/
+
 /***********************2025-2026*******************************/
 

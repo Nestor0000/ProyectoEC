@@ -13,7 +13,7 @@
 #include "fondo2.h"
 #include "fondo3.h"
 #include "fondo4.h"
-#include "pantalla_gameover.h"
+#include "pantallaGameover.h"
 
 /* Se elige el canal de DMA que se utilizará para copiar las imágenes en memoria */
 static const int DMA_CHANNEL = 3;
@@ -45,7 +45,7 @@ void visualizarFondo4(){
 	dmaCopyHalfWords(DMA_CHANNEL,fondo4Bitmap,(uint16 *)BG_BMP_RAM(0),fondo4BitmapLen);
 }
 void visualizarFondoGameOver(){
-    dmaCopyHalfWords(DMA_CHANNEL,pantalla_gameoverBitmap,(uint16 *)BG_BMP_RAM(0),pantalla_gameoverBitmapLen);
+    dmaCopyHalfWords(DMA_CHANNEL,pantallaGameoverBitmap,(uint16 *)BG_BMP_RAM(0),pantallaGameoverBitmapLen);
 }
 
 /***********************2025-2026*******************************/
