@@ -167,7 +167,6 @@ void AparicionAsteroides()
 
             // 3. volver a dibujar en nueva posición
             MostrarAsteroide(asteroides[i]);
-            // GuardarSpriteAsteroideMemoria();
         }
     }
     GuardarSpriteAsteroideMemoria();
@@ -239,7 +238,6 @@ void juego()
 
     irqInit();
     irqEnable(IRQ_VBLANK);
-    // ConfigurarTeclado(0xC001);
     ConfigurarTeclado(0x43FF);
     ConfigurarTemporizador(61440, 0x0041);
     EstablecerVectorInt();
@@ -267,17 +265,10 @@ void juego()
             visualizarFondoMenu();
             fondo_actual = 0;
             touchRead(&PANT_DAT);
-            iprintf("\x1b[1;1Hx: %d", PANT_DAT.px);
-            iprintf("\x1b[1;2HY: %d", PANT_DAT.py);
-            iprintf("\x1b[1;3Hestado: %d", ESTADO);
+
             if (PANT_DAT.px > 0 && PANT_DAT.py > 0 || TeclaPulsada() == ARRIBA)
             {
-
                 ESTADO = GAME;
-                iprintf("\x1b[2;1HPorky");
-                iprintf("\x1b[1;1Hx: %d", PANT_DAT.px);
-                iprintf("\x1b[1;2HY: %d", PANT_DAT.py);
-                iprintf("\x1b[1;3Hestado: %d", ESTADO);
             }
         }
 
@@ -336,7 +327,6 @@ void juego()
                     {
                         ESTADO = GAME_OVER;
                         fondo_actual = 5;
-                        iprintf("\x1b[4;1ESTADO:%d", ESTADO);
                         BorrarAsteroide(asteroides[i]);
                         asteroides[i].activo = INACTIVO;
                         colisionDetectada = true;
@@ -349,7 +339,6 @@ void juego()
                 BorrarNave(jugador);
                 jugador.x = jugador.x - 2;
                 MostrarNave(jugador);
-                iprintf("\x1b[2;1HIZQUIERDA");
                 colisionDetectada = false;
                 for (i = 0; i < MAX_ASTEROIDES && !colisionDetectada; i++)
                 {
@@ -357,8 +346,6 @@ void juego()
                     {
                         ESTADO = GAME_OVER;
                         fondo_actual = 5;
-                        iprintf("\x1b[3;1COLISION IZQUIERDA");
-                        iprintf("\x1b[4;1ESTADO:%d", ESTADO);
                         BorrarAsteroide(asteroides[i]);
                         asteroides[i].activo =INACTIVO ;
                         colisionDetectada = true;
@@ -378,7 +365,6 @@ void juego()
                     {
                         ESTADO = GAME_OVER;
                         fondo_actual = 5;
-                        iprintf("\x1b[4;1ESTADO:%d", ESTADO);
                         BorrarAsteroide(asteroides[i]);
                         asteroides[i].activo = INACTIVO ;
                         colisionDetectada = true;
@@ -398,7 +384,6 @@ void juego()
                     {
                         ESTADO = GAME_OVER;
                         fondo_actual = 5;
-                        iprintf("\x1b[4;1ESTADO:%d", ESTADO);
                         BorrarAsteroide(asteroides[i]);
                         asteroides[i].activo = INACTIVO ;
                         colisionDetectada = true;
