@@ -38,6 +38,9 @@ int spawnasteroides_timer = 0; // Para controlar el tiempo entre spawns de enemi
 // --- REGISTROS DE MOVIMIENTO Y DISPAROS ---
 int contDisparos;
 int teclaPulsada;
+volatile int cooldown_disparo = 0;
+volatile bool disparo_detectado;
+
 
 // --- MISCELANEO / ESTADO ---
 int tempo_activado = 0;
@@ -222,6 +225,21 @@ void Spawn_Orbe()
         contador_orbe = 0;
     }
 }
+
+bool sobrevive()
+{
+    int r = rand() % 100; // número entre 0 y 99
+
+    if (r < probabilidad_supervivencia)
+    {
+        return true; // sobrevive
+    }
+    else
+    {
+        return false; // muere
+    }
+}
+
 void juego()
 {
 
@@ -426,7 +444,12 @@ void juego()
                 GuardarSpritesMemoria(jugador.orientacion_actual);
                 cooldown_rotacion = 25;
             }
-
+            if (disparo_detectado) {
+                disparo_detectado = false;
+                if (!sobrevive()){
+                    ESTADO = GAME_OVER;
+                }
+            }
             for (i = 0; i < MAX_DISPAROS; i++)
             {
                 colisionDetectada = false;
@@ -602,6 +625,7 @@ void juego()
                 BorrarDisparo(p);
             }
         }
+        BorrarOrbe(orbe, SPR_ORBE);
         fondo_actual = 5;
         visualizarFondoGameOver();
     }
