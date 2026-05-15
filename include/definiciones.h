@@ -73,6 +73,7 @@ extern int ESTADO;
 extern volatile int cooldown_disparo;
 extern volatile int contador_orbe;
 extern volatile bool orbe_activo;
+extern volatile int probabilidad_supervivencia;
 
 
 

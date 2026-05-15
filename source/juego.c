@@ -23,6 +23,12 @@ y en otro ejemplo de Jaeden Ameronen
 volatile int tiempo = 0;
 volatile int ticks_fase = 0;
 int game_tick = 0;
+volatile int puntuacion = 0;
+
+volatile int probabilidad_supervivencia = 100;
+volatile int fondo_actual;
+volatile int contador_orbe = 0;
+volatile bool orbe_activo = false;
 
 // --- PARÁMETROS DE DIFICULTAD (Velocidad y cantidad de los enemigos, fases, etc) ---
 int fase_actual = 1;           // Empieza por defecto en la fase 1
@@ -34,21 +40,20 @@ int spawnasteroides_timer = 0; // Para controlar el tiempo entre spawns de enemi
 int contDisparos;
 int teclaPulsada;
 volatile int cooldown_disparo = 0;
+volatile bool disparo_detectado;
+
 
 // --- MISCELANEO / ESTADO ---
 int tempo_activado = 0;
 int asteroides_inicializados = 0;
-volatile int fondo_actual;
 
 // --- ENTIDADES IN-GAME ---
 Nave jugador;
+Orbe orbe;
 Disparo disparosNave[MAX_DISPAROS];
 Asteroide asteroides[MAX_ASTEROIDES];
 
 bool colisionDetectada;
-volatile int contador_orbe = 0;
-volatile bool orbe_activo = false;
-Orbe orbe;
 bool orbe_recogido = false;
 //esta funcion detecta colisiones en base a coordenadas y tamaños de la hitbox, es generico, hay funciones mas especificas que son simplemente para que
 //al desarrollador le sea mas comodo utilizar las funciones de colisiones al no tener que llamar a esto y solo tener que pasar las entidades necesarias
@@ -200,7 +205,7 @@ void Spawn_Orbe()
     orbe.recarga_balas = 20;
     if (!orbe_activo)
     {
-        if (contador_orbe >= 600 + (rand() % 1200))
+        if (contador_orbe >= 900 + (rand() % 1200))
         {
             orbe.x = rand() % 220;
             orbe.y = rand() % 180;
@@ -215,12 +220,29 @@ void Spawn_Orbe()
     }
     if (orbe_recogido)
     {
+        probabilidad_supervivencia = probabilidad_supervivencia + 3;
         BorrarOrbe(orbe, SPR_ORBE);
         orbe_activo = false;
         orbe_recogido = false;
         contador_orbe = 0;
+        probabilidad_supervivencia+=3;
     }
 }
+
+bool sobrevive()
+{
+    int r = rand() % 100; // número entre 0 y 99
+
+    if (r < probabilidad_supervivencia)
+    {
+        return true; // sobrevive
+    }
+    else
+    {
+        return false; // muere
+    }
+}
+
 void juego()
 {
 
@@ -265,8 +287,8 @@ void juego()
             visualizarFondoMenu();
             fondo_actual = 0;
             touchRead(&PANT_DAT);
-
-            if (PANT_DAT.px > 0 && PANT_DAT.py > 0 || TeclaPulsada() == ARRIBA)
+            //No detecta el tactil y por tanto esta puesto asi
+            if ((PANT_DAT.px > 0 && PANT_DAT.py > 0) || TeclaPulsada() == A)
             {
                 ESTADO = GAME;
             }
@@ -304,9 +326,17 @@ void juego()
                 cooldown_rotacion--;
             }
             spawnasteroides_timer++;
-            if (spawnasteroides_timer > 25)
+
+            if (spawnasteroides_timer > espera_spawn_fase)
             {
-                SpawnAsteroide();
+                int asteroides_extras = fase_actual;
+
+                if (asteroides_extras > 6) asteroides_extras = 6;
+
+                for (i = 0; i < asteroides_extras; i++){
+                    SpawnAsteroide();
+                }
+
                 spawnasteroides_timer = 0;
             }
             Eliminar_Asteroides();
@@ -391,6 +421,8 @@ void juego()
                 }
                 colisionDetectada = false;
             }
+
+
             if (cooldown_rotacion == 0 && ((teclaPulsada == R && jugador.orientacion_actual == SPR_NAVE_ARRIBA) || (teclaPulsada == L && jugador.orientacion_actual == SPR_NAVE_ABAJO)))
             {
                 BorrarNave(jugador);
@@ -423,7 +455,12 @@ void juego()
                 GuardarSpritesMemoria(jugador.orientacion_actual);
                 cooldown_rotacion = 25;
             }
-
+            if (disparo_detectado) {
+                disparo_detectado = false;
+                if (!sobrevive()){
+                    ESTADO = GAME_OVER;
+                }
+            }
             for (i = 0; i < MAX_DISPAROS; i++)
             {
                 colisionDetectada = false;
@@ -582,6 +619,7 @@ void juego()
         }
         else if (ESTADO == GAME_OVER)
     {
+            iprintf("\x1b[1;5Hpuntuacion: %d", puntuacion);
         for (i = 0; i < MAX_ASTEROIDES; i++)
         {
             if (asteroides[i].activo)
@@ -599,11 +637,20 @@ void juego()
                 BorrarDisparo(p);
             }
         }
+        BorrarOrbe(orbe, SPR_ORBE);
         fondo_actual = 5;
         visualizarFondoGameOver();
+        if(TeclaPulsada() == A){
+            fondo_actual=0;
+            probabilidad_supervivencia = 100;
+            visualizarFondoMenu();
+            fase_actual = 1;
+            ESTADO = GAME;
+            puntuacion = 0;
+        }
     }
     }
-    
+
 }
 
 // Inhibir las interrupciones al final

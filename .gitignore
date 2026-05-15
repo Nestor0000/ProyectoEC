@@ -26,3 +26,4 @@ build/
 *.bin
 *.arm9
 *.arm7
+*.nds
