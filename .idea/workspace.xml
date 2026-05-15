@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BackendCodeEditorMiscSettings">
+    <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
+    <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
+    <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
+  </component>
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="97e97512-17dd-446a-a707-b79f1970e2da" name="Changes" comment="game over se muestra">
+      <change beforePath="$PROJECT_DIR$/.idea/ProyectoEC.iml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="testing" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ioritz2002&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Nestor0000/ProyectoEC.git&quot;,
+    &quot;accountId&quot;: &quot;1b027cfd-2781-46d3-80e9-d9bca309e60d&quot;
+  },
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
+    },
+    &quot;owner&quot;: &quot;Nestor0000&quot;,
+    &quot;repository&quot;: &quot;ProyectoEC&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock:////bildu.ehu.eus/home/Shared/ProyectoEC/include/fondos.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:////bildu.ehu.eus/home/Shared/ProyectoEC/include/fondos.h" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="ROK0DWAT" />
+  </component>
+  <component name="MakefileLocalSettings">
+    <option name="availableProjects">
+      <map>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="ProyectoEC" />
+              <option name="path" value="$PROJECT_DIR$" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value="ProyectoEC" />
+                <option name="path" value="$PROJECT_DIR$" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="projectSyncType">
+      <map>
+        <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
+      </map>
+    </option>
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2026" />
+    <option name="minorVersion" value="1.1" />
+    <option name="productBranch" value="Classic" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3CnTclADHYdaoKM47kXNEfYaKd7" />
+  <component name="ProjectStatusUIService">{
+  &quot;uiKindId&quot;: &quot;Widget&quot;
+}</component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.RadMigrateCodeStyle": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "ioritz",
+    "git.auto.fetch.suggestion.counter": "3",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "//bildu.ehu.eus/home/Shared/ProyectoEC",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "org.rust.first.attach.projects": "true",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="\\bildu.ehu.eus\home\Shared\ProyectoEC\gfx" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="\\bildu.ehu.eus\home\Shared\ProyectoEC\gfx" />
+    </key>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="97e97512-17dd-446a-a707-b79f1970e2da" name="Changes" comment="" />
+      <created>1777020417769</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1777020417769</updated>
+      <workItem from="1777020420355" duration="736000" />
+      <workItem from="1777308719563" duration="7684000" />
+      <workItem from="1777396640206" duration="1092000" />
+      <workItem from="1777397827894" duration="3054000" />
+      <workItem from="1777402039182" duration="7429000" />
+      <workItem from="1778077034133" duration="50000" />
+      <workItem from="1778080619130" duration="2344000" />
+      <workItem from="1778091575788" duration="387000" />
+      <workItem from="1778424900359" duration="15094000" />
+      <workItem from="1778504076129" duration="8501000" />
+      <workItem from="1778768197057" duration="9427000" />
+      <workItem from="1778855447796" duration="13823000" />
+    </task>
+    <task id="LOCAL-00001" summary="He corregido lo de que alguien pusiese el nombre del array nave_arriba en amyusculas haciendo que cuadrase exactamente igual con lo qe estaba puesto en definiciones.h con el mismo nombre y en mayusculas para asignar un 0.">
+      <option name="closed" value="true" />
+      <created>1777315264720</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1777315264720</updated>
+    </task>
+    <task id="LOCAL-00002" summary="El fondo se vuelve a mostrar">
+      <option name="closed" value="true" />
+      <created>1777403398680</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1777403398680</updated>
+    </task>
+    <task id="LOCAL-00003" summary="El sprite se muestra bien">
+      <option name="closed" value="true" />
+      <created>1777404284510</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1777404284510</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Fix">
+      <option name="closed" value="true" />
+      <created>1777406018545</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1777406018545</updated>
+    </task>
+    <task id="LOCAL-00005" summary="cooldown disparos funciona bien">
+      <option name="closed" value="true" />
+      <created>1778426916606</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1778426916607</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Unido lo de asteroides">
+      <option name="closed" value="true" />
+      <created>1778431972986</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1778431972986</updated>
+    </task>
+    <task id="LOCAL-00007" summary="hotfix">
+      <option name="closed" value="true" />
+      <created>1778433946509</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1778433946509</updated>
+    </task>
+    <task id="LOCAL-00008" summary="hitboxes de nave-asteroide y proyectil-asteroide funcionales">
+      <option name="closed" value="true" />
+      <created>1778517365730</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1778517365730</updated>
+    </task>
+    <task id="LOCAL-00009" summary="hitboxes de disparo-orbe funciona">
+      <option name="closed" value="true" />
+      <created>1778771295033</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1778771295033</updated>
+    </task>
+    <task id="LOCAL-00010" summary="game over para el juego pero no muestra pantalla de gameover">
+      <option name="closed" value="true" />
+      <created>1778779495330</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1778779495330</updated>
+    </task>
+    <task id="LOCAL-00011" summary="game over para el juego pero no muestra pantalla de gameover">
+      <option name="closed" value="true" />
+      <created>1778779565672</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1778779565672</updated>
+    </task>
+    <task id="LOCAL-00012" summary="game over para el juego pero no muestra pantalla de gameover">
+      <option name="closed" value="true" />
+      <created>1778863669255</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1778863669255</updated>
+    </task>
+    <task id="LOCAL-00013" summary="game over funciona">
+      <option name="closed" value="true" />
+      <created>1778868382206</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1778868382206</updated>
+    </task>
+    <task id="LOCAL-00014" summary="game over se muestra">
+      <option name="closed" value="true" />
+      <created>1778868546284</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1778868546284</updated>
+    </task>
+    <task id="LOCAL-00015" summary="game over se muestra">
+      <option name="closed" value="true" />
+      <created>1778869143304</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1778869143304</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="He corregido lo de que alguien pusiese el nombre del array nave_arriba en amyusculas haciendo que cuadrase exactamente igual con lo qe estaba puesto en definiciones.h con el mismo nombre y en mayusculas para asignar un 0." />
+    <MESSAGE value="El fondo se vuelve a mostrar" />
+    <MESSAGE value="El sprite se muestra bien" />
+    <MESSAGE value="Fix" />
+    <MESSAGE value="cooldown disparos funciona bien" />
+    <MESSAGE value="Unido lo de asteroides" />
+    <MESSAGE value="hotfix" />
+    <MESSAGE value="hitboxes de nave-asteroide y proyectil-asteroide funcionales" />
+    <MESSAGE value="hitboxes de disparo-orbe funciona" />
+    <MESSAGE value="game over para el juego pero no muestra pantalla de gameover" />
+    <MESSAGE value="game over funciona" />
+    <MESSAGE value="game over se muestra" />
+    <option name="LAST_COMMIT_MESSAGE" value="game over se muestra" />
+  </component>
+</project>

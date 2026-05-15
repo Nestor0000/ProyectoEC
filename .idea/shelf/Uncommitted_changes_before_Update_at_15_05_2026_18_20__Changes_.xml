@@ -1,0 +1,34 @@
+<changelist name="Uncommitted_changes_before_Update_at_15_05_2026_18_20_[Changes]" date="1778862039765" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_05_2026_18_20_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 15/05/2026 18:20 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="build/rutinasAtencion.o" />
+    <option name="AFTER_PATH" value="build/rutinasAtencion.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_05_2026_18_20_[Changes]/rutinasAtencion.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="ProyectoEC.nds" />
+    <option name="AFTER_PATH" value="ProyectoEC.nds" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_05_2026_18_20_[Changes]/ProyectoEC.nds" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/fondos.o" />
+    <option name="AFTER_PATH" value="build/fondos.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_05_2026_18_20_[Changes]/fondos.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/juego.o" />
+    <option name="AFTER_PATH" value="build/juego.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_05_2026_18_20_[Changes]/juego.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="ProyectoEC.arm9" />
+    <option name="AFTER_PATH" value="ProyectoEC.arm9" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_05_2026_18_20_[Changes]/ProyectoEC.arm9" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="ProyectoEC.elf" />
+    <option name="AFTER_PATH" value="ProyectoEC.elf" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_05_2026_18_20_[Changes]/ProyectoEC.elf" />
+  </binary>
+</changelist>
