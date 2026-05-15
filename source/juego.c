@@ -22,12 +22,14 @@ y en otro ejemplo de Jaeden Ameronen
 // --- RELOJES Y TIEMPO ---
 volatile int tiempo = 0;
 volatile int ticks_fase = 0;
+int game_tick = 0;
+volatile int puntuacion = 0;
+
 volatile int probabilidad_supervivencia = 100;
 volatile int fondo_actual;
 volatile int contador_orbe = 0;
 volatile bool orbe_activo = false;
 
-int game_tick = 0;
 // --- PARÁMETROS DE DIFICULTAD (Velocidad y cantidad de los enemigos, fases, etc) ---
 int fase_actual = 1;           // Empieza por defecto en la fase 1
 int velocidad_fase = 1;        // Velocidad con la que inician los enemigos
@@ -218,6 +220,7 @@ void Spawn_Orbe()
     }
     if (orbe_recogido)
     {
+        probabilidad_supervivencia = probabilidad_supervivencia + 3;
         BorrarOrbe(orbe, SPR_ORBE);
         orbe_activo = false;
         orbe_recogido = false;

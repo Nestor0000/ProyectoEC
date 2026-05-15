@@ -27,6 +27,9 @@ extern int fase_actual;
 extern int velocidad_fase;
 extern int espera_spawn_fase;
 
+extern volatile int puntuacion;
+
+
 void RutAtencionTeclado() {
 	int tecla = TeclaPulsada();
 	if(tecla==B && contDisparos <10 && cooldown_disparo == 0){
@@ -86,6 +89,13 @@ void RutAtencionTeclado() {
 void RutAtencionTempo()
 {
 	tiempo++;
+	bool tiempo_puntuacion = false;
+
+	if (tiempo % 120 == 0 && ESTADO == GAME)
+	{
+		puntuacion++;
+	}
+
     if(tiempo>=2400)//20 segs
 	{
 		tiempo = 0;
