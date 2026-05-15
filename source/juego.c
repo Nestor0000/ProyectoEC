@@ -248,8 +248,17 @@ void juego() {
                 cooldown_rotacion--;
             }
             spawnasteroides_timer++;
-            if(spawnasteroides_timer > espera_spawn_fase){
-                SpawnAsteroide();
+
+            if (spawnasteroides_timer > espera_spawn_fase)
+            {
+                int asteroides_extras = fase_actual;
+
+                if (asteroides_extras > 6) asteroides_extras = 6;
+            
+                for (i = 0; i < asteroides_extras; i++){
+                    SpawnAsteroide();
+                }
+
                 spawnasteroides_timer = 0;
             }
             ActualizarAsteroides();
